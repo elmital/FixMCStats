@@ -2,7 +2,7 @@
 	"required": true,
 	"package": "be.elmital.fixmcstats.mixin.client",
 	"compatibilityLevel": "JAVA_17",
-	"client": ["EntityStatsListWidgetEntryMixin", "StatsScreenMixin", "StatsScreenAccessor"],
+	"client": ["EntityStatsListWidgetEntryMixin", "StatsScreenMixin", "StatsScreenAccessor", "EntryListWidgetMixin"],
 	"injectors": {
 		"defaultRequire": 1
 	}
