@@ -21,6 +21,8 @@ repositories {
 loom {
     splitEnvironmentSourceSets()
 
+	accessWidenerPath = file("src/client/resources/fix-mc-stats.accesswidener")
+
 	mods {
 		"fix-mc-stats" {
 			sourceSet sourceSets.main

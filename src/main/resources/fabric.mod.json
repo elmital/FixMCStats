@@ -29,6 +29,7 @@
 			"environment": "client"
 		}
 	],
+	"accessWidener": "fix-mc-stats.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.15.0",
 		"minecraft": "~1.20.4",
