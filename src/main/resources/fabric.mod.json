@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "fix-mc-stats",
+	"version": "${version}",
+	"name": "FixMCStats",
+	"description": "Fabric mod that aims to fix some issues with the Minecraft statistics",
+	"authors": [
+		"elmital"
+	],
+	"contact": {
+		"homepage": "",
+		"sources": "https://github.com/elmital/FixMCStats"
+	},
+	"license": "",
+	"icon": "assets/fix-mc-stats/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"be.elmital.fixmcstats.FixMCStats"
+		],
+		"client": [
+			"be.elmital.fixmcstats.FixMCStatsClient"
+		]
+	},
+	"mixins": [
+		"fix-mc-stats.mixins.json",
+		{
+			"config": "fix-mc-stats.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.0",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
