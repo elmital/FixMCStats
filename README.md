@@ -10,3 +10,4 @@
 
 ## Server side bug fixes
 
+- https://bugs.mojang.com/browse/MC-65198
