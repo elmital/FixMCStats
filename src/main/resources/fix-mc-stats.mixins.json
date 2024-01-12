@@ -10,6 +10,7 @@
 		"CrossbowItemAccessor",
 		"CrossbowItemMixin",
 		"ForgingScreenHandlerMixin",
+        "LivingEntityMixin",
 		"PotionSlotMixin",
 		"RespawnAnchorBlockMixin",
 		"StonecutterScreenHandlerMixin"
