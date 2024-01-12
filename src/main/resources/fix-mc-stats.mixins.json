@@ -3,14 +3,16 @@
 	"package": "be.elmital.fixmcstats.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"BrewingStandScreenHandlerMixin",
+		"CampfireBlockEntityMixin",
+		"CampfireBlockMixin",
 		"CraftingResultSlotMixin",
 		"CrossbowItemAccessor",
 		"CrossbowItemMixin",
 		"ForgingScreenHandlerMixin",
+		"PotionSlotMixin",
 		"RespawnAnchorBlockMixin",
-		"StonecutterScreenHandlerMixin",
-        "CampfireBlockEntityMixin",
-        "CampfireBlockMixin"
+		"StonecutterScreenHandlerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

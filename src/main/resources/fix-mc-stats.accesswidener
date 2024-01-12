@@ -4,3 +4,4 @@ transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStat
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$ItemComparator
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$Entry
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$EntityStatsListWidget
+transitive-extendable class net/minecraft/screen/BrewingStandScreenHandler$PotionSlot
