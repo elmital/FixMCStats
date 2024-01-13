@@ -14,6 +14,7 @@
 		"PlayerEntityMixin",
 		"PotionSlotMixin",
 		"RespawnAnchorBlockMixin",
+		"ShearsItemMixin",
 		"StonecutterScreenHandlerMixin"
 	],
 	"injectors": {
