@@ -5,12 +5,25 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class FixMCStats implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("fix-mc-stats");
+	public static Config CONFIG;
 
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Initializing mod");
+		try {
+			LOGGER.info("Checking mod config...");
+			CONFIG = Config.instance();
+			CONFIG.loadOrGenerateConfig();
+			LOGGER.info("Mod configured!");
+		} catch (IOException | URISyntaxException e) {
+			LOGGER.trace("Can't load or generate config!", e);
+			throw new RuntimeException(e);
+		}
 		LOGGER.info("Mod initialized!");
 	}
 }
