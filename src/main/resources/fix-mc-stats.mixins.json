@@ -16,6 +16,7 @@
 		"PlayerScreenHandlerMixin",
 		"PotionSlotMixin",
 		"RespawnAnchorBlockMixin",
+		"ServerPlayerEntityMixin",
 		"ShearsItemMixin",
 		"StonecutterScreenHandlerMixin"
 	],

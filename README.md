@@ -21,6 +21,7 @@
 - https://bugs.mojang.com/browse/MC-211938
 - https://bugs.mojang.com/browse/MC-214457 linked to MC-254512
 - https://bugs.mojang.com/browse/MC-254512 linked to MC-214457
+- https://bugs.mojang.com/browse/MC-259687 experimental fix and can be deactivated in the mod config file
 
 
 ## Already fixed by Mojang / Won't fix
