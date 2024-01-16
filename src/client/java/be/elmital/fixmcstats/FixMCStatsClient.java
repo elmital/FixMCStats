@@ -15,7 +15,7 @@ public class FixMCStatsClient implements ClientModInitializer {
 		LOGGER.info("Initializing mod");
 		try {
 			LOGGER.info("Checking mod config...");
-			Config.instance().loadOrGenerateConfig();
+			Config.initConfig(LOGGER);
 			LOGGER.info("Mod configured!");
 		} catch (IOException | URISyntaxException e) {
 			LOGGER.trace("Can't load or generate config!", e);

@@ -1,6 +1,7 @@
 package be.elmital.fixmcstats;
 
 import net.fabricmc.loader.api.FabricLoader;
+import org.slf4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,21 +13,23 @@ import java.nio.file.Path;
 import java.util.Properties;
 
 public class Config {
-    private static Config INSTANCE = null;
-
+    private static Config INSTANCE;
+    private final Logger logger;
     private final Path currentDirectory;
-    static String CONFIG = "FixMCStatsConfig";
     private final Properties properties = new Properties();
+    static String CONFIG = "FixMCStatsConfig";
 
-    public static Config instance() throws IOException, URISyntaxException {
-        if (INSTANCE == null)
-            INSTANCE = new Config();
+    public static Config instance() {
         return INSTANCE;
     }
 
-    Config() throws IOException {
+    public static Config initConfig(Logger logger) throws IOException, URISyntaxException {
+        return INSTANCE = new Config(logger).loadOrGenerateConfig();
+    }
+
+    Config(Logger logger) {
+        this.logger = logger;
         currentDirectory = FabricLoader.getInstance().getConfigDir();
-        loadOrGenerateConfig();
     }
 
     public enum Configs {
@@ -47,18 +50,38 @@ public class Config {
         }
     }
 
-    public void loadOrGenerateConfig() throws IOException, IllegalArgumentException {
-        if (Files.exists(getConfigPath())) {
+    Config loadOrGenerateConfig() throws IOException, IllegalArgumentException {
+        boolean alreadyExist = Files.exists(getConfigPath());
+
+        if (alreadyExist) {
+            logger.info("Config file found loading it");
             InputStream input = new FileInputStream(getConfigPath().toString());
             properties.load(input);
+            logger.info("File loaded checking for missing configs");
+            input.close();
         } else {
-            var stream = new FileOutputStream(getConfigPath().toString());
+            logger.info("No config file found creating it...");
+        }
+        FileOutputStream stream = new FileOutputStream(getConfigPath().toString());
 
-            for (Configs value : Configs.values()) {
+        boolean toStore = !alreadyExist;
+        for (Configs value : Configs.values()) {
+            if (!alreadyExist || !properties.containsKey(value.getKey())) {
+                if (alreadyExist)
+                    logger.info("Adding missing config " + value.getKey());
+                toStore = true;
                 properties.setProperty(value.getKey(), value.getDefault());
             }
-            properties.store(stream, null);
         }
+        if (toStore) {
+            logger.info("Saving file...");
+            properties.store(stream, null);
+            logger.info("Saved");
+        }
+        stream.close();
+
+        logger.info("Loading all configs");
+        return this;
     }
 
     public Path getConfigDirectoryPath() {
