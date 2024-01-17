@@ -32,4 +32,12 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     private Identifier modifyTargetStat(Identifier identifier) {
         return getVehicle() instanceof CamelEntity && Config.instance().USE_CAMEL_CUSTOM_STAT ? StatisticUtils.CAMEL_RIDING_STAT.identifier() : identifier;
     }
+
+    // Experimental fix for https://bugs.mojang.com/browse/MC-148457
+    @ModifyArg(method = "increaseTravelMotionStats", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;increaseStat(Lnet/minecraft/util/Identifier;I)V", ordinal = 6), index = 0)
+    private Identifier useCrawlStat(Identifier identifier) {
+        if (Config.instance().USE_CRAWL_CUSTOM_STAT && this.isCrawling())
+            return StatisticUtils.CRAWL_ONE_CM.identifier();
+        return identifier;
+    }
 }
