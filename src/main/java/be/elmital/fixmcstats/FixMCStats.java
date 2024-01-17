@@ -18,6 +18,8 @@ public class FixMCStats implements ModInitializer {
 			LOGGER.info("Checking mod config...");
 			Config.initConfig(LOGGER);
 			LOGGER.info("Mod configured!");
+			LOGGER.info("Checking for custom statistics");
+			StatisticUtils.registerAllCustomStats(Config.instance(), LOGGER);
 		} catch (IOException | URISyntaxException e) {
 			LOGGER.trace("Can't load or generate config!", e);
 			throw new RuntimeException(e);

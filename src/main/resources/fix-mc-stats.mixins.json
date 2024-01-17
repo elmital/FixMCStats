@@ -18,6 +18,7 @@
 		"RespawnAnchorBlockMixin",
 		"ServerPlayerEntityMixin",
 		"ShearsItemMixin",
+        "StatsAccessor",
 		"StonecutterScreenHandlerMixin"
 	],
 	"injectors": {

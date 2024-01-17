@@ -18,6 +18,7 @@ public class Config {
     private final Path currentDirectory;
     private final Properties properties = new Properties();
     public boolean ELYTRA_EXPERIMENTAL_FIX;
+    public boolean USE_CAMEL_CUSTOM_STAT;
     static String CONFIG = "FixMCStatsConfig";
 
     public static Config instance() {
@@ -34,7 +35,8 @@ public class Config {
     }
 
     public enum Configs {
-        ELYTRA_FIX("elytra-experimental-fix", Boolean.TRUE.toString());
+        ELYTRA_FIX("elytra-experimental-fix", Boolean.TRUE.toString()),
+        CAMEL_STAT("use-camel-riding-stat", Boolean.TRUE.toString());
 
         private final String key;
         private final String def;
@@ -85,6 +87,7 @@ public class Config {
 
         logger.info("Loading all configs");
         ELYTRA_EXPERIMENTAL_FIX = Boolean.parseBoolean(properties.getProperty(Configs.ELYTRA_FIX.getKey(), Configs.ELYTRA_FIX.getDefault()));
+        USE_CAMEL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CAMEL_STAT.getKey(), Configs.CAMEL_STAT.getDefault()));
         return this;
     }
 
