@@ -8,11 +8,12 @@
 		"elmital"
 	],
 	"contact": {
-		"homepage": "",
-		"sources": "https://github.com/elmital/FixMCStats"
+		"homepage": "https://modrinth.com/mod/fixmcstats",
+		"sources": "https://github.com/elmital/FixMCStats",
+		"issues": "https://github.com/elmital/FixMCStats/issues"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/fix-mc-stats/icon.png",
+	"icon": "assets/fix-mc-stats/fix-mc-stats.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
