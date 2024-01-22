@@ -10,6 +10,7 @@
 
 ## Server side bug fixes (This should works in Solo too)
 
+- https://bugs.mojang.com/browse/MC-29519
 - https://bugs.mojang.com/browse/MC-65198
 - https://bugs.mojang.com/browse/MC-111435
 - https://bugs.mojang.com/browse/MC-122656

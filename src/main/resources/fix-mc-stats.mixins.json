@@ -12,14 +12,17 @@
 		"CrossbowItemMixin",
 		"ForgingScreenHandlerMixin",
 		"LivingEntityMixin",
+		"PersistentProjectileEntityMixin",
 		"PlayerEntityMixin",
 		"PlayerScreenHandlerMixin",
 		"PotionSlotMixin",
 		"RespawnAnchorBlockMixin",
 		"ServerPlayerEntityMixin",
 		"ShearsItemMixin",
-        "StatsAccessor",
-		"StonecutterScreenHandlerMixin"
+		"SnowBallEntityMixin",
+		"StatsAccessor",
+		"StonecutterScreenHandlerMixin",
+		"TridentEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
