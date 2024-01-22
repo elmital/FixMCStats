@@ -10,6 +10,7 @@
 		"CraftingScreenHandlerMixin",
 		"CrossbowItemAccessor",
 		"CrossbowItemMixin",
+		"FlowerPotBlockMixin",
 		"ForgingScreenHandlerMixin",
 		"LivingEntityMixin",
 		"PersistentProjectileEntityMixin",
