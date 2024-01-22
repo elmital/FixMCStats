@@ -8,6 +8,7 @@
 		"CampfireBlockMixin",
 		"CraftingResultSlotMixin",
 		"CraftingScreenHandlerMixin",
+		"CreeperEntityMixin",
 		"CrossbowItemAccessor",
 		"CrossbowItemMixin",
 		"FlowerPotBlockMixin",

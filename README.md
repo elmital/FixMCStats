@@ -16,6 +16,7 @@
 - https://bugs.mojang.com/browse/MC-122656
 - https://bugs.mojang.com/browse/MC-128079
 - https://bugs.mojang.com/browse/MC-144005
+- https://bugs.mojang.com/browse/MC-147347
 - https://bugs.mojang.com/browse/MC-148457
 - https://bugs.mojang.com/browse/MC-154487
 - https://bugs.mojang.com/browse/MC-157098
