@@ -13,6 +13,7 @@
 		"CrossbowItemMixin",
 		"FlowerPotBlockMixin",
 		"ForgingScreenHandlerMixin",
+		"HoneyBottleItemMixin",
 		"LivingEntityMixin",
 		"PersistentProjectileEntityMixin",
 		"PlaceableOnWaterItemMixin",
