@@ -27,6 +27,7 @@
 - https://bugs.mojang.com/browse/MC-254512 (linked to MC-214457)
 - https://bugs.mojang.com/browse/MC-256638 the fix add a custom statistic and can be deactivated in the mod config file
 - https://bugs.mojang.com/browse/MC-259687 experimental fix and can be deactivated in the mod config file
+- https://bugs.mojang.com/browse/MC-264274
 
 
 ## Already fixed by Mojang / Won't fix

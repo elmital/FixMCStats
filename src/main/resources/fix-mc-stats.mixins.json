@@ -15,6 +15,7 @@
 		"ForgingScreenHandlerMixin",
 		"LivingEntityMixin",
 		"PersistentProjectileEntityMixin",
+		"PlaceableOnWaterItemMixin",
 		"PlayerEntityMixin",
 		"PlayerScreenHandlerMixin",
 		"PotionSlotMixin",
