@@ -64,28 +64,32 @@ public class Config {
             logger.info("Config file found loading it");
             InputStream input = new FileInputStream(getConfigPath().toString());
             properties.load(input);
-            logger.info("File loaded checking for missing configs");
+            logger.info("File loaded inspecting config keys...");
             input.close();
         } else {
             logger.info("No config file found creating it...");
         }
-        FileOutputStream stream = new FileOutputStream(getConfigPath().toString());
 
         boolean toStore = !alreadyExist;
         for (Configs value : Configs.values()) {
             if (!alreadyExist || !properties.containsKey(value.getKey())) {
                 if (alreadyExist)
-                    logger.info("Adding missing config " + value.getKey());
+                    logger.info("Adding missing config key " + value.getKey());
                 toStore = true;
                 properties.setProperty(value.getKey(), value.getDefault());
             }
         }
+
+        if (!toStore)
+            logger.info("All keys are setup correctly");
+
         if (toStore) {
+            FileOutputStream stream = new FileOutputStream(getConfigPath().toString());
             logger.info("Saving file...");
             properties.store(stream, null);
-            logger.info("Saved");
+            logger.info("Saved!");
+            stream.close();
         }
-        stream.close();
 
         logger.info("Loading all configs");
         ELYTRA_EXPERIMENTAL_FIX = Boolean.parseBoolean(properties.getProperty(Configs.ELYTRA_FIX.getKey(), Configs.ELYTRA_FIX.getDefault()));
@@ -106,11 +110,13 @@ public class Config {
         var stream = new FileOutputStream(getConfigPath().toString());
         properties.setProperty(config.getKey(), value);
         properties.store(stream, null);
+        stream.close();
     }
 
     public void removeFromConfig(String key) throws IOException {
         var stream = new FileOutputStream(getConfigPath().toString());
         properties.remove(key);
         properties.store(stream, null);
+        stream.close();
     }
 }
