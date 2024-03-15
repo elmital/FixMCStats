@@ -1,0 +1,16 @@
+package be.elmital.fixmcstats.mixin;
+
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Invoker;
+
+@Mixin(CrossbowItem.class)
+public interface CrossbowItemAccessor {
+    @Invoker
+    static void callPostShoot(World world, LivingEntity entity, ItemStack stack) {
+        throw new UnsupportedOperationException();
+    }
+}

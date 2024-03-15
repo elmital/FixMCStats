@@ -8,11 +8,12 @@
 		"elmital"
 	],
 	"contact": {
-		"homepage": "",
-		"sources": "https://github.com/elmital/FixMCStats"
+		"homepage": "https://modrinth.com/mod/fixmcstats",
+		"sources": "https://github.com/elmital/FixMCStats",
+		"issues": "https://github.com/elmital/FixMCStats/issues"
 	},
-	"license": "",
-	"icon": "assets/fix-mc-stats/icon.png",
+	"license": "CC0-1.0",
+	"icon": "assets/fix-mc-stats/fix-mc-stats.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -29,6 +30,7 @@
 			"environment": "client"
 		}
 	],
+	"accessWidener": "fix-mc-stats.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.15.0",
 		"minecraft": "~1.20.4",
