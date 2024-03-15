@@ -42,10 +42,16 @@ public class Config {
 
         private final String key;
         private final String def;
+        private final boolean deprecated;
 
         Configs(String key, String def) {
+            this(key, def, false);
+        }
+
+        Configs(String key, String def, boolean deprecated) {
             this.key = key;
             this.def = def;
+            this.deprecated = deprecated;
         }
 
         public String getKey() {
@@ -72,6 +78,15 @@ public class Config {
 
         boolean toStore = !alreadyExist;
         for (Configs value : Configs.values()) {
+            if (value.deprecated) {
+                if (alreadyExist && properties.containsKey(value.getKey())) {
+                    logger.info("Old config key found '" + value.getKey() + "' removing it");
+                    toStore = true;
+                    properties.remove(value.getKey());
+                }
+                continue;
+            }
+
             if (!alreadyExist || !properties.containsKey(value.getKey())) {
                 if (alreadyExist)
                     logger.info("Adding missing config key " + value.getKey());
