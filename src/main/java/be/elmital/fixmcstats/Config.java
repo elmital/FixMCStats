@@ -17,7 +17,6 @@ public class Config {
     private final Logger logger;
     private final Path currentDirectory;
     private final Properties properties = new Properties();
-    public boolean ELYTRA_EXPERIMENTAL_FIX;
     public boolean USE_CAMEL_CUSTOM_STAT;
     public boolean USE_CRAWL_CUSTOM_STAT;
     static String CONFIG = "FixMCStatsConfig";
@@ -36,7 +35,7 @@ public class Config {
     }
 
     public enum Configs {
-        ELYTRA_FIX("elytra-experimental-fix", Boolean.TRUE.toString()),
+        ELYTRA_FIX("elytra-experimental-fix", Boolean.TRUE.toString(), true),
         CAMEL_STAT("use-camel-riding-stat", Boolean.TRUE.toString()),
         CRAWL_STAT("use-crawling-stat", Boolean.TRUE.toString());
 
@@ -107,7 +106,6 @@ public class Config {
         }
 
         logger.info("Loading all configs");
-        ELYTRA_EXPERIMENTAL_FIX = Boolean.parseBoolean(properties.getProperty(Configs.ELYTRA_FIX.getKey(), Configs.ELYTRA_FIX.getDefault()));
         USE_CAMEL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CAMEL_STAT.getKey(), Configs.CAMEL_STAT.getDefault()));
         USE_CRAWL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CRAWL_STAT.getKey(), Configs.CRAWL_STAT.getDefault()));
         return this;

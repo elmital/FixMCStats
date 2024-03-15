@@ -5,13 +5,17 @@ import be.elmital.fixmcstats.StatisticUtils;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.passive.CamelEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity {
@@ -19,12 +23,11 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         super(world, pos, yaw, gameProfile);
     }
 
-    // Experimental fix for https://bugs.mojang.com/browse/MC-259687
-    @ModifyArg(method = "increaseTravelMotionStats", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;increaseStat(Lnet/minecraft/util/Identifier;I)V", ordinal = 7), index = 1)
-    private int modifyDistance(int value) {
-        if (Config.instance().ELYTRA_EXPERIMENTAL_FIX)
-            return value / 2;
-        return value;
+    // Fix for https://bugs.mojang.com/browse/MC-259687 - The stat is already incremented in the ServerPlayNetworkHandler
+    @Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;increaseTravelMotionStats(DDD)V"), cancellable = true)
+    private void cancelIfFallFlying(Vec3d movementInput, CallbackInfo ci) {
+        if (this.isFallFlying() && !this.isSwimming() && !this.isSubmergedIn(FluidTags.WATER) && !this.isTouchingWater() && !this.isClimbing() && !this.isOnGround())
+            ci.cancel();
     }
 
     // Fix https://bugs.mojang.com/browse/MC-256638
@@ -33,7 +36,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         return getVehicle() instanceof CamelEntity && Config.instance().USE_CAMEL_CUSTOM_STAT ? StatisticUtils.CAMEL_RIDING_STAT.identifier() : identifier;
     }
 
-    // Experimental fix for https://bugs.mojang.com/browse/MC-148457
+    // Fix for https://bugs.mojang.com/browse/MC-148457
     @ModifyArg(method = "increaseTravelMotionStats", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;increaseStat(Lnet/minecraft/util/Identifier;I)V", ordinal = 6), index = 0)
     private Identifier useCrawlStat(Identifier identifier) {
         if (Config.instance().USE_CRAWL_CUSTOM_STAT && this.isCrawling())
