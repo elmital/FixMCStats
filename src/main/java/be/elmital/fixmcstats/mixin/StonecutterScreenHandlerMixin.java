@@ -12,6 +12,7 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,16 +24,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 
+@SuppressWarnings("unused")
 @Mixin(StonecutterScreenHandler.class)
 public abstract class StonecutterScreenHandlerMixin extends ScreenHandler {
     @Invoker("populateResult")
     public abstract void invokePopulateResult();
-    @Shadow
-    @Mutable
+    @Final @Shadow @Mutable
     Slot outputSlot;
-    @Shadow
+    @Final @Shadow
     CraftingResultInventory output;
-    @Shadow
+    @Final @Shadow
     Slot inputSlot;
     @Shadow
     long lastTakeTime;
@@ -66,7 +67,7 @@ public abstract class StonecutterScreenHandlerMixin extends ScreenHandler {
                 context.run((world, pos) -> {
                     long l = world.getTime();
                     if (lastTakeTime != l) {
-                        world.playSound((PlayerEntity)null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        world.playSound(null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         lastTakeTime = l;
                     }
 

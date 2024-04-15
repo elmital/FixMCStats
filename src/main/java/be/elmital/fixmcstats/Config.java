@@ -1,13 +1,13 @@
 package be.elmital.fixmcstats;
 
 import net.fabricmc.loader.api.FabricLoader;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
@@ -19,14 +19,14 @@ public class Config {
     private final Properties properties = new Properties();
     public boolean USE_CAMEL_CUSTOM_STAT;
     public boolean USE_CRAWL_CUSTOM_STAT;
-    static String CONFIG = "FixMCStatsConfig";
+    static final String CONFIG = "FixMCStatsConfig";
 
     public static Config instance() {
         return INSTANCE;
     }
 
-    public static Config initConfig(Logger logger) throws IOException, URISyntaxException {
-        return INSTANCE = new Config(logger).loadOrGenerateConfig();
+    public static void initConfig(Logger logger) throws IOException, SecurityException, IllegalArgumentException {
+        INSTANCE = new Config(logger).loadOrGenerateConfig();
     }
 
     Config(Logger logger) {
@@ -62,7 +62,7 @@ public class Config {
         }
     }
 
-    Config loadOrGenerateConfig() throws IOException, IllegalArgumentException {
+    Config loadOrGenerateConfig() throws IOException, SecurityException, IllegalArgumentException {
         boolean alreadyExist = Files.exists(getConfigPath());
 
         if (alreadyExist) {
@@ -79,7 +79,7 @@ public class Config {
         for (Configs value : Configs.values()) {
             if (value.deprecated) {
                 if (alreadyExist && properties.containsKey(value.getKey())) {
-                    logger.info("Old config key found '" + value.getKey() + "' removing it");
+                    logger.info("Old config key found '{}' removing it", value.getKey());
                     toStore = true;
                     properties.remove(value.getKey());
                 }
@@ -88,7 +88,7 @@ public class Config {
 
             if (!alreadyExist || !properties.containsKey(value.getKey())) {
                 if (alreadyExist)
-                    logger.info("Adding missing config key " + value.getKey());
+                    logger.info("Adding missing config key {}", value.getKey());
                 toStore = true;
                 properties.setProperty(value.getKey(), value.getDefault());
             }
@@ -115,10 +115,11 @@ public class Config {
         return this.currentDirectory;
     }
 
-    public Path getConfigPath() {
+    public @NotNull Path getConfigPath() {
         return getConfigDirectoryPath().resolve(CONFIG);
     }
 
+    @SuppressWarnings("unused")
     public void updateConfig(Configs config, String value) throws IOException {
         var stream = new FileOutputStream(getConfigPath().toString());
         properties.setProperty(config.getKey(), value);
@@ -126,6 +127,7 @@ public class Config {
         stream.close();
     }
 
+    @SuppressWarnings("unused")
     public void removeFromConfig(String key) throws IOException {
         var stream = new FileOutputStream(getConfigPath().toString());
         properties.remove(key);

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(HoneyBottleItem.class)
 public class HoneyBottleItemMixin {
     @Redirect(method = "finishUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;incrementStat(Lnet/minecraft/stat/Stat;)V"))
-    private void cancelIncrement(ServerPlayerEntity instance, Stat stat) {}
+    private void cancelIncrement(ServerPlayerEntity instance, Stat<?> stat) {}
 
     @Redirect(method = "finishUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/criterion/ConsumeItemCriterion;trigger(Lnet/minecraft/server/network/ServerPlayerEntity;Lnet/minecraft/item/ItemStack;)V"))
     private void cancelCriteria(ConsumeItemCriterion instance, ServerPlayerEntity player, ItemStack stack) {}

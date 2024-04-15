@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
+@SuppressWarnings("unused")
 @Mixin(EntryListWidget.class)
 public abstract class EntryListWidgetMixin extends ContainerWidget {
     public EntryListWidgetMixin(int i, int j, int k, int l, Text text) {

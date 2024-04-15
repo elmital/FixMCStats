@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 // Fix https://bugs.mojang.com/browse/MC-147347
+@SuppressWarnings("unused")
 @Mixin(CreeperEntity.class)
 public abstract class CreeperEntityMixin extends HostileEntity implements SkinOverlayOwner {
     @Unique

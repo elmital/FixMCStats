@@ -1,7 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.CraftingScreenHandler;
@@ -14,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class CraftingScreenHandlerMixin {
     // Fix https://bugs.mojang.com/browse/MC-157098
     @Inject(method = "quickMove", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;dropItem(Lnet/minecraft/item/ItemStack;Z)Lnet/minecraft/entity/ItemEntity;"))
-    private void onInventoryFull(PlayerEntity player, int slot, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1)LocalRef<ItemStack> dropped) {
-        dropped.get().onCraftByPlayer(player.getWorld(), player, dropped.get().getCount());
+    private void onInventoryFull(PlayerEntity player, int slot, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) ItemStack dropped) {
+        dropped.onCraftByPlayer(player.getWorld(), player, dropped.getCount());
     }
 }

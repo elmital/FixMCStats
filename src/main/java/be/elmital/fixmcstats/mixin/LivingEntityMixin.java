@@ -1,7 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -16,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@SuppressWarnings("unused")
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements Attackable {
     public LivingEntityMixin(EntityType<?> type, World world) {
@@ -24,10 +24,10 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
 
     // Fix https://bugs.mojang.com/browse/MC-122656
     @Inject(method = "tickFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V", shift = At.Shift.AFTER))
-    public void incrementBreakingStat(CallbackInfo ci, @Local LocalRef<ItemStack> elytra) {
-        if (!ElytraItem.isUsable(elytra.get())) {
+    public void incrementBreakingStat(CallbackInfo ci, @Local ItemStack elytra) {
+        if (!ElytraItem.isUsable(elytra)) {
             if (((LivingEntity) (Object) this) instanceof PlayerEntity playerEntity)
-                playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(elytra.get().getItem()));
+                playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(elytra.getItem()));
         }
     }
 }

@@ -12,8 +12,8 @@ import org.slf4j.Logger;
    - https://bugs.mojang.com/browse/MC-256638
  */
 public class StatisticUtils {
-    public static CustomStatistic CAMEL_RIDING_STAT = new CustomStatistic("camel_one_cm", StatFormatter.DISTANCE);
-    public static CustomStatistic CRAWL_ONE_CM = new CustomStatistic("crawl_one_cm", StatFormatter.DISTANCE);
+    public static final CustomStatistic CAMEL_RIDING_STAT = new CustomStatistic("camel_one_cm", StatFormatter.DISTANCE);
+    public static final CustomStatistic CRAWL_ONE_CM = new CustomStatistic("crawl_one_cm", StatFormatter.DISTANCE);
 
     public static void register(CustomStatistic statistic) {
         Registry.register(Registries.CUSTOM_STAT, statistic.identifier(), statistic.identifier());

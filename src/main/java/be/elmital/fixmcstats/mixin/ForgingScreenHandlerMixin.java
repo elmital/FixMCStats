@@ -10,16 +10,19 @@ import net.minecraft.screen.SmithingScreenHandler;
 import net.minecraft.screen.slot.ForgingSlotsManager;
 import net.minecraft.screen.slot.Slot;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+@SuppressWarnings("unused")
 @Mixin(ForgingScreenHandler.class)
 public abstract class ForgingScreenHandlerMixin extends ScreenHandler {
+    @Final
     @Shadow
-    PlayerEntity player;
+    protected PlayerEntity player;
     @Invoker("canTakeOutput")
     public abstract boolean invokeCanTakeOutput(PlayerEntity player, boolean present);
     @Invoker("onTakeOutput")
@@ -27,8 +30,9 @@ public abstract class ForgingScreenHandlerMixin extends ScreenHandler {
     @Invoker("getForgingSlotsManager")
     public abstract ForgingSlotsManager invokeGetForgingSlotsManager();
 
+    @Final
     @Shadow
-    CraftingResultInventory output;
+    protected CraftingResultInventory output;
     protected ForgingScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId) {
         super(type, syncId);
     }

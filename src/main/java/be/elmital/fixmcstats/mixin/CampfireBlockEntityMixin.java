@@ -1,7 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -20,15 +19,15 @@ public class CampfireBlockEntityMixin {
 
     // Fix https://bugs.mojang.com/browse/MC-144005
     @Inject(method = "litServerTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/ItemScatterer;spawn(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;)V"))
-    private static void ensureHolder(World world, BlockPos pos, BlockState state, net.minecraft.block.entity.CampfireBlockEntity campfire, CallbackInfo cir, @Local(ordinal = 0) LocalRef<ItemStack> itemStack, @Local(ordinal = 1) LocalRef<ItemStack> itemStack2) {
-        NbtCompound nbt = itemStack.get().getNbt();
+    private static void ensureHolder(World world, BlockPos pos, BlockState state, net.minecraft.block.entity.CampfireBlockEntity campfire, CallbackInfo cir, @Local(ordinal = 0) ItemStack itemStack, @Local(ordinal = 1) ItemStack itemStack2) {
+        NbtCompound nbt = itemStack.getNbt();
         UUID cooker = nbt != null ? nbt.getUuid("cooker") : null;
         if (cooker != null) {
             PlayerEntity playerEntity;
             if (world.getServer() != null) playerEntity = world.getServer().getPlayerManager().getPlayer(cooker);
             else playerEntity = world.getPlayerByUuid(cooker);
 
-            if (playerEntity != null) itemStack2.get().onCraftByPlayer(world, playerEntity, 1);
+            if (playerEntity != null) itemStack2.onCraftByPlayer(world, playerEntity, 1);
         }
     }
 }
