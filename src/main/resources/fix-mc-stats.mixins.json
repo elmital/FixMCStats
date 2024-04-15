@@ -11,6 +11,7 @@
 		"CreeperEntityMixin",
 		"CrossbowItemAccessor",
 		"CrossbowItemMixin",
+		"FireworkRocketEntityMixin",
 		"FlowerPotBlockMixin",
 		"ForgingScreenHandlerMixin",
 		"HoneyBottleItemMixin",
