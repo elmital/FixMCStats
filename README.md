@@ -1,11 +1,14 @@
-# FixMCStats
+# <u>FixMCStats</u>
 
 Fabric mod that aims to fix some issues with the Minecraft statistics.🤓
 
-**The client side part only fixes issues with the statistics screen. You can use it on every server or in solo.
+---
+## <u>Fixes</u>
+
+**The client side part only fixes issues with the statistics screen. You can use the mod on every server or in solo and this part will work.
 The server side part/fixes needs the mod to be installed on server side to work or that you play in solo.**
 
-## Client side bug fixes
+### Client side bug fixes :
 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : _Mob statistics have missing space between mob name and description_
 - [MC-139386](https://bugs.mojang.com/browse/MC-139386) : _Rare blocks and items highlighted in the Statistics page do not show rarity colours_
@@ -13,7 +16,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-213103](https://bugs.mojang.com/browse/MC-213103) : _Item statistics are sorted arbitrarily by default_
 - [MC-213104](https://bugs.mojang.com/browse/MC-213104) : _When resizing the Minecraft window while in the statistics screen, the tab resets to "General"_
 
-## Server side bug fixes (This should works in Solo too)
+### Server side bug fixes (This works in Solo too) :
 
 - [MC-29519](https://bugs.mojang.com/browse/MC-29519) : _Damage dealt stat doesn't increase when using projectiles to attack entities_
 - [MC-65198](https://bugs.mojang.com/browse/MC-65198) : _Craft statistics doesn't increase correctly when crafting items with shift-click or drop actions in stonecutter, crafting table and smithing table_
@@ -41,11 +44,43 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 **Custom statistics created by the mod may not be translated in your language actually only French and English are supported.**
 
-## Already fixed by Mojang / Won't fix
+### Already fixed by Mojang / No more fixed by the mod :
 
-- [MC-80827](https://bugs.mojang.com/browse/MC-80827) : The "Statistic hover text is behind "Statistic" title (see screenshot)" is already fixed by Mojang the other part of issue is fix by the mod
+- [MC-80827](https://bugs.mojang.com/browse/MC-80827) : The "Statistic hover text is behind "Statistic" title (see screenshot)" is already fixed by Mojang the other part of issue is fixed by the mod
+
+### Won't fix :
+
 - [MC-101240](https://bugs.mojang.com/browse/MC-101240) : Seems to be intended and more a translation issue
 - [MC-201565](https://bugs.mojang.com/browse/MC-201565) : Seems to be intended, the other stat linked to sleeping is also set with the same context. Maybe a way to handle the multiplayer.
 - [MC-204108](https://bugs.mojang.com/browse/MC-204108) : Another stat with a more generic name exist for cauldron when filling them so seems more a translation issue
 - [MC-231909](https://bugs.mojang.com/browse/MC-231909) : Neither other furnaces work like that
 - [MC-259673](https://bugs.mojang.com/browse/MC-259673) : Not only linked to the Stats
+
+---
+## <u>Issue tracker</u>
+
+When you open a ticket either for report a bug or an enhancement request make sure that no other ticket already exists. 
+Always separate your tickets one ticket by bug/request.
+
+### Report an issue (with the mod) :
+
+- No warranty is provided about the full functionality of the mod however bugs reports especially good ones are appreciated.
+- Try to use a title that briefly describe the problem.
+- Describe the problem and how to reproduce it.
+- Join logs, crash report, screenshots or all other things that can help to illustrate your report or reproduce the bug.
+- Don't report a Minecraft bug as a bug.
+
+### Want a Minecraft bug to be fixed by the mod ?
+
+- No guarantee is provided for a patch to be added by the mod. An MC bug report is always analyzed in depth to ensure that a possible fix is ​​aligned with behaviors that I believe to be close to vanilla.
+- The bug must be linked to MC statistics.
+- Don't ask for a bug which is a translation issue. I can barely talk english imagine for all other languages MC supports.
+- Always refers to an official Minecraft bug from the [official issue tracker](https://bugs.mojang.com/projects/MC/issues).
+- The bug should occur on MC release versions to be fixed not only on snapshots to be fixed eventually.
+- Make sure the bug doesn't appear in the **Won't fix** section already.
+
+---
+
+## Support
+
+Want to support me and other creators by the same time? Disable your ad blocker while you are on Modrinth it's free and the website use ethical and non-invasive ads ;)
