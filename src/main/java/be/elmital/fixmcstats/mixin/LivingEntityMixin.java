@@ -23,7 +23,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     }
 
     // Fix https://bugs.mojang.com/browse/MC-122656
-    @Inject(method = "tickFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V", shift = At.Shift.AFTER))
+    @Inject(method = "tickFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;)V", shift = At.Shift.AFTER))
     public void incrementBreakingStat(CallbackInfo ci, @Local ItemStack elytra) {
         if (!ElytraItem.isUsable(elytra)) {
             if (((LivingEntity) (Object) this) instanceof PlayerEntity playerEntity)

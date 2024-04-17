@@ -9,7 +9,6 @@
 		"CraftingResultSlotMixin",
 		"CraftingScreenHandlerMixin",
 		"CreeperEntityMixin",
-		"CrossbowItemAccessor",
 		"CrossbowItemMixin",
 		"FireworkRocketEntityMixin",
 		"FlowerPotBlockMixin",
