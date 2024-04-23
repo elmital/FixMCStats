@@ -22,11 +22,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class CampfireBlockMixin {
 
     // Fix https://bugs.mojang.com/browse/MC-144005
-    @SuppressWarnings("deprecation")
     @Inject(method = "onUseWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/CampfireBlockEntity;getRecipeFor(Lnet/minecraft/item/ItemStack;)Ljava/util/Optional;"))
     public void addCookerNBT(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ItemActionResult> cir, @Local(index = 1, argsOnly = true) LocalRef<ItemStack> ref) {
         ItemStack stack2 = ref.get();
-        stack2.getComponents().getOrDefault(DataComponentTypes.CUSTOM_DATA, NbtComponent.DEFAULT).getNbt().putUuid("cooker", player.getUuid());
+        NbtComponent.set(DataComponentTypes.CUSTOM_DATA, stack2, nbt -> nbt.putUuid("cooker", player.getUuid()));
         ref.set(stack2);
     }
 }

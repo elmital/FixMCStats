@@ -19,11 +19,10 @@ import java.util.UUID;
 public class CampfireBlockEntityMixin {
 
     // Fix https://bugs.mojang.com/browse/MC-144005
-    @SuppressWarnings("deprecation")
     @Inject(method = "litServerTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/ItemScatterer;spawn(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;)V"))
     private static void ensureHolder(World world, BlockPos pos, BlockState state, net.minecraft.block.entity.CampfireBlockEntity campfire, CallbackInfo cir, @Local(ordinal = 0) ItemStack itemStack, @Local(ordinal = 1) ItemStack itemStack2) {
         NbtComponent nbt = itemStack.getComponents().get(DataComponentTypes.CUSTOM_DATA);
-        UUID cooker = nbt != null ? nbt.getNbt().getUuid("cooker") : null;
+        UUID cooker = nbt != null ? nbt.copyNbt().getUuid("cooker") : null;
         if (cooker != null) {
             PlayerEntity playerEntity;
             if (world.getServer() != null) playerEntity = world.getServer().getPlayerManager().getPlayer(cooker);
