@@ -12,7 +12,6 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : _Mob statistics have missing space between mob name and description_
 - [MC-139386](https://bugs.mojang.com/browse/MC-139386) : _Rare blocks and items highlighted in the Statistics page do not show rarity colours_
-- [MC-189484](https://bugs.mojang.com/browse/MC-189484) : _Statistics screen Tab selection is not centered_
 - [MC-213103](https://bugs.mojang.com/browse/MC-213103) : _Item statistics are sorted arbitrarily by default_
 - [MC-213104](https://bugs.mojang.com/browse/MC-213104) : _When resizing the Minecraft window while in the statistics screen, the tab resets to "General"_
 
@@ -47,6 +46,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ### Already fixed by Mojang / No more fixed by the mod :
 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : The "Statistic hover text is behind "Statistic" title (see screenshot)" is already fixed by Mojang the other part of issue is fixed by the mod
+- [MC-189484](https://bugs.mojang.com/browse/MC-189484) : _"Statistics screen Tab selection is not centered"_ Since MC 1.20.5 the bug has been fixed and is no more included in versions above 1.0.0 of the mod
 
 ### Won't fix :
 

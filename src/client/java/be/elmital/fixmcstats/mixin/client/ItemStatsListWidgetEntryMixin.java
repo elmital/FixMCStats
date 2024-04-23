@@ -8,8 +8,8 @@ import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 import java.util.Comparator;
@@ -22,9 +22,9 @@ public class ItemStatsListWidgetEntryMixin extends AlwaysSelectedEntryListWidget
     }
 
     // Fix https://bugs.mojang.com/browse/MC-139386
-    @Inject(method = "getText(Lnet/minecraft/item/Item;)Lnet/minecraft/text/Text;", at = @At("RETURN"), cancellable = true)
-    private void modifyItemName(Item item, CallbackInfoReturnable<Text> text) {
-        text.setReturnValue(Text.empty().append(item.getName()).formatted(item.getDefaultStack().getRarity().formatting));
+    @Redirect(method = "renderDecorations", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;getName()Lnet/minecraft/text/Text;"))
+    private Text modifyItemName(Item item) {
+        return Text.empty().append(item.getName()).formatted(item.getDefaultStack().getRarity().getFormatting());
     }
 
     // Fix https://bugs.mojang.com/browse/MC-213103
