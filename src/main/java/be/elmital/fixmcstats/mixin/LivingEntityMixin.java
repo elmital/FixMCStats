@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.stat.Stats;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
