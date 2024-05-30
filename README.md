@@ -37,10 +37,12 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-259687](https://bugs.mojang.com/browse/MC-259687) : _"Distance by Elytra" statistic is approximately doubled_
 - [MC-264274](https://bugs.mojang.com/browse/MC-264274) : _Lily pad and frogspawn do not increment "used" statistic when placed on water_
 - [MC-265376](https://bugs.mojang.com/browse/MC-265376) : _Kills by Goats are not counted in statistics_ (v1.1.0+)
+- [MC-267006](https://bugs.mojang.com/browse/MC-267006) : _The Distance Flown statistics rapidly increases when you are standing in Ender Dragon's hitbox_ ** (v1.1.0+)
 - [MC-268093](https://bugs.mojang.com/browse/MC-268093) : _Breaking a decorated pot with an arrow doesn't affect statistics_ (v1.1.0+)
 
 ```
 * the fix add a custom statistic and can be deactivated in the mod config file
+** the fix is experimental and can be deactivated in the mod config file
 ```
 
 **Custom statistics created by the mod may not be translated in your language actually only French and English are supported.**
