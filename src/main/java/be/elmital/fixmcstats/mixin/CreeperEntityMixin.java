@@ -1,7 +1,7 @@
 package be.elmital.fixmcstats.mixin;
 
-import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SkinOverlayOwner;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
