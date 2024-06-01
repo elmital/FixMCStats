@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,7 +28,7 @@ public class EnderDragonEntityMixin {
     }
 
     @Inject(method = "launchLivingEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
-    public void increaseVelocityPostDamageCheck(List<Entity> entities, CallbackInfo ci, @Local Entity entity, @Local(ordinal = 2) double f, @Local(ordinal = 3) double g, @Local(ordinal = 4) double h) {
+    public void increaseVelocityPostDamageCheck(ServerWorld world, List<Entity> entities, CallbackInfo ci, @Local Entity entity, @Local(ordinal = 2) double f, @Local(ordinal = 3) double g, @Local(ordinal = 4) double h) {
         if (Config.instance().FIX_ENDER_DRAGON_FLOWN_STAT && entity instanceof PlayerEntity) entity.addVelocity(f / h * 4.0, 0.2f, g / h * 4.0);
     }
 }
