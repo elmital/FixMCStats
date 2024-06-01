@@ -6,7 +6,6 @@
     "CampfireBlockEntityMixin",
     "CampfireBlockMixin",
     "CraftingResultSlotMixin",
-    "CraftingScreenHandlerMixin",
     "CreeperEntityMixin",
     "CrossbowItemMixin",
     "DecoratedPotBlockMixin",
