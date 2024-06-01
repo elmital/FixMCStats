@@ -50,6 +50,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ### Already fixed by Mojang / No more fixed by the mod :
 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : The "Statistic hover text is behind "Statistic" title (see screenshot)" is already fixed by Mojang the other part of issue is fixed by the mod
+- [MC-154487](https://bugs.mojang.com/browse/MC-154487) : _"Crafting potion stat doesn't increase using brewing stands"_ Since MC 1.21 the issue had been fixed partially for shift clicking by Mojang with the [MC-271199](https://bugs.mojang.com/browse/MC-271199) fix but issue still appears for other clicking and is fixed by the mod
 - [MC-189484](https://bugs.mojang.com/browse/MC-189484) : _"Statistics screen Tab selection is not centered"_ Since MC 1.20.5 the bug has been fixed and is no more included in versions above 1.0.0 of the mod
 
 ### Won't fix :
