@@ -33,7 +33,7 @@
 	"accessWidener": "fix-mc-stats.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21-beta.2",
+		"minecraft": "~1.21",
 		"java": ">=21",
 		"fabric-api": "*"
 	},
