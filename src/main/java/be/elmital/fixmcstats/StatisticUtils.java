@@ -33,7 +33,7 @@ public class StatisticUtils {
 
     public record CustomStatistic(String path, StatFormatter statFormatter, Identifier identifier) {
         public CustomStatistic(String path, StatFormatter statFormatter) {
-            this(path, statFormatter, new Identifier("fix-mc-stats", path));
+            this(path, statFormatter, Identifier.of("fix-mc-stats", path));
         }
     }
 }
