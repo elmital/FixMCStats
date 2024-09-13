@@ -1,0 +1,6 @@
+{
+  "stat.fix-mc-stats.camel_one_cm" : "Dystans przebyty na wielbłąd",
+  "stat.fix-mc-stats.crawl_one_cm" : "Dystans przebyty przeczołgał",
+  "modmenu.descriptionTranslation.fix-mc-stats" : "Mod, który ma na celu naprawienie niektórych problemów ze statystykami Minecrafta.",
+  "modmenu.summaryTranslation.fix-mc-stats" : "Naprawiono kilka problemów ze statystykami Minecrafta."
+}
