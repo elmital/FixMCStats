@@ -39,7 +39,7 @@ public class Config {
         ELYTRA_FIX("elytra-experimental-fix", Boolean.TRUE.toString(), true),
         CAMEL_STAT("use-camel-riding-stat", Boolean.TRUE.toString()),
         CRAWL_STAT("use-crawling-stat", Boolean.TRUE.toString()),
-        ENDER_DRAGON_FLOWN_STAT_FIX("ender-dragon-flown-stat-experimental-fix", Boolean.TRUE.toString());
+        ENDER_DRAGON_FLOWN_STAT_FIX("ender-dragon-flown-stat-experimental-fix", Boolean.TRUE.toString(), true);
 
         private final String key;
         private final String def;
