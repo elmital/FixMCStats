@@ -4,12 +4,15 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.passive.GoatEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.stat.Stats;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,18 +26,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class LivingEntityMixin extends Entity implements Attackable {
     @Shadow public abstract boolean isDead();
 
+    @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 
     // Fix https://bugs.mojang.com/browse/MC-122656
     @Inject(method = "tickGliding", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;)V", shift = At.Shift.AFTER))
-    public void incrementBreakingStat(CallbackInfo ci) {
-        // TODO test if still needed
-        /*if (!ElytraItem.isUsable(elytra)) {
+    public void incrementBreakingStat(CallbackInfo ci, @Local EquipmentSlot slot) {
+        ItemStack equiped = this.getEquippedStack(slot);
+        if (equiped.willBreakNextUse()) {
             if (((LivingEntity) (Object) this) instanceof PlayerEntity playerEntity)
-                playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(elytra.getItem()));
-        }*/
+                playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(equiped.getItem()));
+        }
     }
 
     @Redirect(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/damage/DamageSource;isIn(Lnet/minecraft/registry/tag/TagKey;)Z", ordinal = 5))
