@@ -23,16 +23,8 @@ public abstract class TridentEntityMixin extends PersistentProjectileEntity {
         super(entityType, world);
     }
 
-    protected TridentEntityMixin(EntityType<? extends PersistentProjectileEntity> type, double x, double y, double z, World world, ItemStack stack, @Nullable ItemStack weapon) {
-        super(type, x, y, z, world, stack, weapon);
-    }
-
-    protected TridentEntityMixin(EntityType<? extends PersistentProjectileEntity> type, LivingEntity owner, World world, ItemStack stack, @Nullable ItemStack shotFrom) {
-        super(type, owner, world, stack, shotFrom);
-    }
-
     // Fix https://bugs.mojang.com/browse/MC-29519
-    @Inject(method = "onEntityHit", at= @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", shift = At.Shift.AFTER))
+    @Inject(method = "onEntityHit", at= @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;sidedDamage(Lnet/minecraft/entity/damage/DamageSource;F)Z", shift = At.Shift.AFTER))
     private void increaseDamageStat(EntityHitResult entityHitResult, CallbackInfo ci, @Local float damages) {
         if (getOwner() instanceof PlayerEntity player && damages > 0) {
             player.increaseStat(Stats.DAMAGE_DEALT, Math.round(damages * 10.0F));

@@ -22,7 +22,7 @@ public abstract class PersistentProjectileEntityMixin extends ProjectileEntity {
     }
 
     // Fix https://bugs.mojang.com/browse/MC-29519
-    @Inject(method = "onEntityHit", at= @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", shift = At.Shift.AFTER))
+    @Inject(method = "onEntityHit", at= @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;onTargetDamaged(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/damage/DamageSource;Lnet/minecraft/item/ItemStack;)V", shift = At.Shift.AFTER))
     private void increaseDamageStat(EntityHitResult entityHitResult, CallbackInfo ci, @Local float damages) {
         if (getOwner() instanceof PlayerEntity player && damages > 0) {
             player.increaseStat(Stats.DAMAGE_DEALT, Math.round(damages * 10.0F));

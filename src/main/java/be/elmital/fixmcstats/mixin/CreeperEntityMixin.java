@@ -1,7 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SkinOverlayOwner;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 // Fix https://bugs.mojang.com/browse/MC-147347
 @SuppressWarnings("unused")
 @Mixin(CreeperEntity.class)
-public abstract class CreeperEntityMixin extends HostileEntity implements SkinOverlayOwner {
+public abstract class CreeperEntityMixin extends HostileEntity {
     @Unique
     private @Nullable PlayerEntity trackedIgniter;
     protected CreeperEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
@@ -31,8 +30,7 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
     private void trackIgniter(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         this.trackedIgniter = player;
     }
-
-    @Inject(method = "explode", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/CreeperEntity;shouldRenderOverlay()Z"))
+    @Inject(method = "explode", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/CreeperEntity;onRemoval(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/Entity$RemovalReason;)V"))
     private void incrementDamageStat(CallbackInfo ci) {
         if (this.trackedIgniter != null)
             this.trackedIgniter.incrementStat(Stats.KILLED.getOrCreateStat(this.getType()));

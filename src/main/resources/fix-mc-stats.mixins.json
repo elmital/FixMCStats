@@ -13,7 +13,6 @@
     "FireworkRocketEntityMixin",
     "FlowerPotBlockMixin",
     "ForgingScreenHandlerMixin",
-    "HoneyBottleItemMixin",
     "LivingEntityMixin",
     "PersistentProjectileEntityMixin",
     "PlaceableOnWaterItemMixin",

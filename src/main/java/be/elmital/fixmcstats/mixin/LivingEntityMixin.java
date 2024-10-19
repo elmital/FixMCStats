@@ -8,11 +8,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.passive.GoatEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.stat.Stats;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -31,12 +28,13 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     }
 
     // Fix https://bugs.mojang.com/browse/MC-122656
-    @Inject(method = "tickFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;)V", shift = At.Shift.AFTER))
-    public void incrementBreakingStat(CallbackInfo ci, @Local ItemStack elytra) {
-        if (!ElytraItem.isUsable(elytra)) {
+    @Inject(method = "tickGliding", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;)V", shift = At.Shift.AFTER))
+    public void incrementBreakingStat(CallbackInfo ci) {
+        // TODO test if still needed
+        /*if (!ElytraItem.isUsable(elytra)) {
             if (((LivingEntity) (Object) this) instanceof PlayerEntity playerEntity)
                 playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(elytra.getItem()));
-        }
+        }*/
     }
 
     @Redirect(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/damage/DamageSource;isIn(Lnet/minecraft/registry/tag/TagKey;)Z", ordinal = 5))
