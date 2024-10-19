@@ -13,7 +13,6 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : _Mob statistics have missing space between mob name and description_
 - [MC-139386](https://bugs.mojang.com/browse/MC-139386) : _Rare blocks and items highlighted in the Statistics page do not show rarity colours_
 - [MC-213103](https://bugs.mojang.com/browse/MC-213103) : _Item statistics are sorted arbitrarily by default_
-- [MC-213104](https://bugs.mojang.com/browse/MC-213104) : _When resizing the Minecraft window while in the statistics screen, the tab resets to "General"_
 
 ### Server side bug fixes (This works in Solo too) :
 
@@ -52,6 +51,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-154487](https://bugs.mojang.com/browse/MC-154487) : _"Crafting potion stat doesn't increase using brewing stands"_ Since MC 1.21 the issue had been fixed partially for shift clicking by Mojang with the [MC-271199](https://bugs.mojang.com/browse/MC-271199) fix but issue still appears for other clicking and is fixed by the mod
 - [MC-157098](https://bugs.mojang.com/browse/MC-157098) : _Statistics crafting counter fails to increment on partially full inventory_ Since MC 1.21 the bug has been fixed even if the issue is still opened and the patch is no more included in versions above 1.1.0 of the mod
 - [MC-189484](https://bugs.mojang.com/browse/MC-189484) : _"Statistics screen Tab selection is not centered"_ Since MC 1.20.5 the bug has been fixed and is no more included in versions above 1.0.0 of the mod
+- [MC-213104](https://bugs.mojang.com/browse/MC-213104) : _When resizing the Minecraft window while in the statistics screen, the tab resets to "General"_ Since MC 1.21.2 the bug has been fixed and is no more included in versions above 1.1.1 of the mod
 
 ### Won't fix :
 
