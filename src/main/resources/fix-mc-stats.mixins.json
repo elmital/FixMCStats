@@ -8,7 +8,6 @@
     "CreeperEntityMixin",
     "CrossbowItemMixin",
     "DecoratedPotBlockMixin",
-    "EnderDragonEntityMixin",
     "FireworkRocketEntityMixin",
     "FlowerPotBlockMixin",
     "ForgingScreenHandlerMixin",
