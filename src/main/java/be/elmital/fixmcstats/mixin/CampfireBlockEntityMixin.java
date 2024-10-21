@@ -12,8 +12,11 @@ import net.minecraft.recipe.CampfireCookingRecipe;
 import net.minecraft.recipe.ServerRecipeManager;
 import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -24,10 +27,12 @@ import java.util.UUID;
 @Mixin(net.minecraft.block.entity.CampfireBlockEntity.class)
 public class CampfireBlockEntityMixin {
 
+    @Shadow @Final private DefaultedList<ItemStack> itemsBeingCooked;
+
     // Fix https://bugs.mojang.com/browse/MC-144005
-    @Inject(method = "addItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;splitUnlessCreative(ILnet/minecraft/entity/LivingEntity;)Lnet/minecraft/item/ItemStack;"))
-    public void addCookerNBT(ServerWorld world, LivingEntity entity, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
-        NbtComponent.set(DataComponentTypes.CUSTOM_DATA, cir.getReturnValue(), nbt -> nbt.putUuid("cooker", entity.getUuid()));
+    @Inject(method = "addItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/collection/DefaultedList;set(ILjava/lang/Object;)Ljava/lang/Object;", shift = At.Shift.AFTER))
+    public void addCookerNBT(ServerWorld world, LivingEntity entity, ItemStack stack, CallbackInfoReturnable<Boolean> cir, @Local int index) {
+        NbtComponent.set(DataComponentTypes.CUSTOM_DATA, this.itemsBeingCooked.get(index), nbt -> nbt.putUuid("cooker", entity.getUuid()));
     }
 
     // Fix https://bugs.mojang.com/browse/MC-144005
