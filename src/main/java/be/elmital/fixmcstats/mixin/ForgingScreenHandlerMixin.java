@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.item.ItemStack;
@@ -27,8 +28,6 @@ public abstract class ForgingScreenHandlerMixin extends ScreenHandler {
     public abstract boolean invokeCanTakeOutput(PlayerEntity player, boolean present);
     @Invoker("onTakeOutput")
     public abstract void invokeOnTakeOutput(PlayerEntity player, ItemStack stack);
-    @Invoker("getForgingSlotsManager")
-    public abstract ForgingSlotsManager invokeGetForgingSlotsManager();
 
     @Final
     @Shadow
@@ -39,8 +38,8 @@ public abstract class ForgingScreenHandlerMixin extends ScreenHandler {
 
     // Fix https://bugs.mojang.com/browse/MC-65198 for Smithing table
     @ModifyArg(method = "addResultSlot(Lnet/minecraft/screen/slot/ForgingSlotsManager;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/ForgingScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;"))
-    private Slot modifySlot(Slot slot) {
-        return new Slot(this.output, invokeGetForgingSlotsManager().getResultSlot().slotId(), invokeGetForgingSlotsManager().getResultSlot().x(), invokeGetForgingSlotsManager().getResultSlot().y()) {
+    private Slot modifySlot(Slot slot, @Local(argsOnly = true) ForgingSlotsManager manager) {
+        return new Slot(this.output, manager.getResultSlot().slotId(), manager.getResultSlot().x(), manager.getResultSlot().y()) {
             public boolean canInsert(ItemStack stack) {
                 return false;
             }

@@ -4,6 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
@@ -28,7 +29,7 @@ import java.util.List;
 @Mixin(StonecutterScreenHandler.class)
 public abstract class StonecutterScreenHandlerMixin extends ScreenHandler {
     @Invoker("populateResult")
-    public abstract void invokePopulateResult();
+    public abstract void invokePopulateResult(int selectedID);
     @Final @Shadow @Mutable
     Slot outputSlot;
     @Final @Shadow
@@ -37,6 +38,8 @@ public abstract class StonecutterScreenHandlerMixin extends ScreenHandler {
     Slot inputSlot;
     @Shadow
     long lastTakeTime;
+    @Final @Shadow
+    Property selectedRecipe;
 
     protected StonecutterScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId) {
         super(type, syncId);
@@ -61,7 +64,7 @@ public abstract class StonecutterScreenHandlerMixin extends ScreenHandler {
                 output.unlockLastRecipe(player, this.getInputStacks());
                 ItemStack itemStack = inputSlot.takeStack(1);
                 if (!itemStack.isEmpty()) {
-                    invokePopulateResult();
+                    invokePopulateResult(selectedRecipe.get());
                 }
 
                 context.run((world, pos) -> {
