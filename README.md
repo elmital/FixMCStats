@@ -26,7 +26,6 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-148457](https://bugs.mojang.com/browse/MC-148457) : _Crawling increments the "Distance Walked" statistic_ *
 - [MC-154487](https://bugs.mojang.com/browse/MC-154487) : _Crafting potion stat doesn't increase using brewing stands_
 - [MC-176806](https://bugs.mojang.com/browse/MC-176806) : _Stat for using glowstone doesn't increase score when charging a respawn anchor_
-- [MC-182814](https://bugs.mojang.com/browse/MC-182814) : _Drinking honey bottles increases used stat by two and runs the consume advancement trigger twice_
 - [MC-211938](https://bugs.mojang.com/browse/MC-211938) : _Climbing scaffolding increases the jump stat every block climbed_
 - [MC-214457](https://bugs.mojang.com/browse/MC-214457) : _You don't get the "Ol' Betsy" advancement if the crossbow breaks_
 - [MC-231743](https://bugs.mojang.com/browse/MC-231743) : _Pottable plant used stat doesn't increase when placing plants into flower pots_
@@ -50,6 +49,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : The "Statistic hover text is behind "Statistic" title (see screenshot)" is already fixed by Mojang the other part of issue is fixed by the mod
 - [MC-154487](https://bugs.mojang.com/browse/MC-154487) : _"Crafting potion stat doesn't increase using brewing stands"_ Since MC 1.21 the issue had been fixed partially for shift clicking by Mojang with the [MC-271199](https://bugs.mojang.com/browse/MC-271199) fix but issue still appears for other clicking and is fixed by the mod
 - [MC-157098](https://bugs.mojang.com/browse/MC-157098) : _Statistics crafting counter fails to increment on partially full inventory_ Since MC 1.21 the bug has been fixed even if the issue is still opened and the patch is no more included in versions above 1.1.0 of the mod
+- [MC-182814](https://bugs.mojang.com/browse/MC-182814) : _Drinking honey bottles increases used stat by two and runs the consume advancement trigger twice_ Since MC 1.21.2 with changes made by suppressing the HoneyBottleItem class Mojang indirectly fix it and the patch is no more included in versions above 1.1.1 of the mod 
 - [MC-189484](https://bugs.mojang.com/browse/MC-189484) : _"Statistics screen Tab selection is not centered"_ Since MC 1.20.5 the bug has been fixed and is no more included in versions above 1.0.0 of the mod
 - [MC-213104](https://bugs.mojang.com/browse/MC-213104) : _When resizing the Minecraft window while in the statistics screen, the tab resets to "General"_ Since MC 1.21.2 the bug has been fixed and is no more included in versions above 1.1.1 of the mod
 
