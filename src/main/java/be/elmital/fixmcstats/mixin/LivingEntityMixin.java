@@ -39,6 +39,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
         }
     }
 
+    // Fix https://bugs.mojang.com/browse/MC-265376
     @Redirect(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/damage/DamageSource;isIn(Lnet/minecraft/registry/tag/TagKey;)Z", ordinal = 5))
     public boolean onDamage(DamageSource source, TagKey<DamageType> tag) {
         return source.isIn(tag) && !(source.getAttacker() instanceof GoatEntity) && !isDead();
