@@ -10,8 +10,12 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.passive.GoatEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,6 +32,8 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
 
     @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
 
+    @Shadow public abstract float getHealth();
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -39,6 +45,14 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
         if (equiped.willBreakNextUse()) {
             if (((LivingEntity) (Object) this) instanceof PlayerEntity playerEntity)
                 playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(equiped.getItem()));
+        }
+    }
+
+    // Fix https://bugs.mojang.com/browse/MC-29519
+    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getDamageTracker()Lnet/minecraft/entity/damage/DamageTracker;", shift = At.Shift.AFTER))
+    public void incrementDamageDealtStatForProjectile(ServerWorld world, DamageSource source, float amount, CallbackInfo ci) {
+        if ((source.isIn(DamageTypeTags.IS_PROJECTILE) || source.getSource() instanceof FireworkRocketEntity) && source.getAttacker() instanceof ServerPlayerEntity player) {
+            player.increaseStat(Stats.DAMAGE_DEALT,  Math.round(Math.min(this.getHealth(), amount) * 10.0F));
         }
     }
 

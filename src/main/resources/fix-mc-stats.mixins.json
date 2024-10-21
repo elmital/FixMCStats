@@ -8,11 +8,9 @@
     "CreeperEntityMixin",
     "CrossbowItemMixin",
     "DecoratedPotBlockMixin",
-    "FireworkRocketEntityMixin",
     "FlowerPotBlockMixin",
     "ForgingScreenHandlerMixin",
     "LivingEntityMixin",
-    "PersistentProjectileEntityMixin",
     "PlaceableOnWaterItemMixin",
     "PlayerEntityMixin",
     "PlayerScreenHandlerMixin",
@@ -20,10 +18,8 @@
     "RespawnAnchorBlockMixin",
     "ServerPlayerEntityMixin",
     "ShearsItemMixin",
-    "SnowBallEntityMixin",
     "StatsAccessor",
-    "StonecutterScreenHandlerMixin",
-    "TridentEntityMixin"
+    "StonecutterScreenHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
