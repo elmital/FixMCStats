@@ -19,7 +19,6 @@ public class Config {
     private final Properties properties = new Properties();
     public boolean USE_CAMEL_CUSTOM_STAT;
     public boolean USE_CRAWL_CUSTOM_STAT;
-    public boolean FIX_ENDER_DRAGON_FLOWN_STAT;
     static final String CONFIG = "FixMCStatsConfig";
 
     public static Config instance() {
@@ -110,7 +109,6 @@ public class Config {
         logger.info("Loading all configs");
         USE_CAMEL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CAMEL_STAT.getKey(), Configs.CAMEL_STAT.getDefault()));
         USE_CRAWL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CRAWL_STAT.getKey(), Configs.CRAWL_STAT.getDefault()));
-        FIX_ENDER_DRAGON_FLOWN_STAT = Boolean.parseBoolean(properties.getProperty(Configs.ENDER_DRAGON_FLOWN_STAT_FIX.getKey(), Configs.ENDER_DRAGON_FLOWN_STAT_FIX.getDefault()));
         return this;
     }
 
