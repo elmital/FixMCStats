@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.UUID;
 
-@Mixin(net.minecraft.block.entity.CampfireBlockEntity.class)
+@Mixin(CampfireBlockEntity.class)
 public class CampfireBlockEntityMixin {
 
     @Shadow @Final private DefaultedList<ItemStack> itemsBeingCooked;

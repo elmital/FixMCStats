@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlaceableOnWaterItem.class)
 public class PlaceableOnWaterItemMixin extends BlockItem {
-    public PlaceableOnWaterItemMixin(Block block, net.minecraft.item.Item.Settings settings) {
+    public PlaceableOnWaterItemMixin(Block block, Settings settings) {
         super(block, settings);
     }
 
