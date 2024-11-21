@@ -1,9 +1,14 @@
 {
-	"required": true,
-	"package": "be.elmital.fixmcstats.mixin.client",
-	"compatibilityLevel": "JAVA_21",
-	"client": ["EntityStatsListWidgetEntryMixin", "ItemStatsListWidgetEntryMixin", "ItemComparatorMixin"],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "be.elmital.fixmcstats.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "EntityStatsListWidgetEntryMixin",
+    "GeneralStatsListWidgetMixin",
+    "ItemComparatorMixin",
+    "ItemStatsListWidgetEntryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
