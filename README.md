@@ -12,6 +12,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : _Mob statistics have missing space between mob name and description_
 - [MC-139386](https://bugs.mojang.com/browse/MC-139386) : _Rare blocks and items highlighted in the Statistics page do not show rarity colours_
+- [MC-178516](https://bugs.mojang.com/browse/MC-178516) : _Statistics are not sorted correctly in languages using non-ASCII letters_*** (v1.3.0+)
 - [MC-213103](https://bugs.mojang.com/browse/MC-213103) : _Item statistics are sorted arbitrarily by default_
 - [MC-213104](https://bugs.mojang.com/browse/MC-213104) : _When resizing the Minecraft window while in the statistics screen, the tab resets to "General"_
 
@@ -42,6 +43,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ```
 * the fix add a custom statistic and can be deactivated in the mod config file
 ** the fix is experimental and can be deactivated in the mod config file
+*** the fix use your computer configured language (or the JVM one if using arg) simply change the translation in MC will not fix the bug
 ```
 
 **Custom statistics created by the mod may not be translated in your language actually only French and English are supported.**

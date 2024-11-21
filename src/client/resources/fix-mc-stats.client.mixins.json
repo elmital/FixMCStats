@@ -2,7 +2,7 @@
 	"required": true,
 	"package": "be.elmital.fixmcstats.mixin.client",
 	"compatibilityLevel": "JAVA_21",
-	"client": ["EntityStatsListWidgetEntryMixin", "StatsScreenMixin", "StatsScreenAccessor", "ItemStatsListWidgetEntryMixin", "ItemComparatorMixin"],
+	"client": ["EntityStatsListWidgetEntryMixin", "GeneralStatsListWidgetMixin", "StatsScreenMixin", "StatsScreenAccessor", "ItemStatsListWidgetEntryMixin", "ItemComparatorMixin"],
 	"injectors": {
 		"defaultRequire": 1
 	}

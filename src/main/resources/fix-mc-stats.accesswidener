@@ -5,3 +5,4 @@ transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStat
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$Entry
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$EntityStatsListWidget
 transitive-extendable class net/minecraft/screen/BrewingStandScreenHandler$PotionSlot
+transitive-accessible method net/minecraft/client/gui/screen/StatsScreen getStatTranslationKey (Lnet/minecraft/stat/Stat;)Ljava/lang/String;
