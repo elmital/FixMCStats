@@ -12,7 +12,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : _Mob statistics have missing space between mob name and description_
 - [MC-139386](https://bugs.mojang.com/browse/MC-139386) : _Rare blocks and items highlighted in the Statistics page do not show rarity colours_
-- [MC-178516](https://bugs.mojang.com/browse/MC-178516) : _Statistics are not sorted correctly in languages using non-ASCII letters_*** (v1.3.0+)
+- [MC-178516](https://bugs.mojang.com/browse/MC-178516) : _Statistics are not sorted correctly in languages using non-ASCII letters_** (v1.3.0+)
 - [MC-213103](https://bugs.mojang.com/browse/MC-213103) : _Item statistics are sorted arbitrarily by default_
 - [MC-213104](https://bugs.mojang.com/browse/MC-213104) : _When resizing the Minecraft window while in the statistics screen, the tab resets to "General"_
 
@@ -23,7 +23,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-111435](https://bugs.mojang.com/browse/MC-111435) : _Damage dealt stat doesn't increase when the sweeping attack damages nearby entities_
 - [MC-122656](https://bugs.mojang.com/browse/MC-122656) : _Breaking elytra and trident never increase score_
 - [MC-128079](https://bugs.mojang.com/browse/MC-128079) : _Statistic for using shears doesn't increase when mining certain blocks_
-- [MC-121541](https://bugs.mojang.com/browse/MC-121541) : _Scoreboard objective criteria for distance fallen doesn't track fall distance when player lands in liquid, powder snow, or cobweb_
+- [MC-121541](https://bugs.mojang.com/browse/MC-121541) : _Scoreboard objective criteria for distance fallen doesn't track fall distance when player lands in liquid, powder snow, or cobweb_ (v1.3.0+)
 - [MC-144005](https://bugs.mojang.com/browse/MC-144005) : _Crafting stat for cooked items doesn't increase using campfires_
 - [MC-147347](https://bugs.mojang.com/browse/MC-147347) : _Lighting a creeper with a flint and steel doesn't count as mob killed in statistics_
 - [MC-148457](https://bugs.mojang.com/browse/MC-148457) : _Crawling increments the "Distance Walked" statistic_ *
@@ -33,7 +33,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-211938](https://bugs.mojang.com/browse/MC-211938) : _Climbing scaffolding increases the jump stat every block climbed_
 - [MC-214457](https://bugs.mojang.com/browse/MC-214457) : _You don't get the "Ol' Betsy" advancement if the crossbow breaks_
 - [MC-231743](https://bugs.mojang.com/browse/MC-231743) : _Pottable plant used stat doesn't increase when placing plants into flower pots_
-- [MC-245962](https://bugs.mojang.com/browse/MC-245962) : _Times mined statistic displays wrong value for some blocks_
+- [MC-245962](https://bugs.mojang.com/browse/MC-245962) : _Times mined statistic displays wrong value for some blocks_ (v1.3.0+)
 - [MC-254512](https://bugs.mojang.com/browse/MC-254512) : _Breaking a crossbow increases used air statistic_
 - [MC-256638](https://bugs.mojang.com/browse/MC-256638) : _Riding a camel increments the 'Distance by Horse' statistic_ *
 - [MC-259687](https://bugs.mojang.com/browse/MC-259687) : _"Distance by Elytra" statistic is approximately doubled_
@@ -44,11 +44,10 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 ```
 * the fix add a custom statistic and can be deactivated in the mod config file
-** the fix is experimental and can be deactivated in the mod config file
-*** the fix use your computer configured language (or the JVM one if using arg) simply change the translation in MC will not fix the bug
+** the fix use your computer configured language (or the JVM one if using arg) simply change the translation in MC will not fix the bug
 ```
 
-**Custom statistics created by the mod may not be translated in your language actually only French and English are supported.**
+**Custom statistics created by the mod may not be translated in your language actually only French, English, German, Polish, Russian and Chinese Simplified are supported.**
 
 ### Already fixed by Mojang / No more fixed by the mod :
 
@@ -68,7 +67,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ---
 ## <u>Issue tracker</u>
 
-When you open a ticket either for report a bug or an enhancement request make sure that no other ticket already exists. 
+When you open a ticket either to report a bug or for an enhancement request make sure that no other ticket already exists. 
 Always separate your tickets one ticket by bug/request.
 
 ### Report an issue (with the mod) :
@@ -76,16 +75,16 @@ Always separate your tickets one ticket by bug/request.
 - No warranty is provided about the full functionality of the mod however bugs reports especially good ones are appreciated.
 - Try to use a title that briefly describe the problem.
 - Describe the problem and how to reproduce it.
-- Join logs, crash report, screenshots or all other things that can help to illustrate your report or reproduce the bug.
+- Join logs, crash report, screenshots or all other things that can help to illustrate your report or reproducing steps.
 - Don't report a Minecraft bug as a bug.
 
 ### Want a Minecraft bug to be fixed by the mod ?
 
-- No guarantee is provided for a patch to be added by the mod. An MC bug report is always analyzed in depth to ensure that a possible fix is ​​aligned with behaviors that I believe to be close to vanilla.
+- No guarantee is provided for a patch to be added by the mod. A MC bug report is always analyzed in depth to ensure that a possible fix is aligned with behaviors that I believe to be close to vanilla based on comments in the Mojang Mojira and my own opinion.
 - The bug must be linked to MC statistics.
-- Don't ask for a bug which is a translation issue. I can barely talk english imagine for all other languages MC supports.
+- Don't ask for a bug which is a translation issue. I can barely talk in english imagine for all other languages MC supports.
 - Always refers to an official Minecraft bug from the [official issue tracker](https://bugs.mojang.com/projects/MC/issues).
-- The bug should occur on MC release versions to be fixed not only on snapshots to be fixed eventually.
+- The bug should occur on MC release versions not only on snapshots for being eventually fixed.
 - Make sure the bug doesn't appear in the **Won't fix** section already.
 
 ---
