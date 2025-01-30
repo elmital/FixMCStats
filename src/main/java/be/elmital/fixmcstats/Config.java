@@ -19,6 +19,7 @@ public class Config {
     private final Properties properties = new Properties();
     public boolean USE_CAMEL_CUSTOM_STAT;
     public boolean USE_CRAWL_CUSTOM_STAT;
+    public boolean EXPERIMENTAL_STATS_SCREEN_TICK_FIX;
     static final String CONFIG = "FixMCStatsConfig";
 
     public static Config instance() {
@@ -38,7 +39,8 @@ public class Config {
         ELYTRA_FIX("elytra-experimental-fix", Boolean.TRUE.toString(), true),
         CAMEL_STAT("use-camel-riding-stat", Boolean.TRUE.toString()),
         CRAWL_STAT("use-crawling-stat", Boolean.TRUE.toString()),
-        ENDER_DRAGON_FLOWN_STAT_FIX("ender-dragon-flown-stat-experimental-fix", Boolean.TRUE.toString(), true);
+        ENDER_DRAGON_FLOWN_STAT_FIX("ender-dragon-flown-stat-experimental-fix", Boolean.TRUE.toString(), true),
+        EXPERIMENTAL_STATS_SCREEN_TICK_FIX("pause-tick-on-stats-screen-experimental-fix", Boolean.TRUE.toString());
 
         private final String key;
         private final String def;
@@ -109,6 +111,7 @@ public class Config {
         logger.info("Loading all configs");
         USE_CAMEL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CAMEL_STAT.getKey(), Configs.CAMEL_STAT.getDefault()));
         USE_CRAWL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CRAWL_STAT.getKey(), Configs.CRAWL_STAT.getDefault()));
+        EXPERIMENTAL_STATS_SCREEN_TICK_FIX = Boolean.parseBoolean(properties.getProperty(Configs.EXPERIMENTAL_STATS_SCREEN_TICK_FIX.getKey(), Configs.EXPERIMENTAL_STATS_SCREEN_TICK_FIX.getDefault()));
         return this;
     }
 
