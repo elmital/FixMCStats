@@ -48,7 +48,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ** the fix use your computer configured language (or the JVM one if using arg) simply change the translation in MC will not fix the bug
 ```
 
-**Custom statistics created by the mod may not be translated in your language actually only French, English, German, Polish, Russian and Chinese Simplified are supported.**
+**Custom statistics created by the mod may not be translated in your language actually only French(Ca, Fr), English(Gb, us, ca, au), German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are supported.**
 
 ### Already fixed by Mojang / No more fixed by the mod :
 
