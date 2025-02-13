@@ -10,7 +10,6 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 ### Client side bug fixes :
 
-- [MC-36696](https://bugs.mojang.com/browse/MC-36696) : _Clicking on the statistics button on the menu screen advances the game by 1 tick_ (v1.3.2+)
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : _Mob statistics have missing space between mob name and description_
 - [MC-139386](https://bugs.mojang.com/browse/MC-139386) : _Rare blocks and items highlighted in the Statistics page do not show rarity colours_
 - [MC-178516](https://bugs.mojang.com/browse/MC-178516) : _Statistics are not sorted correctly in languages using non-ASCII letters_** (v1.3.0+)
@@ -18,6 +17,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 ### Server side bug fixes (This works in Solo too) :
 
+- [MC-36696](https://bugs.mojang.com/browse/MC-36696) : _Clicking on the statistics button on the menu screen advances the game by 1 tick_* (v1.3.2+) only solo mode is affected
 - [MC-29519](https://bugs.mojang.com/browse/MC-29519) : _Damage dealt stat doesn't increase when using projectiles to attack entities_
 - [MC-65198](https://bugs.mojang.com/browse/MC-65198) : _Craft statistics doesn't increase correctly when crafting items with shift-click or drop actions in stonecutter, crafting table and smithing table_
 - [MC-111435](https://bugs.mojang.com/browse/MC-111435) : _Damage dealt stat doesn't increase when the sweeping attack damages nearby entities_
@@ -26,7 +26,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-121541](https://bugs.mojang.com/browse/MC-121541) : _Scoreboard objective criteria for distance fallen doesn't track fall distance when player lands in liquid, powder snow, or cobweb_ (v1.3.0+)
 - [MC-144005](https://bugs.mojang.com/browse/MC-144005) : _Crafting stat for cooked items doesn't increase using campfires_
 - [MC-147347](https://bugs.mojang.com/browse/MC-147347) : _Lighting a creeper with a flint and steel doesn't count as mob killed in statistics_
-- [MC-148457](https://bugs.mojang.com/browse/MC-148457) : _Crawling increments the "Distance Walked" statistic_ *
+- [MC-148457](https://bugs.mojang.com/browse/MC-148457) : _Crawling increments the "Distance Walked" statistic_ 
 - [MC-154487](https://bugs.mojang.com/browse/MC-154487) : _Crafting potion stat doesn't increase using brewing stands_
 - [MC-176806](https://bugs.mojang.com/browse/MC-176806) : _Stat for using glowstone doesn't increase score when charging a respawn anchor_
 - [MC-211938](https://bugs.mojang.com/browse/MC-211938) : _Climbing scaffolding increases the jump stat every block climbed_
@@ -34,7 +34,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-231743](https://bugs.mojang.com/browse/MC-231743) : _Pottable plant used stat doesn't increase when placing plants into flower pots_
 - [MC-245962](https://bugs.mojang.com/browse/MC-245962) : _Times mined statistic displays wrong value for some blocks_ (v1.3.0+)
 - [MC-254512](https://bugs.mojang.com/browse/MC-254512) : _Breaking a crossbow increases used air statistic_
-- [MC-256638](https://bugs.mojang.com/browse/MC-256638) : _Riding a camel increments the 'Distance by Horse' statistic_ *
+- [MC-256638](https://bugs.mojang.com/browse/MC-256638) : _Riding a camel increments the 'Distance by Horse' statistic_ 
 - [MC-264274](https://bugs.mojang.com/browse/MC-264274) : _Lily pad and frogspawn do not increment "used" statistic when placed on water_
 - [MC-265376](https://bugs.mojang.com/browse/MC-265376) : _Kills by Goats are not counted in statistics_ (v1.1.0+)
 - [MC-268093](https://bugs.mojang.com/browse/MC-268093) : _Breaking a decorated pot with an arrow doesn't affect statistics_ (v1.1.0+)
@@ -44,7 +44,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ** the fix use your computer configured language (or the JVM one if using arg) simply change the translation in MC will not fix the bug
 ```
 
-**Custom statistics created by the mod may not be translated in your language actually only French(Ca, Fr), English(Gb, us, ca, au), German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are supported.**
+**Custom statistics created by the mod may not be translated in your language actually only French(ca, fr), English(gb, us, ca, au), German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are supported.**
 
 ### Already fixed by Mojang / No more fixed by the mod :
 
