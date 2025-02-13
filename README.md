@@ -10,7 +10,6 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 ### Client side bug fixes :
 
-- [MC-36696](https://bugs.mojang.com/browse/MC-36696) : _Clicking on the statistics button on the menu screen advances the game by 1 tick_ (v1.3.2+)
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : _Mob statistics have missing space between mob name and description_
 - [MC-139386](https://bugs.mojang.com/browse/MC-139386) : _Rare blocks and items highlighted in the Statistics page do not show rarity colours_
 - [MC-178516](https://bugs.mojang.com/browse/MC-178516) : _Statistics are not sorted correctly in languages using non-ASCII letters_** (v1.3.0+)
@@ -19,6 +18,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 ### Server side bug fixes (This works in Solo too) :
 
+- [MC-36696](https://bugs.mojang.com/browse/MC-36696) : _Clicking on the statistics button on the menu screen advances the game by 1 tick_* (v1.3.2+) only solo mode is affected
 - [MC-29519](https://bugs.mojang.com/browse/MC-29519) : _Damage dealt stat doesn't increase when using projectiles to attack entities_
 - [MC-65198](https://bugs.mojang.com/browse/MC-65198) : _Craft statistics doesn't increase correctly when crafting items with shift-click or drop actions in stonecutter, crafting table and smithing table_
 - [MC-111435](https://bugs.mojang.com/browse/MC-111435) : _Damage dealt stat doesn't increase when the sweeping attack damages nearby entities_
@@ -48,7 +48,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ** the fix use your computer configured language (or the JVM one if using arg) simply change the translation in MC will not fix the bug
 ```
 
-**Custom statistics created by the mod may not be translated in your language actually only French(Ca, Fr), English(Gb, us, ca, au), German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are supported.**
+**Custom statistics created by the mod may not be translated in your language actually only French(ca, fr), English(gb, us, ca, au), German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are supported.**
 
 ### Already fixed by Mojang / No more fixed by the mod :
 
