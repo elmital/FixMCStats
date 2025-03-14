@@ -19,7 +19,6 @@ public class PlaceableOnWaterItemMixin extends BlockItem {
         super(block, settings);
     }
 
-    // TODO marked as in progress to check when release is out
     // Fix https://bugs.mojang.com/browse/MC-264274
     @Inject(method = "use", at = @At(value = "RETURN"))
     public void incrementStat(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<ActionResult> result) {
