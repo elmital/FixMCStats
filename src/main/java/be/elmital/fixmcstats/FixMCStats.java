@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 public class FixMCStats implements ModInitializer {
-    public static final Logger LOGGER = LoggerFactory.getLogger("fix-mc-stats");
+	public static final Logger LOGGER = LoggerFactory.getLogger("fix-mc-stats");
 
 	@Override
 	public void onInitialize() {
