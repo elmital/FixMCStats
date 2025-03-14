@@ -22,7 +22,6 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-65198](https://bugs.mojang.com/browse/MC-65198) : _Craft statistics doesn't increase correctly when crafting items with shift-click or drop actions in stonecutter, crafting table and smithing table_
 - [MC-111435](https://bugs.mojang.com/browse/MC-111435) : _Damage dealt stat doesn't increase when the sweeping attack damages nearby entities_
 - [MC-122656](https://bugs.mojang.com/browse/MC-122656) : _Breaking elytra and trident never increase score_
-- [MC-128079](https://bugs.mojang.com/browse/MC-128079) : _Statistic for using shears doesn't increase when mining certain blocks_
 - [MC-121541](https://bugs.mojang.com/browse/MC-121541) : _Scoreboard objective criteria for distance fallen doesn't track fall distance when player lands in liquid, powder snow, or cobweb_ (v1.3.0+)
 - [MC-144005](https://bugs.mojang.com/browse/MC-144005) : _Crafting stat for cooked items doesn't increase using campfires_
 - [MC-147347](https://bugs.mojang.com/browse/MC-147347) : _Lighting a creeper with a flint and steel doesn't count as mob killed in statistics_
@@ -49,6 +48,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ### Already fixed by Mojang / No more fixed by the mod :
 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : The "Statistic hover text is behind "Statistic" title (see screenshot)" is already fixed by Mojang the other part of issue is fixed by the mod
+- [MC-128079](https://bugs.mojang.com/browse/MC-128079) : _Statistic for using shears doesn't increase when mining certain blocks_ Since MC 1.21.5 the bug has been fixed and is no more included in versions above 1.3.2 of the mod
 - [MC-154487](https://bugs.mojang.com/browse/MC-154487) : _"Crafting potion stat doesn't increase using brewing stands"_ Since MC 1.21 the issue had been fixed partially for shift clicking by Mojang with the [MC-271199](https://bugs.mojang.com/browse/MC-271199) fix but issue still appears for other clicking and is fixed by the mod
 - [MC-157098](https://bugs.mojang.com/browse/MC-157098) : _Statistics crafting counter fails to increment on partially full inventory_ Since MC 1.21 the bug has been fixed even if the issue is still opened and the patch is no more included in versions above 1.1.0 of the mod
 - [MC-182814](https://bugs.mojang.com/browse/MC-182814) : _Drinking honey bottles increases used stat by two and runs the consume advancement trigger twice_ Since MC 1.21.2 with changes made by suppressing the HoneyBottleItem class Mojang indirectly fix it and the patch is no more included in versions above 1.1.1 of the mod 
