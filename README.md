@@ -22,7 +22,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-65198](https://bugs.mojang.com/browse/MC-65198) : _Craft statistics doesn't increase correctly when crafting items with shift-click or drop actions in stonecutter, crafting table and smithing table_
 - [MC-111435](https://bugs.mojang.com/browse/MC-111435) : _Damage dealt stat doesn't increase when the sweeping attack damages nearby entities_
 - [MC-122656](https://bugs.mojang.com/browse/MC-122656) : _Breaking elytra and trident never increase score_
-- [MC-121541](https://bugs.mojang.com/browse/MC-121541) : _Scoreboard objective criteria for distance fallen doesn't track fall distance when player lands in liquid, powder snow, or cobweb_ (v1.3.0+)
+- [MC-121541](https://bugs.mojang.com/browse/MC-121541) : _Scoreboard objective criteria for distance fallen doesn't track fall distance when player lands in liquid, powder snow, or cobweb_ (v1.3.0+) ***
 - [MC-144005](https://bugs.mojang.com/browse/MC-144005) : _Crafting stat for cooked items doesn't increase using campfires_
 - [MC-147347](https://bugs.mojang.com/browse/MC-147347) : _Lighting a creeper with a flint and steel doesn't count as mob killed in statistics_
 - [MC-148457](https://bugs.mojang.com/browse/MC-148457) : _Crawling increments the "Distance Walked" statistic_ 
@@ -41,6 +41,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 ```
 * the fix add a custom statistic and can be deactivated in the mod config file
 ** the fix use your computer configured language (or the JVM one if using arg) simply change the translation in MC will not fix the bug
+*** the issue had been fixed partially by Mojang since 1.21.5 but still exists for some blocks
 ```
 
 **Custom statistics created by the mod may not be translated in your language actually only French(ca, fr), English(gb, us, ca, au), German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are supported.**

@@ -12,7 +12,6 @@
     "EntityMixin",
     "FlowerPotBlockMixin",
     "ForgingScreenHandlerMixin",
-    "HoneyBlockMixin",
     "LivingEntityMixin",
     "PlaceableOnWaterItemMixin",
     "PlayerEntityMixin",
@@ -21,7 +20,6 @@
     "PowderSnowBlockMixin",
     "RespawnAnchorBlockMixin",
     "ServerPlayerEntityMixin",
-    "SlimeBlockMixin",
     "StatsAccessor",
     "StonecutterScreenHandlerMixin"
   ],
