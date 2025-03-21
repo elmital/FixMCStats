@@ -46,7 +46,7 @@ public abstract class ForgingScreenHandlerMixin extends ScreenHandler {
 
             public void onCrafted(ItemStack stack, int amount) {
                 if (((ForgingScreenHandler) (Object) ForgingScreenHandlerMixin.this) instanceof SmithingScreenHandler)
-                    stack.onCraftByPlayer(player.getWorld(), player, amount);
+                    stack.onCraftByPlayer(player, amount);
             }
 
             public boolean canTakeItems(PlayerEntity playerEntity) {

@@ -44,7 +44,7 @@ public class CampfireBlockEntityMixin {
             nbt.copyNbt().get("cooker", Uuids.CODEC).ifPresent(cooker -> {
                 PlayerEntity playerEntity = world.getServer().getPlayerManager().getPlayer(cooker);
 
-                if (playerEntity != null) itemStack2.onCraftByPlayer(world, playerEntity, 1);
+                if (playerEntity != null) itemStack2.onCraftByPlayer(playerEntity, 1);
             });
         }
     }

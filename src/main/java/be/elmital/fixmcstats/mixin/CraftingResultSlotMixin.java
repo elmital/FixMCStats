@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(CraftingResultSlot.class)
 public class CraftingResultSlotMixin {
     // Fix https://bugs.mojang.com/browse/MC-65198 for drop
-    @Redirect(method = "onCrafted(Lnet/minecraft/item/ItemStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;onCraftByPlayer(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;I)V"))
-    private void modifyIncrementedAmount(ItemStack stack, World world, PlayerEntity player, int amount) {
-        stack.onCraftByPlayer(world, player, stack.getCount());
+    @Redirect(method = "onCrafted(Lnet/minecraft/item/ItemStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;onCraftByPlayer(Lnet/minecraft/entity/player/PlayerEntity;I)V"))
+    private void modifyIncrementedAmount(ItemStack stack, PlayerEntity player, int amount) {
+        stack.onCraftByPlayer(player, stack.getCount());
     }
 }

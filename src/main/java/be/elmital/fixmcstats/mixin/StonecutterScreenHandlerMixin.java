@@ -56,11 +56,11 @@ public abstract class StonecutterScreenHandlerMixin extends ScreenHandler {
 
             // Here is the fix for bug
             protected void onCrafted(ItemStack stack, int amount) {
-                stack.onCraftByPlayer(playerInventory.player.getWorld(), playerInventory.player, amount);
+                stack.onCraftByPlayer(playerInventory.player, amount);
             }
 
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                stack.onCraftByPlayer(player.getWorld(), player, stack.getCount());
+                stack.onCraftByPlayer(player, stack.getCount());
                 output.unlockLastRecipe(player, this.getInputStacks());
                 ItemStack itemStack = inputSlot.takeStack(1);
                 if (!itemStack.isEmpty()) {
