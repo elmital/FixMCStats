@@ -18,6 +18,6 @@ public class PotionSlotMixin extends Slot {
     @Override
     public void onTakeItem(PlayerEntity player, ItemStack stack) {
         super.onTakeItem(player, stack);
-        stack.onCraftByPlayer(player.getWorld(), player, stack.getCount());
+        stack.onCraftByPlayer(player, stack.getCount());
     }
 }

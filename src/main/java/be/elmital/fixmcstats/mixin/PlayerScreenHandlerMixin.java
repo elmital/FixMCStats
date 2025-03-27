@@ -14,6 +14,6 @@ public class PlayerScreenHandlerMixin {
     // Fix https://bugs.mojang.com/browse/MC-157098
     @Inject(method = "quickMove", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;dropItem(Lnet/minecraft/item/ItemStack;Z)Lnet/minecraft/entity/ItemEntity;"))
     private void onInventoryFull(PlayerEntity player, int slot, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) ItemStack dropped) {
-        dropped.onCraftByPlayer(player.getWorld(), player, dropped.getCount());
+        dropped.onCraftByPlayer(player, dropped.getCount());
     }
 }
