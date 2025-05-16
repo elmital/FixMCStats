@@ -1,19 +1,19 @@
 package be.elmital.fixmcstats.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.PlayerScreenHandler;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlayerScreenHandler.class)
+@Mixin(InventoryMenu.class)
 public class PlayerScreenHandlerMixin {
     // Fix https://bugs.mojang.com/browse/MC-157098
-    @Inject(method = "quickMove", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;dropItem(Lnet/minecraft/item/ItemStack;Z)Lnet/minecraft/entity/ItemEntity;"))
-    private void onInventoryFull(PlayerEntity player, int slot, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) ItemStack dropped) {
-        dropped.onCraftByPlayer(player, dropped.getCount());
+    @Inject(method = "quickMoveStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;drop(Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/world/entity/item/ItemEntity;"))
+    private void onInventoryFull(Player player, int slot, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) ItemStack dropped) {
+        dropped.onCraftedBy(player, dropped.getCount());
     }
 }

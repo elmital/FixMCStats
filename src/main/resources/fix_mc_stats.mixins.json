@@ -23,6 +23,13 @@
     "StatsAccessor",
     "StonecutterScreenHandlerMixin"
   ],
+  "client": [
+    "client.EntityStatsListWidgetEntryMixin",
+    "client.GeneralStatsListWidgetMixin",
+    "client.ItemComparatorMixin",
+    "client.ItemStatsListWidgetEntryMixin",
+    "client.StatsScreenMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
 	}

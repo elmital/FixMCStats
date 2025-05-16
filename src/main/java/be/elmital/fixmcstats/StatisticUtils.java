@@ -1,10 +1,10 @@
 package be.elmital.fixmcstats;
 
 import be.elmital.fixmcstats.mixin.StatsAccessor;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.stat.StatFormatter;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.StatFormatter;
 import org.slf4j.Logger;
 
 /* Used to register non-vanilla statistics and concern :
@@ -16,8 +16,8 @@ public class StatisticUtils {
     public static final CustomStatistic CRAWL_ONE_CM = new CustomStatistic("crawl_one_cm", StatFormatter.DISTANCE);
 
     public static void register(CustomStatistic statistic) {
-        Registry.register(Registries.CUSTOM_STAT, statistic.identifier(), statistic.identifier());
-        StatsAccessor.getCUSTOM().getOrCreateStat(statistic.identifier(), statistic.statFormatter());
+        Registry.register(BuiltInRegistries.CUSTOM_STAT, statistic.identifier(), statistic.identifier());
+        StatsAccessor.getCUSTOM().get(statistic.identifier(), statistic.statFormatter());
     }
 
     public static void registerAllCustomStats(Config config, Logger logger) {
@@ -31,9 +31,9 @@ public class StatisticUtils {
         }
     }
 
-    public record CustomStatistic(String path, StatFormatter statFormatter, Identifier identifier) {
+    public record CustomStatistic(String path, StatFormatter statFormatter, ResourceLocation identifier) {
         public CustomStatistic(String path, StatFormatter statFormatter) {
-            this(path, statFormatter, Identifier.of("fix-mc-stats", path));
+            this(path, statFormatter, ResourceLocation.fromNamespaceAndPath("fix-mc-stats", path));
         }
     }
 }

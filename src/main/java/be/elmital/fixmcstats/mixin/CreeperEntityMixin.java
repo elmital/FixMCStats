@@ -1,13 +1,13 @@
 package be.elmital.fixmcstats.mixin;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.CreeperEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -18,21 +18,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 // Fix https://bugs.mojang.com/browse/MC-147347
 @SuppressWarnings("unused")
-@Mixin(CreeperEntity.class)
-public abstract class CreeperEntityMixin extends HostileEntity {
+@Mixin(Creeper.class)
+public abstract class CreeperEntityMixin extends Monster {
     @Unique
-    private @Nullable PlayerEntity trackedIgniter;
-    protected CreeperEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+    private @Nullable Player fixMCStats$trackedIgniter;
+
+    protected CreeperEntityMixin(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
     }
 
-    @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/CreeperEntity;ignite()V"))
-    private void trackIgniter(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        this.trackedIgniter = player;
+    @Inject(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Creeper;ignite()V"))
+    private void trackIgniter(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+        this.fixMCStats$trackedIgniter = player;
     }
-    @Inject(method = "explode", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/CreeperEntity;onRemoval(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/Entity$RemovalReason;)V"))
+
+    @Inject(method = "explodeCreeper", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Creeper;triggerOnDeathMobEffects(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity$RemovalReason;)V"))
     private void incrementDamageStat(CallbackInfo ci) {
-        if (this.trackedIgniter != null)
-            this.trackedIgniter.incrementStat(Stats.KILLED.getOrCreateStat(this.getType()));
+        if (this.fixMCStats$trackedIgniter != null)
+            this.fixMCStats$trackedIgniter.awardStat(Stats.ENTITY_KILLED.get(this.getType()));
     }
 }

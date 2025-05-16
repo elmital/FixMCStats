@@ -1,6 +1,9 @@
 # <u>FixMCStats</u>
-
 Fabric mod that aims to fix some issues with the Minecraft statistics.🤓
+
+This is an unofficial NeoForge Port and I have limited scope for testing, please report it to me if something goes wrong.
+
+If you are the original author of the mod, you can freely extract that Fork back into your project, I don't ask for anything.
 
 ---
 ## <u>Fixes</u>

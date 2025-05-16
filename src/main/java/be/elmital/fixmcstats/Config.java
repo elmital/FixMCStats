@@ -1,6 +1,6 @@
 package be.elmital.fixmcstats;
 
-import net.fabricmc.loader.api.FabricLoader;
+import net.neoforged.fml.loading.FMLPaths;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -32,7 +32,7 @@ public class Config {
 
     Config(Logger logger) {
         this.logger = logger;
-        currentDirectory = FabricLoader.getInstance().getConfigDir();
+        currentDirectory = FMLPaths.CONFIGDIR.get();
     }
 
     public enum Configs {
