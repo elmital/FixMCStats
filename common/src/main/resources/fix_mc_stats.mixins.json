@@ -1,0 +1,37 @@
+{
+  "required": true,
+  "package": "be.elmital.fixmcstats.mixin",
+  "refmap": "fix_mc_stats.refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockMixin",
+    "CampfireBlockEntityMixin",
+    "CraftingResultSlotMixin",
+    "CreeperEntityMixin",
+    "CrossbowItemMixin",
+    "DecoratedPotBlockMixin",
+    "EntityMixin",
+    "FlowerPotBlockMixin",
+    "ForgingScreenHandlerMixin",
+    "LivingEntityMixin",
+    "PlaceableOnWaterItemMixin",
+    "PlayerEntityMixin",
+    "PlayerScreenHandlerMixin",
+    "PotionSlotMixin",
+    "PowderSnowBlockMixin",
+    "RespawnAnchorBlockMixin",
+    "ServerPlayerEntityMixin",
+    "StatsAccessor",
+    "StonecutterScreenHandlerMixin"
+  ],
+  "client": [
+    "client.EntityStatsListWidgetEntryMixin",
+    "client.GeneralStatsListWidgetMixin",
+    "client.ItemComparatorMixin",
+    "client.ItemStatsListWidgetEntryMixin",
+    "client.StatsScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

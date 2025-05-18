@@ -1,0 +1,9 @@
+accessWidener v2 named
+transitive-accessible class net/minecraft/client/gui/screens/achievement/StatsScreen$GeneralStatisticsList
+transitive-accessible class net/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList
+transitive-accessible class net/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow
+transitive-accessible class net/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRowComparator
+transitive-accessible class net/minecraft/client/gui/screens/achievement/StatsScreen$MobsStatisticsList
+transitive-accessible class net/minecraft/client/gui/screens/achievement/StatsScreen$MobsStatisticsList$MobRow
+transitive-extendable class net/minecraft/world/inventory/BrewingStandMenu$PotionSlot
+transitive-accessible method net/minecraft/client/gui/screens/achievement/StatsScreen getTranslationKey (Lnet/minecraft/stats/Stat;)Ljava/lang/String;
