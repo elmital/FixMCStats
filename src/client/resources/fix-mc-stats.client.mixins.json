@@ -6,8 +6,7 @@
     "EntityStatsListWidgetEntryMixin",
     "GeneralStatsListWidgetMixin",
     "ItemComparatorMixin",
-    "ItemStatsListWidgetEntryMixin",
-    "StatsScreenMixin"
+    "ItemStatsListWidgetEntryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

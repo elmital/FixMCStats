@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Environment(EnvType.CLIENT)
 public class EntityStatsListWidgetEntryMixin {
     // Fix https://bugs.mojang.com/browse/MC-80827
-    @ModifyVariable(method = "render(Lnet/minecraft/client/gui/DrawContext;IIIIIIIZF)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)I", shift = At.Shift.AFTER), ordinal = 1, argsOnly = true)
+    @ModifyVariable(method = "render(Lnet/minecraft/client/gui/DrawContext;IIIIIIIZF)V", at = @At(value = "INVOKE", target ="Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V" , shift = At.Shift.AFTER), ordinal = 1, argsOnly = true)
     private int injected(int y) {
         return y + 1;
     }
