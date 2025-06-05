@@ -18,7 +18,6 @@
     "LivingEntityMixin",
     "PlaceableOnWaterItemMixin",
     "PlayerEntityMixin",
-    "PlayerScreenHandlerMixin",
     "PotionSlotMixin",
     "PowderSnowBlockMixin",
     "RespawnAnchorBlockMixin",
