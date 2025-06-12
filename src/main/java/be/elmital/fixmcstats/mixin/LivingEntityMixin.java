@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
@@ -41,7 +42,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     // Fix https://bugs.mojang.com/browse/MC-122656
     @Inject(method = "tickFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;)V", shift = At.Shift.AFTER))
     public void incrementBreakingStat(CallbackInfo ci, @Local ItemStack elytra) {
-        if (!ElytraItem.isUsable(elytra)) {
+        if (Configs.ELYTRA_FIX.isActive() && !ElytraItem.isUsable(elytra)) {
             if (((LivingEntity) (Object) this) instanceof PlayerEntity playerEntity)
                 playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(elytra.getItem()));
         }

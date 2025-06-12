@@ -21,11 +21,11 @@ public class StatisticUtils {
     }
 
     public static void registerAllCustomStats(Config config, Logger logger) {
-        if (config.USE_CAMEL_CUSTOM_STAT) {
+        if (Configs.CAMEL_STAT.isActive()) {
             logger.info("Adding camel custom stat to the registry");
             StatisticUtils.register(StatisticUtils.CAMEL_RIDING_STAT);
         }
-        if (config.USE_CRAWL_CUSTOM_STAT) {
+        if (Configs.CRAWL_STAT.isActive()) {
             logger.info("Adding crawling custom stat to the registry");
             StatisticUtils.register(StatisticUtils.CRAWL_ONE_CM);
         }

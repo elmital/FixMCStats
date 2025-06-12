@@ -1,6 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
-import be.elmital.fixmcstats.Config;
+import be.elmital.fixmcstats.Configs;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
@@ -19,7 +19,7 @@ import java.util.List;
 public class EnderDragonEntityMixin {
     @Redirect(method = "launchLivingEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;addVelocity(DDD)V"))
     public void increaseVelocity(Entity entity, double deltaX, double deltaY, double deltaZ) {
-        if (Config.instance().FIX_ENDER_DRAGON_FLOWN_STAT) {
+        if (Configs.ENDER_DRAGON_FLOWN_STAT_FIX.isActive()) {
             if (!(entity instanceof PlayerEntity))
                 entity.addVelocity(deltaX, deltaY, deltaZ);
         } else {
@@ -29,6 +29,6 @@ public class EnderDragonEntityMixin {
 
     @Inject(method = "launchLivingEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     public void increaseVelocityPostDamageCheck(ServerWorld world, List<Entity> entities, CallbackInfo ci, @Local Entity entity, @Local(ordinal = 2) double f, @Local(ordinal = 3) double g, @Local(ordinal = 4) double h) {
-        if (Config.instance().FIX_ENDER_DRAGON_FLOWN_STAT && entity instanceof PlayerEntity) entity.addVelocity(f / h * 4.0, 0.2f, g / h * 4.0);
+        if (Configs.ENDER_DRAGON_FLOWN_STAT_FIX.isActive() && entity instanceof PlayerEntity) entity.addVelocity(f / h * 4.0, 0.2f, g / h * 4.0);
     }
 }
