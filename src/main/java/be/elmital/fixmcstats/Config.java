@@ -17,9 +17,6 @@ public class Config {
     private final Logger logger;
     private final Path currentDirectory;
     private final Properties properties = new Properties();
-    public boolean USE_CAMEL_CUSTOM_STAT;
-    public boolean USE_CRAWL_CUSTOM_STAT;
-    public boolean EXPERIMENTAL_STATS_SCREEN_TICK_FIX;
     static final String CONFIG = "FixMCStatsConfig";
 
     public static Config instance() {
@@ -33,36 +30,6 @@ public class Config {
     Config(Logger logger) {
         this.logger = logger;
         currentDirectory = FabricLoader.getInstance().getConfigDir();
-    }
-
-    public enum Configs {
-        ELYTRA_FIX("elytra-experimental-fix", Boolean.TRUE.toString(), true),
-        CAMEL_STAT("use-camel-riding-stat", Boolean.TRUE.toString()),
-        CRAWL_STAT("use-crawling-stat", Boolean.TRUE.toString()),
-        ENDER_DRAGON_FLOWN_STAT_FIX("ender-dragon-flown-stat-experimental-fix", Boolean.TRUE.toString(), true),
-        EXPERIMENTAL_STATS_SCREEN_TICK_FIX("pause-tick-on-stats-screen-experimental-fix", Boolean.TRUE.toString());
-
-        private final String key;
-        private final String def;
-        private final boolean deprecated;
-
-        Configs(String key, String def) {
-            this(key, def, false);
-        }
-
-        Configs(String key, String def, boolean deprecated) {
-            this.key = key;
-            this.def = def;
-            this.deprecated = deprecated;
-        }
-
-        public String getKey() {
-            return key;
-        }
-
-        public String getDefault() {
-            return def;
-        }
     }
 
     Config loadOrGenerateConfig() throws IOException, SecurityException, IllegalArgumentException {
@@ -79,8 +46,8 @@ public class Config {
         }
 
         boolean toStore = !alreadyExist;
-        for (Configs value : Configs.values()) {
-            if (value.deprecated) {
+        for (Configs.ConfigEntry value : Configs.configEntries) {
+            if (value.isDeprecated()) {
                 if (alreadyExist && properties.containsKey(value.getKey())) {
                     logger.info("Old config key found '{}' removing it", value.getKey());
                     toStore = true;
@@ -109,9 +76,9 @@ public class Config {
         }
 
         logger.info("Loading all configs");
-        USE_CAMEL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CAMEL_STAT.getKey(), Configs.CAMEL_STAT.getDefault()));
-        USE_CRAWL_CUSTOM_STAT = Boolean.parseBoolean(properties.getProperty(Configs.CRAWL_STAT.getKey(), Configs.CRAWL_STAT.getDefault()));
-        EXPERIMENTAL_STATS_SCREEN_TICK_FIX = Boolean.parseBoolean(properties.getProperty(Configs.EXPERIMENTAL_STATS_SCREEN_TICK_FIX.getKey(), Configs.EXPERIMENTAL_STATS_SCREEN_TICK_FIX.getDefault()));
+        for (Configs.ConfigEntry configEntry : Configs.getValidConfigEntries()) {
+            configEntry.setActive(Boolean.parseBoolean(properties.getProperty(configEntry.getKey(), configEntry.getDefault())));
+        }
         return this;
     }
 
@@ -124,7 +91,7 @@ public class Config {
     }
 
     @SuppressWarnings("unused")
-    public void updateConfig(Configs config, String value) throws IOException {
+    public void updateConfig(Configs.ConfigEntry config, String value) throws IOException {
         var stream = new FileOutputStream(getConfigPath().toString());
         properties.setProperty(config.getKey(), value);
         properties.store(stream, null);
