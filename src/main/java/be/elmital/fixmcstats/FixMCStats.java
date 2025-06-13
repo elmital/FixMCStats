@@ -2,6 +2,7 @@ package be.elmital.fixmcstats;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.loader.api.metadata.ModEnvironment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,12 @@ public class FixMCStats implements ModInitializer {
 			LOGGER.info("Mod configured!");
 			LOGGER.info("Checking for custom statistics");
 			StatisticUtils.registerAllCustomStats(Config.instance(), LOGGER);
+			LOGGER.info("Handling command event for potential server side purpose...");
+			ConfigCommand.registerConfigCommand();
+			LOGGER.info("Commands registered!");
+			LOGGER.info("Registering command arguments...");
+			ConfigCommand.registerArgumentTypes(ModEnvironment.SERVER);
+			LOGGER.info("Command arguments registered!");
 		} catch (SecurityException e) {
 			LOGGER.trace("Can't load or generate config file! There is a read/write permission issue.", e);
 			throw new RuntimeException(e);
