@@ -1,4 +1,13 @@
 {
+  "commands.fix-mc-stats.already.activated" : "This patch is already activated",
+  "commands.fix-mc-stats.already.deactivated" : "This patch is already deactivated",
+  "commands.fix-mc-stats.config.update.fail" : "Command failed can't update config does the file still exists?",
+  "commands.fix-mc-stats.config.update.success.activated" : "Patch %s is now activated",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "Patch %s is now deactivated",
+  "commands.fix-mc-stats.patch.config.activated" : "Patch %s is activated!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Patch %s is deactivated",
+  "commands.fix-mc-stats.patch.experimental" : "Be aware this patch is experimental!",
+  "commands.fix-mc-stats.patch.link" : "Click to open the issue link for patch [%s]",
   "stat.fix-mc-stats.camel_one_cm" : "骑骆驼移动距离",
   "stat.fix-mc-stats.crawl_one_cm" : "爬行距离",
   "modmenu.descriptionTranslation.fix-mc-stats" : "旨在修复Minecraft统计中的一些问题的修改器",

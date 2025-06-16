@@ -18,7 +18,13 @@ public class FixMCStats implements ModInitializer {
 			Config.initConfig(LOGGER);
 			LOGGER.info("Mod configured!");
 			LOGGER.info("Checking for custom statistics");
-			StatisticUtils.registerAllCustomStats(Config.instance(), LOGGER);
+			StatisticUtils.registerAllCustomStats(LOGGER);
+			LOGGER.info("Handling command event for potential server side purpose...");
+			ConfigCommand.registerConfigCommand();
+			LOGGER.info("Commands registered!");
+			LOGGER.info("Registering command arguments...");
+			ConfigCommand.registerArgumentTypes();
+			LOGGER.info("Command arguments registered!");
 		} catch (SecurityException e) {
 			LOGGER.trace("Can't load or generate config file! There is a read/write permission issue.", e);
 			throw new RuntimeException(e);
