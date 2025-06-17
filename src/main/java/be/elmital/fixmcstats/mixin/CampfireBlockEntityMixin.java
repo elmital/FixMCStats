@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
@@ -21,6 +22,8 @@ public class CampfireBlockEntityMixin {
     // Fix https://bugs.mojang.com/browse/MC-144005
     @Inject(method = "litServerTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/ItemScatterer;spawn(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;)V"))
     private static void ensureHolder(World world, BlockPos pos, BlockState state, net.minecraft.block.entity.CampfireBlockEntity campfire, CallbackInfo cir, @Local(ordinal = 0) ItemStack itemStack, @Local(ordinal = 1) ItemStack itemStack2) {
+        if (!Configs.CAMP_FIRE_COOKING_CRAFT_STAT_FIX.isActive())
+            return;
         NbtComponent nbt = itemStack.getComponents().get(DataComponentTypes.CUSTOM_DATA);
         UUID cooker = nbt != null ? nbt.copyNbt().getUuid("cooker") : null;
         if (cooker != null) {

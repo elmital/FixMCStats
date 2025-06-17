@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PowderSnowBlock;
 import net.minecraft.entity.Entity;
@@ -18,7 +19,7 @@ public class PowderSnowBlockMixin {
     // Fix https://bugs.mojang.com/browse/MC-121541
     @Inject(method = "onLandedUpon", at = @At(value = "HEAD"))
     private void incrementOnLanding(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-        if (fallDistance >= 2.0F && entity instanceof ServerPlayerEntity player) {
+        if (Configs.DISTANCE_FALLEN_ON_LANDING_FIX.isActive() && fallDistance >= 2.0F && entity instanceof ServerPlayerEntity player) {
             player.increaseStat(Stats.FALL_ONE_CM, (int)Math.round((double)fallDistance * 100.0));
         }
     }

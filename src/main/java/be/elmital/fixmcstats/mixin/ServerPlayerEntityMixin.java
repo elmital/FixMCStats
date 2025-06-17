@@ -28,7 +28,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     // Fix for https://bugs.mojang.com/browse/MC-259687 - The stat is already incremented in the ServerPlayNetworkHandler
     @Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;increaseTravelMotionStats(DDD)V"), cancellable = true)
     private void cancelIfFallFlying(Vec3d movementInput, CallbackInfo ci) {
-        if (this.isFallFlying() && !this.isSwimming() && !this.isSubmergedIn(FluidTags.WATER) && !this.isTouchingWater() && !this.isClimbing() && !this.isOnGround())
+        if (Configs.ELYTRA_FIX.isActive() && this.isFallFlying() && !this.isSwimming() && !this.isSubmergedIn(FluidTags.WATER) && !this.isTouchingWater() && !this.isClimbing() && !this.isOnGround())
             ci.cancel();
     }
 

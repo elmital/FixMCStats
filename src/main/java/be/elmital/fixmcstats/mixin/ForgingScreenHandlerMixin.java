@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.item.ItemStack;
@@ -40,6 +41,8 @@ public abstract class ForgingScreenHandlerMixin extends ScreenHandler {
     // Fix https://bugs.mojang.com/browse/MC-65198 for Smithing table
     @ModifyArg(method = "addResultSlot(Lnet/minecraft/screen/slot/ForgingSlotsManager;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/ForgingScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;"))
     private Slot modifySlot(Slot slot) {
+        if (!Configs.CRAFT_STAT_CLICKING_FIX.isActive())
+            return slot;
         return new Slot(this.output, invokeGetForgingSlotsManager().getResultSlot().slotId(), invokeGetForgingSlotsManager().getResultSlot().x(), invokeGetForgingSlotsManager().getResultSlot().y()) {
             public boolean canInsert(ItemStack stack) {
                 return false;

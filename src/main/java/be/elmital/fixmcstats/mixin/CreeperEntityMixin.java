@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SkinOverlayOwner;
 import net.minecraft.entity.mob.CreeperEntity;
@@ -29,12 +30,13 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/CreeperEntity;ignite()V"))
     private void trackIgniter(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        this.trackedIgniter = player;
+        if (Configs.IGNITED_CREEPER_FIX.isActive())
+            this.trackedIgniter = player;
     }
 
     @Inject(method = "explode", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/CreeperEntity;shouldRenderOverlay()Z"))
     private void incrementDamageStat(CallbackInfo ci) {
-        if (this.trackedIgniter != null)
+        if (Configs.IGNITED_CREEPER_FIX.isActive() && this.trackedIgniter != null)
             this.trackedIgniter.incrementStat(Stats.KILLED.getOrCreateStat(this.getType()));
     }
 }

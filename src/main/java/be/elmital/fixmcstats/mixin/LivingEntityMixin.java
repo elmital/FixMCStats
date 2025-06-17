@@ -42,7 +42,9 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     // Fix https://bugs.mojang.com/browse/MC-122656
     @Inject(method = "tickFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;)V", shift = At.Shift.AFTER))
     public void incrementBreakingStat(CallbackInfo ci, @Local ItemStack elytra) {
-        if (Configs.ELYTRA_FIX.isActive() && !ElytraItem.isUsable(elytra)) {
+        if (!Configs.BREAKING_ELYTRA_AND_TRIDENT_FIX.isActive())
+            return;
+        if (!ElytraItem.isUsable(elytra)) {
             if (((LivingEntity) (Object) this) instanceof PlayerEntity playerEntity)
                 playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(elytra.getItem()));
         }
@@ -51,7 +53,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     // Fix https://bugs.mojang.com/browse/MC-29519
     @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getDamageTracker()Lnet/minecraft/entity/damage/DamageTracker;", shift = At.Shift.AFTER))
     public void incrementDamageDealtStatForProjectile(DamageSource source, float amount, CallbackInfo ci) {
-        if ((source.isIn(DamageTypeTags.IS_PROJECTILE) || source.getSource() instanceof FireworkRocketEntity) && source.getAttacker() instanceof ServerPlayerEntity player) {
+        if (Configs.DAMAGE_DEALT_WITH_PROJECTILE_FIX.isActive() && (source.isIn(DamageTypeTags.IS_PROJECTILE) || source.getSource() instanceof FireworkRocketEntity) && source.getAttacker() instanceof ServerPlayerEntity player) {
             player.increaseStat(Stats.DAMAGE_DEALT,  Math.round(Math.min(this.getHealth(), amount) * 10.0F));
         }
     }
@@ -59,6 +61,6 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     // Fix https://bugs.mojang.com/browse/MC-265376
     @Redirect(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/damage/DamageSource;isIn(Lnet/minecraft/registry/tag/TagKey;)Z", ordinal = 5))
     public boolean onDamage(DamageSource source, TagKey<DamageType> tag) {
-        return source.isIn(tag) && !(source.getAttacker() instanceof GoatEntity) && !isDead();
+        return Configs.KILLED_BY_GOAT_FIX.isActive() &&  source.isIn(tag) && !(source.getAttacker() instanceof GoatEntity) && !isDead();
     }
 }

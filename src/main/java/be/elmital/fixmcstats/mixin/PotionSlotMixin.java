@@ -1,6 +1,7 @@
 package be.elmital.fixmcstats.mixin;
 
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,7 @@ public class PotionSlotMixin extends Slot {
     @Override
     public void onTakeItem(PlayerEntity player, ItemStack stack) {
         super.onTakeItem(player, stack);
-        stack.onCraftByPlayer(player.getWorld(), player, stack.getCount());
+        if (Configs.CRAFTING_POTION_FIX.isActive())
+            stack.onCraftByPlayer(player.getWorld(), player, stack.getCount());
     }
 }
