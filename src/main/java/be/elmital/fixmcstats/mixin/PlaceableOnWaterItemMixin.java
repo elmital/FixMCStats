@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
@@ -22,7 +23,7 @@ public class PlaceableOnWaterItemMixin extends BlockItem {
     // Fix https://bugs.mojang.com/browse/MC-264274
     @Inject(method = "use", at = @At(value = "RETURN"))
     public void incrementStat(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<ActionResult> result) {
-        if (result.getReturnValue().isAccepted())
+        if (Configs.PLACEABLE_ON_WATER_FIX.isActive() && result.getReturnValue().isAccepted())
             user.incrementStat(Stats.USED.getOrCreateStat(this));
     }
 }

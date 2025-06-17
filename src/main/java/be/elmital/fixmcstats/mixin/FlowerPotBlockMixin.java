@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,6 +21,7 @@ public class FlowerPotBlockMixin {
     // Fix https://bugs.mojang.com/browse/MC-231743
     @Inject(method = "onUseWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;incrementStat(Lnet/minecraft/util/Identifier;)V"))
     private void incrementUsedStat(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
+        if (Configs.FLOWER_POTTED_FIX.isActive())
+            player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
     }
 }

@@ -68,6 +68,19 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-259673](https://bugs.mojang.com/browse/MC-259673) : Not only linked to the Stats
 
 ---
+
+## Patches commands
+
+Two commands exists now to allow you to toggle the patches if you needed and to get infos about a specific patch. 
+The first is `/fixmcstats-client` for the client-side patches part, of course you need to have the mod installed client side to have it.
+The second is `/fixmcstats-server` for the server-side patches part, of course you need to have the mod installed server side to have it (or play in solo) this command can be used only by operators.
+
+- `/fixmcstats-... status [PATCH ID]` show you if the patch is active or not
+- `/fixmcstats-... link [PATCH ID]` display in the chat the Mojang linked issue that you can click to open it in your browser
+- `/fixmcstats-... activate [PATCH ID]` activate the patch
+- `/fixmcstats-... deactivate [PATCH ID]` deactivate the patch
+
+---
 ## <u>Issue tracker</u>
 
 When you open a ticket either to report a bug or for an enhancement request make sure that no other ticket already exists. 

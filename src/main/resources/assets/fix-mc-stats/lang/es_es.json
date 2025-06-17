@@ -1,4 +1,13 @@
 {
+  "commands.fix-mc-stats.already.activated" : "This patch is already activated",
+  "commands.fix-mc-stats.already.deactivated" : "This patch is already deactivated",
+  "commands.fix-mc-stats.config.update.fail" : "Command failed can't update config does the file still exists?",
+  "commands.fix-mc-stats.config.update.success.activated" : "Patch %s is now activated",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "Patch %s is now deactivated",
+  "commands.fix-mc-stats.patch.config.activated" : "Patch %s is activated!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Patch %s is deactivated",
+  "commands.fix-mc-stats.patch.experimental" : "Be aware this patch is experimental!",
+  "commands.fix-mc-stats.patch.link" : "Click to open the issue link for patch [%s]",
   "stat.fix-mc-stats.camel_one_cm" : "Distancia sobre camello",
   "stat.fix-mc-stats.crawl_one_cm" : "Distancia arrastrada",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod diseñado para solucionar ciertos problemas con las estadísticas de Minecraft.",

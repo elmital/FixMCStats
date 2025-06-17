@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.CrossbowItem;
@@ -19,12 +20,13 @@ public abstract class CrossbowItemMixin {
 
     @Inject(method = "shootAll", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/item/CrossbowItem;shootAll(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/item/ItemStack;Ljava/util/List;FFZLnet/minecraft/entity/LivingEntity;)V"), cancellable = true)
     private void cancelTardiveMethodCall(CallbackInfo info) {
-        info.cancel();
+        if (Configs.BREAKING_CROSSBOW_FIX.isActive())
+            info.cancel();
     }
 
     @Inject(method = "shootAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;shootAll(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/item/ItemStack;Ljava/util/List;FFZLnet/minecraft/entity/LivingEntity;)V"))
     private void awardPlayer(World world, LivingEntity shooter, Hand hand, ItemStack stack, float speed, float divergence, LivingEntity livingEntity, CallbackInfo ci) {
-        if (shooter instanceof ServerPlayerEntity serverPlayerEntity) {
+        if (Configs.BREAKING_CROSSBOW_FIX.isActive() && shooter instanceof ServerPlayerEntity serverPlayerEntity) {
             Criteria.SHOT_CROSSBOW.trigger(serverPlayerEntity, stack);
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
         }

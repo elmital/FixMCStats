@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DecoratedPotBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +18,7 @@ public class DecoratedPotBlockMixin {
     // https://bugs.mojang.com/browse/MC-268093
     @Inject(method = "onProjectileHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;breakBlock(Lnet/minecraft/util/math/BlockPos;ZLnet/minecraft/entity/Entity;)Z"))
     public void breakBlock(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile, CallbackInfo ci) {
-        if (projectile.getOwner() instanceof PlayerEntity player)
+        if (Configs.DECORATED_POT_BREAKING.isActive() && projectile.getOwner() instanceof PlayerEntity player)
             player.incrementStat(Stats.MINED.getOrCreateStat(state.getBlock()));
     }
 }
