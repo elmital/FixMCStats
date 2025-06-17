@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RespawnAnchorBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,9 +19,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(RespawnAnchorBlock.class)
 public class RespawnAnchorBlockMixin {
+    // Fix https://bugs.mojang.com/browse/MC-176806
     @Inject(method = "onUseWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/RespawnAnchorBlock;charge(Lnet/minecraft/entity/Entity;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V"))
     private void awardPlayer(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        if (player instanceof ServerPlayerEntity serverPlayerEntity)
+        if (Configs.GLOWSTONE_USED_ON_ANCHOR_FIX.isActive() && player instanceof ServerPlayerEntity serverPlayerEntity)
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
     }
 }

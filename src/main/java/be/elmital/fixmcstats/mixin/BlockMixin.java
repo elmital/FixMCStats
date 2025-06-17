@@ -1,6 +1,7 @@
 package be.elmital.fixmcstats.mixin;
 
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeveledCauldronBlock;
@@ -24,6 +25,9 @@ public class BlockMixin {
     // Fix https://bugs.mojang.com/browse/MC-245962
     @ModifyArg(method = "afterBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;incrementStat(Lnet/minecraft/stat/Stat;)V"))
     private Stat<?> modifyStat(Stat<?> stat) {
+        if (!Configs.TIMES_MINED_BLOCKS_FIX.isActive())
+            return stat;
+
         if ((Object) this instanceof WallTorchBlock wallTorchBlock)
             return Stats.MINED.getOrCreateStat(wallTorchBlock.getDefaultState().getBlock().equals(Blocks.SOUL_WALL_TORCH) ? Blocks.SOUL_TORCH : Blocks.TORCH);
         else if ((Object) this instanceof WallRedstoneTorchBlock)
