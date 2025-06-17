@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingResultInventory;
@@ -48,6 +49,9 @@ public abstract class StonecutterScreenHandlerMixin extends ScreenHandler {
     // Fix https://bugs.mojang.com/browse/MC-65198
     @Inject(method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/screen/ScreenHandlerContext;)V", at = @At("TAIL"))
     private void injected(int syncId, PlayerInventory playerInventory, final ScreenHandlerContext context, CallbackInfo ci) {
+        if (!Configs.CRAFT_STAT_CLICKING_FIX.isActive())
+            return;
+
         int oldIndex = slots.indexOf(outputSlot);
         Slot newSlot = new Slot(output, 1, 143, 33) {
             public boolean canInsert(ItemStack stack) {

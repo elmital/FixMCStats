@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.mixin.client;
 
+import be.elmital.fixmcstats.Configs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.StatsScreen;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
@@ -24,12 +25,15 @@ public class ItemStatsListWidgetEntryMixin extends AlwaysSelectedEntryListWidget
     // Fix https://bugs.mojang.com/browse/MC-139386
     @Redirect(method = "renderDecorations", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;getName()Lnet/minecraft/text/Text;"))
     private Text modifyItemName(Item item) {
-        return Text.empty().append(item.getName()).formatted(item.getDefaultStack().getRarity().getFormatting());
+        if (Configs.RARE_BLOCKS_COLORS.isActive())
+            return Text.empty().append(item.getName()).formatted(item.getDefaultStack().getRarity().getFormatting());
+        return item.getName();
     }
 
     // Fix https://bugs.mojang.com/browse/MC-213103
     @Inject(method = "<init>(Lnet/minecraft/client/gui/screen/StatsScreen;Lnet/minecraft/client/MinecraftClient;)V", at = @At(value = "TAIL"))
     public void onInit(StatsScreen statsScreen, MinecraftClient client, CallbackInfo info) {
-        this.children().sort(Comparator.comparing(entry -> entry.getItem().getName().getString()));
+        if (Configs.ITEM_SORTING_FIX.isActive())
+            this.children().sort(Comparator.comparing(entry -> entry.getItem().getName().getString()));
     }
 }

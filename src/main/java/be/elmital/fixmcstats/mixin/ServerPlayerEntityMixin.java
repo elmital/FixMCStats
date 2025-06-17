@@ -41,7 +41,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     // Fix https://bugs.mojang.com/browse/MC-211938
     @Redirect(method = "jump", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;incrementStat(Lnet/minecraft/util/Identifier;)V"))
     public void incrementStat(ServerPlayerEntity instance, Identifier identifier) {
-        if (!(instance.getBlockStateAtPos().getBlock() instanceof ScaffoldingBlock))
+        if (Configs.JUMP_WHEN_CLIMBING_SCAFFOLDING_FIX.isActive() && !(instance.getBlockStateAtPos().getBlock() instanceof ScaffoldingBlock))
             instance.incrementStat(identifier);
     }
 }
