@@ -37,8 +37,8 @@ import java.util.stream.Collectors;
 
 
 public class ConfigCommand {
-    static <M extends ModEnvironment> void registerArgumentTypes() {
-        ArgumentTypeRegistry.registerArgumentType(Identifier.of("fix-mc-stats:patch"), PatchArgumentType.class, ConstantArgumentSerializer.of(access -> PatchArgumentType.patchArgument(ModEnvironment.SERVER)));
+    static void registerArgumentTypes() {
+        ArgumentTypeRegistry.registerArgumentType(Identifier.of("fix-mc-stats:patch"), PatchArgumentType.class, ConstantArgumentSerializer.of(access -> PatchArgumentType.patchArgument(null)));
         ArgumentTypeRegistry.registerArgumentType(Identifier.of("fix-mc-stats:patchaction"), PatchActionArgumentType.class, ConstantArgumentSerializer.of(access -> PatchActionArgumentType.pathAction()));
     }
 
@@ -140,8 +140,9 @@ public class ConfigCommand {
 
         @Override
         public Configs.ConfigEntry parse(StringReader stringReader) throws CommandSyntaxException {
+            var value = stringReader.readUnquotedString();
             for (Configs.ConfigEntry configEntry : Configs.getAllValidPatchConfigEntries(this.environment)) {
-                if (Objects.equals(configEntry.getPatchId(), stringReader.readUnquotedString()))
+                if (Objects.equals(configEntry.getPatchId(), value))
                     return configEntry;
             }
             throw new SimpleCommandExceptionType(Text.of("Invalid patch ID")).createWithContext(stringReader);
