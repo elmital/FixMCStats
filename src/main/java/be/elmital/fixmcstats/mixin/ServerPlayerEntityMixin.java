@@ -3,6 +3,7 @@ package be.elmital.fixmcstats.mixin;
 
 import be.elmital.fixmcstats.Configs;
 import be.elmital.fixmcstats.StatisticUtils;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.block.ScaffoldingBlock;
 import net.minecraft.entity.passive.CamelEntity;
@@ -14,7 +15,6 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @SuppressWarnings("unused")
 @Mixin(ServerPlayerEntity.class)
@@ -38,9 +38,10 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     }
 
     // Fix https://bugs.mojang.com/browse/MC-211938
-    @Redirect(method = "jump", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;incrementStat(Lnet/minecraft/util/Identifier;)V"))
-    public void incrementStat(ServerPlayerEntity instance, Identifier identifier) {
-        if (Configs.JUMP_WHEN_CLIMBING_SCAFFOLDING_FIX.isActive() && !(instance.getBlockStateAtPos().getBlock() instanceof ScaffoldingBlock))
-            instance.incrementStat(identifier);
+    @WrapWithCondition(method = "jump", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;incrementStat(Lnet/minecraft/util/Identifier;)V"))
+    public boolean incrementStat(ServerPlayerEntity instance, Identifier identifier) {
+        if (instance.getBlockStateAtPos().getBlock() instanceof ScaffoldingBlock)
+            return !Configs.JUMP_WHEN_CLIMBING_SCAFFOLDING_FIX.isActive();
+        return true;
     }
 }

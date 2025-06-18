@@ -1,6 +1,7 @@
 package be.elmital.fixmcstats.mixin.client;
 
 import be.elmital.fixmcstats.Configs;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.StatsScreen;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
@@ -9,7 +10,7 @@ import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
@@ -23,11 +24,11 @@ public class ItemStatsListWidgetEntryMixin extends AlwaysSelectedEntryListWidget
     }
 
     // Fix https://bugs.mojang.com/browse/MC-139386
-    @Redirect(method = "renderDecorations", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;getName()Lnet/minecraft/text/Text;"))
-    private Text modifyItemName(Item item) {
+    @ModifyArg(method = "renderDecorations", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTooltip(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IILnet/minecraft/util/Identifier;)V", ordinal = 0))
+    private Text modifyItemName(Text text, @Local Item item) {
         if (Configs.RARE_BLOCKS_COLORS.isActive())
             return Text.empty().append(item.getName()).formatted(item.getDefaultStack().getRarity().getFormatting());
-        return item.getName();
+        return text;
     }
 
     // Fix https://bugs.mojang.com/browse/MC-213103
