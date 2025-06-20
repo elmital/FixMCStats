@@ -53,6 +53,7 @@ public class Configs {
     public static ConfigEntry KILLED_BY_GOAT_FIX = registerEntry(new ConfigEntry("killed-by-goat-fix", Boolean.TRUE.toString(), Patch.of(265376, ModEnvironment.SERVER), false, false));
     public static ConfigEntry ENDER_DRAGON_FLOWN_STAT_FIX = registerEntry(new ConfigEntry("ender-dragon-flown-stat-experimental-fix", Boolean.TRUE.toString(), Patch.of(267006, ModEnvironment.SERVER), false, false));
     public static ConfigEntry DECORATED_POT_BREAKING = registerEntry(new ConfigEntry("decorated-pot-breaking-fix", Boolean.TRUE.toString(), Patch.of(268093, ModEnvironment.SERVER), false, false));
+    public static ConfigEntry EQUIP_ARMOR_STAND_FIX = registerEntry(new ConfigEntry("equip-armor-stand-fix", Boolean.TRUE.toString(), Patch.of(273933, ModEnvironment.SERVER), false, false));
 
 
     public static class ConfigEntry {
