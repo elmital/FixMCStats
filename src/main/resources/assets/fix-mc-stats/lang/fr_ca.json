@@ -10,6 +10,8 @@
   "commands.fix-mc-stats.patch.link" : "Clique pour ouvrir le lien du rapport de bug du patch [%s]",
   "stat.fix-mc-stats.camel_one_cm" : "Distance à dromadaire",
   "stat.fix-mc-stats.crawl_one_cm" : "Distance parcourue en rampant",
+  "stat.fix-mc-stats.donkey_one_cm" : "Distance à dos d'âne",
+  "stat.fix-mc-stats.mule_one_cm" : "Distance à mule",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod qui a pour but de corriger plusieurs bugs liés aux statistiques de MC.",
   "modmenu.summaryTranslation.fix-mc-stats" : "Corrige plusieurs bugs liés aux statistiques."
 }
