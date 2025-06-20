@@ -10,6 +10,8 @@
   "commands.fix-mc-stats.patch.link" : "Click to open the issue link for patch [%s]",
   "stat.fix-mc-stats.camel_one_cm" : "Strecke auf Dromedar geritten",
   "stat.fix-mc-stats.crawl_one_cm" : "Strecke kroch",
+  "stat.fix-mc-stats.donkey_one_cm" : "Distance by Donkey",
+  "stat.fix-mc-stats.mule_one_cm" : "Distance by Mule",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod, die darauf abzielt, einige Probleme mit der Minecraft-Statistik zu beheben.",
   "modmenu.summaryTranslation.fix-mc-stats" : "Behebung einiger Probleme mit den Minecraft-Statistiken."
 }

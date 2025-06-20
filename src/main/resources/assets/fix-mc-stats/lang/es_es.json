@@ -10,6 +10,8 @@
   "commands.fix-mc-stats.patch.link" : "Click to open the issue link for patch [%s]",
   "stat.fix-mc-stats.camel_one_cm" : "Distancia sobre camello",
   "stat.fix-mc-stats.crawl_one_cm" : "Distancia arrastrada",
+  "stat.fix-mc-stats.donkey_one_cm" : "Distance by Donkey",
+  "stat.fix-mc-stats.mule_one_cm" : "Distance by Mule",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod diseñado para solucionar ciertos problemas con las estadísticas de Minecraft.",
   "modmenu.summaryTranslation.fix-mc-stats" : "Corrige una serie de errores relacionados con las estadísticas."
 }
