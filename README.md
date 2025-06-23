@@ -38,7 +38,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-265376](https://bugs.mojang.com/browse/MC-265376) : _Kills by Goats are not counted in statistics_ (v1.1.0+)
 - [MC-268093](https://bugs.mojang.com/browse/MC-268093) : _Breaking a decorated pot with an arrow doesn't affect statistics_ (v1.1.0+)
 - [MC-273933](https://bugs.mojang.com/browse/MC-273933) : _"Times Used" statistic does not increase for armor when used on an armor stands_ (v2.0.0+)
-- [MC-277294](https://bugs.mojang.com/browse/MC-277294) : _Distance by mules and donkeys counts towards 'Distance by Horse' statistic_ (v2.0.0+)
+- [MC-277294](https://bugs.mojang.com/browse/MC-277294) : _Distance by mules and donkeys counts towards 'Distance by Horse' statistic_* (v2.0.0+)
 
 ```
 * the fix add a custom statistic and can be deactivated in the mod config file
@@ -46,7 +46,24 @@ The server side part/fixes needs the mod to be installed on server side to work 
 *** the issue had been fixed partially by Mojang since 1.21.5 but still exists for some blocks
 ```
 
-**Custom statistics created by the mod may not be translated in your language actually only French(ca, fr), English(gb, us, ca, au), German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are supported.**
+---
+
+## Patches commands (v2.0.0+)
+
+Two commands exists now to allow you to toggle the patches if you needed and to get infos about a specific patch.
+The first is `/fixmcstats-client` for the client-side patches part, of course you need to have the mod installed client side to have it.
+The second is `/fixmcstats-server` for the server-side patches part, of course you need to have the mod installed server side to have it (or play in solo) this command can be used only by operators.
+
+- `/fixmcstats-... status [PATCH ID]` show you if the patch is active or not
+- `/fixmcstats-... link [PATCH ID]` display in the chat the Mojang linked issue that you can click to open it in your browser
+- `/fixmcstats-... activate [PATCH ID]` activate the patch
+- `/fixmcstats-... deactivate [PATCH ID]` deactivate the patch
+
+### Localization:
+
+**Some phrases from the mod may not be translated in your language actually only French(ca, fr), English(gb, us, ca, au) are fully supported. German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are partially translated. Help and PR from fluent speakers are greatly appreciated.**
+
+---
 
 ### Already fixed by Mojang / No more fixed by the mod :
 
@@ -71,18 +88,6 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 ---
 
-## Patches commands
-
-Two commands exists now to allow you to toggle the patches if you needed and to get infos about a specific patch. 
-The first is `/fixmcstats-client` for the client-side patches part, of course you need to have the mod installed client side to have it.
-The second is `/fixmcstats-server` for the server-side patches part, of course you need to have the mod installed server side to have it (or play in solo) this command can be used only by operators.
-
-- `/fixmcstats-... status [PATCH ID]` show you if the patch is active or not
-- `/fixmcstats-... link [PATCH ID]` display in the chat the Mojang linked issue that you can click to open it in your browser
-- `/fixmcstats-... activate [PATCH ID]` activate the patch
-- `/fixmcstats-... deactivate [PATCH ID]` deactivate the patch
-
----
 ## <u>Issue tracker</u>
 
 When you open a ticket either to report a bug or for an enhancement request make sure that no other ticket already exists. 
@@ -104,8 +109,6 @@ Always separate your tickets one ticket by bug/request.
 - Always refers to an official Minecraft bug from the [official issue tracker](https://bugs.mojang.com/projects/MC/issues).
 - The bug should occur on MC release versions not only on snapshots for being eventually fixed.
 - Make sure the bug doesn't appear in the **Won't fix** section already.
-
----
 
 ## Support
 
