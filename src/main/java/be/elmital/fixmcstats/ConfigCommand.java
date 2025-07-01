@@ -57,7 +57,7 @@ public class ConfigCommand {
                         .executes(commandContext -> {
                             Configs.ConfigEntry patchEntry = PatchArgumentType.getPatch(commandContext, "patch");
                             notifySource(commandContext.getSource(), (patchEntry.isExperimental() ? Text.translatable("commands.fix-mc-stats.patch.experimental").withColor(Colors.RED).append(Text.literal("\n")) : Text.empty()).append(
-                                    Text.translatable("commands.fix-mc-stats.patch.config." + (patchEntry.isActive() ? "activated" : "deactivated"))).withColor(Colors.LIGHT_GRAY), false, sourceNotification);
+                                    Text.translatable("commands.fix-mc-stats.patch.config." + (patchEntry.isActive() ? "activated" : "deactivated"), patchEntry.getPatchId())).withColor(Colors.LIGHT_GRAY), false, sourceNotification);
                             return Command.SINGLE_SUCCESS;
                         }))
                 ).then(LiteralArgumentBuilder.<S>literal("link")
