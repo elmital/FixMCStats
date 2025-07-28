@@ -5,7 +5,7 @@
   "commands.fix-mc-stats.config.update.success.activated" : "Le patch %s est désormais activé",
   "commands.fix-mc-stats.config.update.success.deactivated" : "Le patch %s est désormais désactivé",
   "commands.fix-mc-stats.patch.config.activated" : "Le patch %s est activé!",
-  "commands.fix-mc-stats.patch.config.deactivated" : "Le patch %s est désactivé",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Le patch %s est désactivé!",
   "commands.fix-mc-stats.patch.experimental" : "Attention ce patch est experimental!",
   "commands.fix-mc-stats.patch.link" : "Clique pour ouvrir le lien du rapport de bug du patch [%s]",
   "stat.fix-mc-stats.camel_one_cm" : "Distance à dromadaire",
