@@ -35,16 +35,16 @@ import java.util.stream.Collectors;
 
 
 
-public class ConfigCommand {
+public class BasicCommand {
     static void registerArgumentTypes() {
         ArgumentTypeRegistry.registerArgumentType(Identifier.of("fix-mc-stats:patch"), PatchArgumentType.class, ConstantArgumentSerializer.of(access -> PatchArgumentType.patchArgument(null)));
         ArgumentTypeRegistry.registerArgumentType(Identifier.of("fix-mc-stats:patchaction"), PatchActionArgumentType.class, ConstantArgumentSerializer.of(access -> PatchActionArgumentType.pathAction()));
     }
 
-    static void registerConfigCommand() {
+    static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             FixMCStats.LOGGER.info("Registering commands for server side");
-            dispatcher.register(ConfigCommand.commandNodeBuilder(ModEnvironment.SERVER, (serverCommandSource, text, aBoolean) -> serverCommandSource.sendFeedback(() -> text , aBoolean)));
+            dispatcher.register(BasicCommand.commandNodeBuilder(ModEnvironment.SERVER, (serverCommandSource, text, aBoolean) -> serverCommandSource.sendFeedback(() -> text , aBoolean)));
             FixMCStats.LOGGER.info("Commands registered!");
         });
     }
