@@ -26,6 +26,7 @@ import net.minecraft.util.StringIdentifiable;
 import org.apache.commons.lang3.function.TriConsumer;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -52,6 +53,11 @@ public class BasicCommand {
     public static <S extends CommandSource, E extends ModEnvironment> LiteralArgumentBuilder<S> commandNodeBuilder(E environment, TriConsumer<S, Text, Boolean> sourceNotification) {
         return LiteralArgumentBuilder.<S>literal("fixmcstats-" + environment.name().toLowerCase())
                 .requires(source -> !(source instanceof PermissionLevelSource perm) || perm.hasPermissionLevel(4))
+                .then(LiteralArgumentBuilder.<S>literal("translation")
+                        .executes(commandContext -> {
+                            notifySource(commandContext.getSource(), Text.literal("If you find errors in the translations or would like to contribute by adding a new language that you are fluent in, you can open an issue in the Github project :").styled(style -> style.withColor(Colors.LIGHT_YELLOW)).append(Text.literal("[CLICK TO OPEN]").styled(style -> style.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/elmital/FixMCStats/issues"))).withColor(Colors.CYAN))), false, sourceNotification);
+                            return Command.SINGLE_SUCCESS;
+                        }))
                 .then(LiteralArgumentBuilder.<S>literal("status")
                         .then(RequiredArgumentBuilder.<S,Configs.ConfigEntry>argument("patch", PatchArgumentType.patchArgument(environment))
                         .executes(commandContext -> {
