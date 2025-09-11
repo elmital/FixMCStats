@@ -13,7 +13,7 @@ public class FixMCStatsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		LOGGER.info("Registering commands client side...");
-		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(ConfigCommand.commandNodeBuilder(ModEnvironment.CLIENT, (fabricClientCommandSource, text, aBoolean) -> fabricClientCommandSource.sendFeedback(text))));
+		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(BasicCommand.commandNodeBuilder(ModEnvironment.CLIENT, (fabricClientCommandSource, text, aBoolean) -> fabricClientCommandSource.sendFeedback(text))));
 		LOGGER.info("Commands registered!");
 	}
 }
