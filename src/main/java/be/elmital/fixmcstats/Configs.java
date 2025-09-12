@@ -56,6 +56,7 @@ public class Configs {
     public static ConfigEntry EQUIP_ARMOR_STAND_FIX = registerEntry(new ConfigEntry("equip-armor-stand-fix", Boolean.TRUE.toString(), Patch.of(273933, ModEnvironment.SERVER), false, false));
     public static ConfigEntry USE_DONKEY_STATS = registerEntry(new ConfigEntry("use-donkey-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false));
     public static ConfigEntry USE_MULE_STATS = registerEntry(new ConfigEntry("use-mule-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false));
+    public static ConfigEntry HAPPY_GHAST_RIDING_FIX = registerEntry(new ConfigEntry("happy-ghast-riding-fix", Boolean.TRUE.toString(), Patch.of(301722, ModEnvironment.SERVER), false, false));
 
 
     public static class ConfigEntry {
