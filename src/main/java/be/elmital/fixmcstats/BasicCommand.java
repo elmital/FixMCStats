@@ -15,9 +15,9 @@ import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.api.metadata.ModEnvironment;
 import net.minecraft.command.CommandSource;
-import net.minecraft.command.PermissionLevelSource;
 import net.minecraft.command.argument.EnumArgumentType;
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
@@ -52,7 +52,7 @@ public class BasicCommand {
 
     public static <S extends CommandSource, E extends ModEnvironment> LiteralArgumentBuilder<S> commandNodeBuilder(E environment, TriConsumer<S, Text, Boolean> sourceNotification) {
         return LiteralArgumentBuilder.<S>literal("fixmcstats-" + environment.name().toLowerCase())
-                .requires(source -> !(source instanceof PermissionLevelSource perm) || perm.hasPermissionLevel(4))
+                .requires(source -> !(source instanceof ServerCommandSource perm) || perm.hasPermissionLevel(4))
                 .then(LiteralArgumentBuilder.<S>literal("translation")
                         .executes(commandContext -> {
                             notifySource(commandContext.getSource(), Text.literal("If you find errors in the translations or would like to contribute by adding a new language that you are fluent in, you can open an issue in the Github project :").styled(style -> style.withColor(Colors.LIGHT_YELLOW)).append(Text.literal("[CLICK TO OPEN]").styled(style -> style.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/elmital/FixMCStats/issues"))).withColor(Colors.CYAN))), false, sourceNotification);
