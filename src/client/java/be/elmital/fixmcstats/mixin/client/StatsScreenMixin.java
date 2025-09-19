@@ -1,6 +1,6 @@
 package be.elmital.fixmcstats.mixin.client;
 
-import be.elmital.fixmcstats.Config;
+import be.elmital.fixmcstats.Configs;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.client.gui.screen.StatsScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ public class StatsScreenMixin {
     // Fix https://bugs.mojang.com/browse/MC-36696
     @ModifyReturnValue(method = "shouldPause", at = @At(value = "RETURN"))
     public boolean shouldPauseOverride(boolean original) {
-        if (!Config.instance().EXPERIMENTAL_STATS_SCREEN_TICK_FIX)
+        if (!Configs.STATS_SCREEN_TICK_FIX.isActive())
             return original;
         return true;
     }

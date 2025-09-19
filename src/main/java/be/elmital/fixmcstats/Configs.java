@@ -29,7 +29,7 @@ public class Configs {
     }
 
     public static ConfigEntry DAMAGE_DEALT_WITH_PROJECTILE_FIX = registerEntry(new ConfigEntry("damage-dealt-with-projectile-fix", Boolean.TRUE.toString(), Patch.of(29519, ModEnvironment.SERVER), false, false));
-    public static ConfigEntry STATS_SCREEN_TICK_FIX = registerEntry(new ConfigEntry("pause-tick-on-stats-screen-experimental-fix", Boolean.TRUE.toString(), Patch.of(36696, ModEnvironment.SERVER), true, true));
+    public static ConfigEntry STATS_SCREEN_TICK_FIX = registerEntry(new ConfigEntry("pause-tick-on-stats-screen-experimental-fix", Boolean.TRUE.toString(), Patch.of(36696, ModEnvironment.SERVER), true, false));
     public static ConfigEntry CRAFT_STAT_CLICKING_FIX = registerEntry(new ConfigEntry("craft-stats-clicking-fix", Boolean.TRUE.toString(), Patch.of(65198, ModEnvironment.SERVER), false, false));
     public static ConfigEntry MISSING_SPACE_STATS_SCREEN = registerEntry(new ConfigEntry("missing-space-stats-screen-fix", Boolean.TRUE.toString(), Patch.of(80827, ModEnvironment.CLIENT), false, false));
     public static ConfigEntry DAMAGE_DEALT_WITH_SWEEPING_FIX = registerEntry(new ConfigEntry("damage-dealt-sweeping-fix", Boolean.TRUE.toString(), Patch.of(111435, ModEnvironment.SERVER), false, false));
