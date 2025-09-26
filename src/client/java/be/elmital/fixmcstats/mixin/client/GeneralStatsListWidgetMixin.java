@@ -1,6 +1,7 @@
 package be.elmital.fixmcstats.mixin.client;
 
 import be.elmital.fixmcstats.Configs;
+import be.elmital.fixmcstats.LanguageBasedCollator;
 import net.minecraft.client.gui.screen.StatsScreen;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.stat.Stat;
@@ -12,20 +13,11 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import java.text.Collator;
 import java.util.Comparator;
-import java.util.Locale;
 
 @Mixin(StatsScreen.GeneralStatsListWidget.class)
 public class GeneralStatsListWidgetMixin {
     @Unique
-    private final static Collator fixCollator = generateCollator();
-
-    @Unique
-    private static Collator generateCollator() {
-        Collator collator = Collator.getInstance(Locale.getDefault());
-        collator.setDecomposition(Collator.FULL_DECOMPOSITION);
-        collator.setStrength(Collator.SECONDARY);
-        return collator;
-    }
+    private final static Collator fixCollator = LanguageBasedCollator.generateCollator();
 
     // Fix https://bugs.mojang.com/browse/MC-178516
     @ModifyArg(method = "<init>", at = @At(value = "INVOKE", target = "Lit/unimi/dsi/fastutil/objects/ObjectArrayList;sort(Ljava/util/Comparator;)V", remap = false))
