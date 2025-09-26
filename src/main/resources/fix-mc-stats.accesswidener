@@ -2,6 +2,8 @@ accessWidener v2 named
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$GeneralStatsListWidget
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$ItemComparator
+transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$StatEntry
+accessible method net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$StatEntry getItem ()Lnet/minecraft/item/Item;
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$Entry
 transitive-accessible class net/minecraft/client/gui/screen/StatsScreen$EntityStatsListWidget
 transitive-extendable class net/minecraft/screen/BrewingStandScreenHandler$PotionSlot

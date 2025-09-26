@@ -81,7 +81,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
                     args.set(1, (double) args.get(1) - getY() + lastVehiclePos.getY());
                     args.set(2, (double) args.get(2) - getZ() + lastVehiclePos.getZ());
                 }
-                lastVehiclePos = getVehicle().getPos();
+                lastVehiclePos = getVehicle().getEntityPos();
             }
         } else {
             // Player dismount so clear the last vehicle position
