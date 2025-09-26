@@ -1,6 +1,7 @@
 package be.elmital.fixmcstats.mixin.client;
 
 import be.elmital.fixmcstats.Configs;
+import be.elmital.fixmcstats.LanguageBasedCollator;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.StatsScreen;
@@ -14,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
+import java.text.Collator;
 import java.util.Comparator;
 
 @SuppressWarnings("unused")
@@ -33,11 +35,17 @@ public abstract class ItemStatsListWidgetEntryMixin extends ElementListWidget<St
         return text;
     }*/
 
-    // TODO USE CUSTOM COLLATOR TO SORT CORRECTLY
     // Fix https://bugs.mojang.com/browse/MC-213103
     @Inject(method = "<init>(Lnet/minecraft/client/gui/screen/StatsScreen;Lnet/minecraft/client/MinecraftClient;)V", at = @At(value = "TAIL"))
     public void onInit(StatsScreen statsScreen, MinecraftClient client, CallbackInfo info) {
-        if (Configs.ITEM_SORTING_FIX.isActive())
-            sort(Comparator.comparing(entry -> entry instanceof StatsScreen.ItemStatsListWidget.StatEntry statEntry ? statEntry.getItem().getName().getString() : ""));
+        if (Configs.ITEM_SORTING_FIX.isActive()) {
+            final Collator collator = LanguageBasedCollator.generateCollator();
+            sort((o1, o2) -> {
+                if (o1 instanceof StatsScreen.ItemStatsListWidget.StatEntry statEntry1 && o2 instanceof StatsScreen.ItemStatsListWidget.StatEntry statEntry2) {
+                    return collator.compare(statEntry1.getItem().getName().getString(), statEntry2.getItem().getName().getString());
+                }
+                return 0;
+            });
+        }
     }
 }
