@@ -165,7 +165,10 @@ public class BasicCommand {
 
         @Override
         public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-            return CommandSource.suggestMatching(EXAMPLES, builder);
+            return CommandSource.suggestMatching(EXAMPLES, builder).thenApply(suggestions -> {
+                suggestions.getList().sort(Comparator.comparing(suggestion -> Integer.parseInt(suggestion.getText().replace("MC-" , ""))));
+                return suggestions;
+            });
         }
     }
 }
