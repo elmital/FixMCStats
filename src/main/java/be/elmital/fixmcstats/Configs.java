@@ -33,7 +33,7 @@ public class Configs {
     public static ConfigEntry CRAFT_STAT_CLICKING_FIX = registerEntry(new ConfigEntry("craft-stats-clicking-fix", Boolean.TRUE.toString(), Patch.of(65198, ModEnvironment.SERVER), false, false));
     public static ConfigEntry MISSING_SPACE_STATS_SCREEN = registerEntry(new ConfigEntry("missing-space-stats-screen-fix", Boolean.TRUE.toString(), Patch.of(80827, ModEnvironment.CLIENT), false, false));
     public static ConfigEntry DAMAGE_DEALT_WITH_SWEEPING_FIX = registerEntry(new ConfigEntry("damage-dealt-sweeping-fix", Boolean.TRUE.toString(), Patch.of(111435, ModEnvironment.SERVER), false, false));
-    public static ConfigEntry RARE_BLOCKS_COLORS = registerEntry(new ConfigEntry("rare-blocks-colors-fix", Boolean.TRUE.toString(), Patch.of(139386, ModEnvironment.CLIENT), false, false));
+    public static ConfigEntry RARE_BLOCKS_COLORS = registerEntry(new ConfigEntry("rare-blocks-colors-fix", Boolean.TRUE.toString(), Patch.of(139386, ModEnvironment.CLIENT), false, true));
     public static ConfigEntry DISTANCE_FALLEN_ON_LANDING_FIX = registerEntry(new ConfigEntry("distance-fallen-on-landing-fix", Boolean.TRUE.toString(), Patch.of(121541, ModEnvironment.SERVER), false, false));
     public static ConfigEntry BREAKING_ELYTRA_AND_TRIDENT_FIX = registerEntry(new ConfigEntry("breaking-elytra-and-trident-fix", Boolean.TRUE.toString(), Patch.of(122656, ModEnvironment.SERVER), false, false));
     public static ConfigEntry CAMP_FIRE_COOKING_CRAFT_STAT_FIX = registerEntry(new ConfigEntry("campfire-cooking-craft-stat-fix", Boolean.TRUE.toString(), Patch.of(144005, ModEnvironment.SERVER), false, false));

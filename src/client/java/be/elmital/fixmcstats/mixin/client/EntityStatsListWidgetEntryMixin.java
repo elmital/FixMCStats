@@ -11,10 +11,11 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Environment(EnvType.CLIENT)
 public class EntityStatsListWidgetEntryMixin {
     // Fix https://bugs.mojang.com/browse/MC-80827
-    @ModifyVariable(method = "render(Lnet/minecraft/client/gui/DrawContext;IIIIIIIZF)V", at = @At(value = "INVOKE", target ="Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V" , shift = At.Shift.AFTER), ordinal = 1, argsOnly = true)
+    @ModifyVariable(method = "render", at = @At(value = "INVOKE", target ="Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V", ordinal = 1, shift = At.Shift.AFTER), ordinal = 1, argsOnly = true)
     private int injected(int y) {
-        if (Configs.MISSING_SPACE_STATS_SCREEN.isActive())
+        if (Configs.MISSING_SPACE_STATS_SCREEN.isActive()) {
             return y + 1;
+        }
         return y;
     }
 }

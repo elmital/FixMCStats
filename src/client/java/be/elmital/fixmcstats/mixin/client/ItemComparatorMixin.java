@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(StatsScreen.ItemStatsListWidget.ItemComparator.class)
 public class ItemComparatorMixin {
     // Fix https://bugs.mojang.com/browse/MC-213103
-    @ModifyExpressionValue(method = "compare(Lnet/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$Entry;Lnet/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$Entry;)I", at = @At(value = "INVOKE", target = "Ljava/lang/Integer;compare(II)I", ordinal = 0))
+    @ModifyExpressionValue(method = "compare(Lnet/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$StatEntry;Lnet/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$StatEntry;)I", at = @At(value = "INVOKE", target = "Ljava/lang/Integer;compare(II)I", ordinal = 0))
     public int compareEntries(int comparedInt, @Local(index = 3) Item item1, @Local(index = 4) Item item2) {
         if (Configs.ITEM_SORTING_FIX.isActive())
             return item1.getName().getString().compareTo(item2.getName().getString());
