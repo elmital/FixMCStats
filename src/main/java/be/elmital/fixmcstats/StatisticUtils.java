@@ -24,14 +24,25 @@ public class StatisticUtils {
     }
 
     public static void registerAllCustomStats(Logger logger) {
-        logger.info("Adding camel custom stat to the registry");
-        StatisticUtils.register(StatisticUtils.CAMEL_RIDING_STAT);
-        logger.info("Adding donkey custom stat to the registry");
-        StatisticUtils.register(StatisticUtils.DONKEY_RIDING_STAT);
-        logger.info("Adding mule custom stat to the registry");
-        StatisticUtils.register(StatisticUtils.MULE_RIDING_STAT);
-        logger.info("Adding crawling custom stat to the registry");
-        StatisticUtils.register(StatisticUtils.CRAWL_ONE_CM);
+        if (Configs.CAMEL_STAT.isActive()) {
+            logger.info("Adding camel custom stat to the registry");
+            StatisticUtils.register(StatisticUtils.CAMEL_RIDING_STAT);
+        }
+
+        if (Configs.USE_DONKEY_STATS.isActive()) {
+            logger.info("Adding donkey custom stat to the registry");
+            StatisticUtils.register(StatisticUtils.DONKEY_RIDING_STAT);
+        }
+
+        if (Configs.USE_MULE_STATS.isActive()) {
+            logger.info("Adding mule custom stat to the registry");
+            StatisticUtils.register(StatisticUtils.MULE_RIDING_STAT);
+        }
+
+        if (Configs.CRAWL_STAT.isActive()) {
+            logger.info("Adding crawling custom stat to the registry");
+            StatisticUtils.register(StatisticUtils.CRAWL_ONE_CM);
+        }
     }
 
     public record CustomStatistic(String path, StatFormatter statFormatter, Identifier identifier) {
