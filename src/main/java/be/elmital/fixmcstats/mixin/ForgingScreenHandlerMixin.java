@@ -2,15 +2,15 @@ package be.elmital.fixmcstats.mixin;
 
 import be.elmital.fixmcstats.Configs;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.CraftingResultInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ForgingScreenHandler;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.screen.SmithingScreenHandler;
-import net.minecraft.screen.slot.ForgingSlotsManager;
-import net.minecraft.screen.slot.Slot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ItemCombinerMenu;
+import net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.ResultContainer;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.SmithingMenu;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,43 +20,43 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @SuppressWarnings("unused")
-@Mixin(ForgingScreenHandler.class)
-public abstract class ForgingScreenHandlerMixin extends ScreenHandler {
+@Mixin(ItemCombinerMenu.class)
+public abstract class ForgingScreenHandlerMixin extends AbstractContainerMenu {
     @Final
     @Shadow
-    protected PlayerEntity player;
-    @Invoker("canTakeOutput")
-    public abstract boolean invokeCanTakeOutput(PlayerEntity player, boolean present);
-    @Invoker("onTakeOutput")
-    public abstract void invokeOnTakeOutput(PlayerEntity player, ItemStack stack);
+    protected Player player;
+    @Invoker("mayPickup")
+    public abstract boolean invokeCanTakeOutput(Player player, boolean present);
+    @Invoker("onTake")
+    public abstract void invokeOnTakeOutput(Player player, ItemStack stack);
 
     @Final
     @Shadow
-    protected CraftingResultInventory output;
-    protected ForgingScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId) {
+    protected ResultContainer resultSlots;
+    protected ForgingScreenHandlerMixin(@Nullable MenuType<?> type, int syncId) {
         super(type, syncId);
     }
 
     // Fix https://bugs.mojang.com/browse/MC-65198 for Smithing table
-    @ModifyArg(method = "addResultSlot(Lnet/minecraft/screen/slot/ForgingSlotsManager;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/ForgingScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;"))
-    private Slot modifySlot(Slot slot, @Local(argsOnly = true) ForgingSlotsManager manager) {
+    @ModifyArg(method = "createResultSlot(Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/ItemCombinerMenu;addSlot(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;"))
+    private Slot modifySlot(Slot slot, @Local(argsOnly = true) ItemCombinerMenuSlotDefinition manager) {
         if (!Configs.CRAFT_STAT_CLICKING_FIX.isActive())
             return slot;
-        return new Slot(this.output, manager.getResultSlot().slotId(), manager.getResultSlot().x(), manager.getResultSlot().y()) {
-            public boolean canInsert(ItemStack stack) {
+        return new Slot(this.resultSlots, manager.getResultSlot().slotIndex(), manager.getResultSlot().x(), manager.getResultSlot().y()) {
+            public boolean mayPlace(ItemStack stack) {
                 return false;
             }
 
-            public void onCrafted(ItemStack stack, int amount) {
-                if (((ForgingScreenHandler) (Object) ForgingScreenHandlerMixin.this) instanceof SmithingScreenHandler)
-                    stack.onCraftByPlayer(player, amount);
+            public void onQuickCraft(ItemStack stack, int amount) {
+                if (((ItemCombinerMenu) (Object) ForgingScreenHandlerMixin.this) instanceof SmithingMenu)
+                    stack.onCraftedBy(player, amount);
             }
 
-            public boolean canTakeItems(PlayerEntity playerEntity) {
-                return invokeCanTakeOutput(playerEntity, this.hasStack());
+            public boolean mayPickup(Player playerEntity) {
+                return invokeCanTakeOutput(playerEntity, this.hasItem());
             }
 
-            public void onTakeItem(PlayerEntity player, ItemStack stack) {
+            public void onTake(Player player, ItemStack stack) {
                 invokeOnTakeOutput(player, stack);
             }
         };

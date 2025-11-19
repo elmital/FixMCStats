@@ -14,15 +14,15 @@ import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.api.metadata.ModEnvironment;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.PermissionLevelSource;
-import net.minecraft.command.argument.EnumArgumentType;
-import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.Text;
-import net.minecraft.util.Colors;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.commands.PermissionSource;
+import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.commands.arguments.StringRepresentableArgument;
+import net.minecraft.commands.synchronization.SingletonArgumentInfo;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.CommonColors;
+import net.minecraft.util.StringRepresentable;
 import org.apache.commons.lang3.function.TriConsumer;
 
 import java.io.IOException;
@@ -38,80 +38,80 @@ import java.util.stream.Collectors;
 
 public class BasicCommand {
     static void registerArgumentTypes() {
-        ArgumentTypeRegistry.registerArgumentType(Identifier.of("fix-mc-stats:patch"), PatchArgumentType.class, ConstantArgumentSerializer.of(access -> PatchArgumentType.patchArgument(null)));
-        ArgumentTypeRegistry.registerArgumentType(Identifier.of("fix-mc-stats:patchaction"), PatchActionArgumentType.class, ConstantArgumentSerializer.of(access -> PatchActionArgumentType.pathAction()));
+        ArgumentTypeRegistry.registerArgumentType(ResourceLocation.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(null)));
+        ArgumentTypeRegistry.registerArgumentType(ResourceLocation.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
     }
 
     static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             FixMCStats.LOGGER.info("Registering commands for server side");
-            dispatcher.register(BasicCommand.commandNodeBuilder(ModEnvironment.SERVER, (serverCommandSource, text, aBoolean) -> serverCommandSource.sendFeedback(() -> text , aBoolean)));
+            dispatcher.register(BasicCommand.commandNodeBuilder(ModEnvironment.SERVER, (serverCommandSource, text, aBoolean) -> serverCommandSource.sendSuccess(() -> text , aBoolean)));
             FixMCStats.LOGGER.info("Commands registered!");
         });
     }
 
-    public static <S extends CommandSource, E extends ModEnvironment> LiteralArgumentBuilder<S> commandNodeBuilder(E environment, TriConsumer<S, Text, Boolean> sourceNotification) {
+    public static <S extends SharedSuggestionProvider, E extends ModEnvironment> LiteralArgumentBuilder<S> commandNodeBuilder(E environment, TriConsumer<S, Component, Boolean> sourceNotification) {
         return LiteralArgumentBuilder.<S>literal("fixmcstats-" + environment.name().toLowerCase())
-                .requires(source -> !(source instanceof PermissionLevelSource perm) || perm.hasPermissionLevel(4))
+                .requires(source -> !(source instanceof PermissionSource perm) || perm.hasPermission(4))
                 .then(LiteralArgumentBuilder.<S>literal("translation")
                         .executes(commandContext -> {
-                            notifySource(commandContext.getSource(), Text.literal("If you find errors in the translations or would like to contribute by adding a new language that you are fluent in, you can open an issue in the Github project :").styled(style -> style.withColor(Colors.LIGHT_YELLOW)).append(Text.literal("[CLICK TO OPEN]").styled(style -> style.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/elmital/FixMCStats/issues"))).withColor(Colors.CYAN))), false, sourceNotification);
+                            notifySource(commandContext.getSource(), Component.literal("If you find errors in the translations or would like to contribute by adding a new language that you are fluent in, you can open an issue in the Github project :").withStyle(style -> style.withColor(CommonColors.SOFT_YELLOW)).append(Component.literal("[CLICK TO OPEN]").withStyle(style -> style.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/elmital/FixMCStats/issues"))).withColor(CommonColors.HIGH_CONTRAST_DIAMOND))), false, sourceNotification);
                             return Command.SINGLE_SUCCESS;
                         }))
                 .then(LiteralArgumentBuilder.<S>literal("status")
                         .then(RequiredArgumentBuilder.<S,Configs.ConfigEntry>argument("patch", PatchArgumentType.patchArgument(environment))
-                        .executes(commandContext -> {
-                            Configs.ConfigEntry patchEntry = PatchArgumentType.getPatch(commandContext, "patch");
-                            notifySource(commandContext.getSource(), (patchEntry.isExperimental() ? Text.translatable("commands.fix-mc-stats.patch.experimental").withColor(Colors.RED).append(Text.literal("\n")) : Text.empty()).append(
-                                    Text.translatable("commands.fix-mc-stats.patch.config." + (patchEntry.isActive() ? "activated" : "deactivated"), patchEntry.getPatchId())).withColor(Colors.LIGHT_GRAY), false, sourceNotification);
-                            return Command.SINGLE_SUCCESS;
-                        }))
+                                .executes(commandContext -> {
+                                    Configs.ConfigEntry patchEntry = PatchArgumentType.getPatch(commandContext, "patch");
+                                    notifySource(commandContext.getSource(), (patchEntry.isExperimental() ? Component.translatable("commands.fix-mc-stats.patch.experimental").withColor(CommonColors.RED).append(Component.literal("\n")) : Component.empty()).append(
+                                            Component.translatable("commands.fix-mc-stats.patch.config." + (patchEntry.isActive() ? "activated" : "deactivated"), patchEntry.getPatchId())).withColor(CommonColors.LIGHT_GRAY), false, sourceNotification);
+                                    return Command.SINGLE_SUCCESS;
+                                }))
                 ).then(LiteralArgumentBuilder.<S>literal("link")
                         .then(RequiredArgumentBuilder.<S,Configs.ConfigEntry>argument("patch", PatchArgumentType.patchArgument(environment))
-                        .executes(commandContext -> {
-                            Configs.ConfigEntry patchEntry = PatchArgumentType.getPatch(commandContext, "patch");
-                            notifySource(commandContext.getSource(), Text.translatable("commands.fix-mc-stats.patch.link", patchEntry.getPatchId()).withColor(Colors.CYAN).styled(style -> patchEntry.getPatchLink() == null ? style : style.withClickEvent(new ClickEvent.OpenUrl(patchEntry.getPatchLink()))), false, sourceNotification);
-                            return Command.SINGLE_SUCCESS;
-                        }))
+                                .executes(commandContext -> {
+                                    Configs.ConfigEntry patchEntry = PatchArgumentType.getPatch(commandContext, "patch");
+                                    notifySource(commandContext.getSource(), Component.translatable("commands.fix-mc-stats.patch.link", patchEntry.getPatchId()).withColor(CommonColors.HIGH_CONTRAST_DIAMOND).withStyle(style -> patchEntry.getPatchLink() == null ? style : style.withClickEvent(new ClickEvent.OpenUrl(patchEntry.getPatchLink()))), false, sourceNotification);
+                                    return Command.SINGLE_SUCCESS;
+                                }))
                 ).then(RequiredArgumentBuilder.<S,PatchAction>argument("action", PatchActionArgumentType.pathAction())
                         .then(RequiredArgumentBuilder.<S,Configs.ConfigEntry>argument("patch", PatchArgumentType.patchArgument(environment))
                                 .executes(context -> {
                                     Configs.ConfigEntry patchEntry = PatchArgumentType.getPatch(context, "patch");
                                     boolean activate = PatchActionArgumentType.getPathAction(context, "action").equals(PatchAction.ACTIVATE);
                                     if (patchEntry.isActive() == activate) {
-                                        notifySource(context.getSource(), Text.translatable("commands.fix-mc-stats.already." + (activate ? "activated" : "deactivated")).withColor(Colors.RED), false, sourceNotification);
+                                        notifySource(context.getSource(), Component.translatable("commands.fix-mc-stats.already." + (activate ? "activated" : "deactivated")).withColor(CommonColors.RED), false, sourceNotification);
                                         return Command.SINGLE_SUCCESS;
                                     }
 
                                     try {
                                         patchEntry.updateActive(activate);
-                                        notifySource(context.getSource(), Text.translatable("commands.fix-mc-stats.config.update.success." + (activate ? "activated" : "deactivated"), patchEntry.getPatchId()).withColor(Colors.GREEN), true, sourceNotification);
+                                        notifySource(context.getSource(), Component.translatable("commands.fix-mc-stats.config.update.success." + (activate ? "activated" : "deactivated"), patchEntry.getPatchId()).withColor(CommonColors.GREEN), true, sourceNotification);
                                     } catch (IOException e) {
-                                        notifySource(context.getSource(), Text.translatable("commands.fix-mc-stats.config.update.fail"), false, sourceNotification);
+                                        notifySource(context.getSource(), Component.translatable("commands.fix-mc-stats.config.update.fail"), false, sourceNotification);
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 })
                         ));
     }
 
-    private static <C extends CommandSource> void notifySource(C source, Text message, boolean broadCastOp, TriConsumer<C,Text,Boolean> consumer) {
+    private static <C extends SharedSuggestionProvider> void notifySource(C source, Component message, boolean broadCastOp, TriConsumer<C,Component,Boolean> consumer) {
         consumer.accept(source, message, broadCastOp);
     }
 
-    public enum PatchAction implements StringIdentifiable {
+    public enum PatchAction implements StringRepresentable {
         ACTIVATE,
         DEACTIVATE;
 
-        public static final Codec<PatchAction> CODEC = StringIdentifiable.createCodec(PatchAction::values);
+        public static final Codec<PatchAction> CODEC = StringRepresentable.fromEnum(PatchAction::values);
 
         @Override
-        public String asString() {
+        public String getSerializedName() {
             return name().toLowerCase();
         }
     }
 
 
-    public static class PatchActionArgumentType extends EnumArgumentType<PatchAction> {
+    public static class PatchActionArgumentType extends StringRepresentableArgument<PatchAction> {
 
         private PatchActionArgumentType() {
             super(PatchAction.CODEC, PatchAction::values);
@@ -150,7 +150,7 @@ public class BasicCommand {
                 if (Objects.equals(configEntry.getPatchId(), value))
                     return configEntry;
             }
-            throw new SimpleCommandExceptionType(Text.of("Invalid patch ID")).createWithContext(stringReader);
+            throw new SimpleCommandExceptionType(Component.nullToEmpty("Invalid patch ID")).createWithContext(stringReader);
         }
 
 
@@ -165,7 +165,7 @@ public class BasicCommand {
 
         @Override
         public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-            return CommandSource.suggestMatching(EXAMPLES, builder).thenApply(suggestions -> {
+            return SharedSuggestionProvider.suggest(EXAMPLES, builder).thenApply(suggestions -> {
                 suggestions.getList().sort(Comparator.comparing(suggestion -> Integer.parseInt(suggestion.getText().replace("MC-" , ""))));
                 return suggestions;
             });
