@@ -2,21 +2,21 @@ package be.elmital.fixmcstats.mixin;
 
 import be.elmital.fixmcstats.Configs;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.entity.Attackable;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.passive.GoatEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FireworkRocketEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.stat.Stats;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Attackable;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.goat.Goat;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FireworkRocketEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,40 +27,40 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @SuppressWarnings("unused")
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements Attackable {
-    @Shadow public abstract boolean isDead();
+    @Shadow public abstract boolean isDeadOrDying();
 
-    @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
+    @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot slot);
 
     @Shadow public abstract float getHealth();
 
-    public LivingEntityMixin(EntityType<?> type, World world) {
+    public LivingEntityMixin(EntityType<?> type, Level world) {
         super(type, world);
     }
 
     // Fix https://bugs.mojang.com/browse/MC-122656
-    @Inject(method = "tickGliding", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;)V", shift = At.Shift.AFTER))
+    @Inject(method = "updateFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;hurtAndBreak(ILnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;)V", shift = At.Shift.AFTER))
     public void incrementBreakingStat(CallbackInfo ci, @Local EquipmentSlot slot) {
         if (!Configs.BREAKING_ELYTRA_AND_TRIDENT_FIX.isActive())
             return;
-        ItemStack equiped = this.getEquippedStack(slot);
-        if (equiped.willBreakNextUse()) {
-            if (((LivingEntity) (Object) this) instanceof PlayerEntity playerEntity)
-                playerEntity.incrementStat(Stats.BROKEN.getOrCreateStat(equiped.getItem()));
+        ItemStack equiped = this.getItemBySlot(slot);
+        if (equiped.nextDamageWillBreak()) {
+            if (((LivingEntity) (Object) this) instanceof Player playerEntity)
+                playerEntity.awardStat(Stats.ITEM_BROKEN.get(equiped.getItem()));
         }
     }
 
     // Fix https://bugs.mojang.com/browse/MC-29519
-    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getDamageTracker()Lnet/minecraft/entity/damage/DamageTracker;", shift = At.Shift.AFTER))
-    public void incrementDamageDealtStatForProjectile(ServerWorld world, DamageSource source, float amount, CallbackInfo ci) {
-        if (Configs.DAMAGE_DEALT_WITH_PROJECTILE_FIX.isActive() && (source.isIn(DamageTypeTags.IS_PROJECTILE) || source.getSource() instanceof FireworkRocketEntity) && source.getAttacker() instanceof ServerPlayerEntity player) {
-            player.increaseStat(Stats.DAMAGE_DEALT,  Math.round(Math.min(this.getHealth(), amount) * 10.0F));
+    @Inject(method = "actuallyHurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getCombatTracker()Lnet/minecraft/world/damagesource/CombatTracker;", shift = At.Shift.AFTER))
+    public void incrementDamageDealtStatForProjectile(ServerLevel world, DamageSource source, float amount, CallbackInfo ci) {
+        if (Configs.DAMAGE_DEALT_WITH_PROJECTILE_FIX.isActive() && (source.is(DamageTypeTags.IS_PROJECTILE) || source.getDirectEntity() instanceof FireworkRocketEntity) && source.getEntity() instanceof ServerPlayer player) {
+            player.awardStat(Stats.DAMAGE_DEALT,  Math.round(Math.min(this.getHealth(), amount) * 10.0F));
         }
     }
 
     // Fix https://bugs.mojang.com/browse/MC-265376
-    @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/damage/DamageSource;isIn(Lnet/minecraft/registry/tag/TagKey;)Z", ordinal = 5))
-    public void onDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (Configs.KILLED_BY_GOAT_FIX.isActive() && (Object) this instanceof ServerPlayerEntity pl && isDead() && source.getAttacker() instanceof GoatEntity goat)
-            pl.increaseStat(Stats.KILLED_BY.getOrCreateStat(goat.getType()), 1);
+    @Inject(method = "hurtServer", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/DamageSource;is(Lnet/minecraft/tags/TagKey;)Z", ordinal = 5))
+    public void onDamage(ServerLevel world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (Configs.KILLED_BY_GOAT_FIX.isActive() && (Object) this instanceof ServerPlayer pl && isDeadOrDying() && source.getEntity() instanceof Goat goat)
+            pl.awardStat(Stats.ENTITY_KILLED_BY.get(goat.getType()), 1);
     }
 }
