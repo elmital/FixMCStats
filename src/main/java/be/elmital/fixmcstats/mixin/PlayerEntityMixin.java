@@ -19,11 +19,11 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }
-
+ /* TODO to test maybe fixed
     // Fix https://bugs.mojang.com/browse/MC-111435
-    @Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z"))
+    @Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;hurtOrSimulate(Lnet/minecraft/world/damagesource/DamageSource;F)Z"))
     private void incrementSweepDamage(Entity target, CallbackInfo ci, @Local(ordinal = 4) float damage) {
         if (Configs.DAMAGE_DEALT_WITH_SWEEPING_FIX.isActive())
             ((Player) (Object) this).awardStat(Stats.DAMAGE_DEALT, Math.round((damage - ((LivingEntity)target).getHealth()) * 10.0f));
-    }
+    }*/
 }
