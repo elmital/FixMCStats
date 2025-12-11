@@ -3,7 +3,7 @@ package be.elmital.fixmcstats;
 import be.elmital.fixmcstats.mixin.StatsAccessor;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.stats.StatFormatter;
 import org.slf4j.Logger;
 
@@ -34,9 +34,9 @@ public class StatisticUtils {
         StatisticUtils.register(StatisticUtils.CRAWL_ONE_CM);
     }
 
-    public record CustomStatistic(String path, StatFormatter statFormatter, ResourceLocation identifier) {
+    public record CustomStatistic(String path, StatFormatter statFormatter, Identifier identifier) {
         public CustomStatistic(String path, StatFormatter statFormatter) {
-            this(path, statFormatter, ResourceLocation.fromNamespaceAndPath("fix-mc-stats", path));
+            this(path, statFormatter, Identifier.fromNamespaceAndPath("fix-mc-stats", path));
         }
     }
 }

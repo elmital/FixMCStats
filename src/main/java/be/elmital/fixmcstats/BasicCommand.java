@@ -14,13 +14,14 @@ import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.api.metadata.ModEnvironment;
-import net.minecraft.commands.PermissionSource;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.StringRepresentableArgument;
 import net.minecraft.commands.synchronization.SingletonArgumentInfo;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.permissions.Permissions;
 import net.minecraft.util.CommonColors;
 import net.minecraft.util.StringRepresentable;
 import org.apache.commons.lang3.function.TriConsumer;
@@ -38,8 +39,8 @@ import java.util.stream.Collectors;
 
 public class BasicCommand {
     static void registerArgumentTypes() {
-        ArgumentTypeRegistry.registerArgumentType(ResourceLocation.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(null)));
-        ArgumentTypeRegistry.registerArgumentType(ResourceLocation.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
+        ArgumentTypeRegistry.registerArgumentType(Identifier.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(null)));
+        ArgumentTypeRegistry.registerArgumentType(Identifier.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
     }
 
     static void register() {
@@ -52,7 +53,7 @@ public class BasicCommand {
 
     public static <S extends SharedSuggestionProvider, E extends ModEnvironment> LiteralArgumentBuilder<S> commandNodeBuilder(E environment, TriConsumer<S, Component, Boolean> sourceNotification) {
         return LiteralArgumentBuilder.<S>literal("fixmcstats-" + environment.name().toLowerCase())
-                .requires(source -> !(source instanceof PermissionSource perm) || perm.hasPermission(4))
+                .requires(source -> !(source instanceof CommandSourceStack stack) || stack.permissions().hasPermission(Permissions.COMMANDS_ADMIN))
                 .then(LiteralArgumentBuilder.<S>literal("translation")
                         .executes(commandContext -> {
                             notifySource(commandContext.getSource(), Component.literal("If you find errors in the translations or would like to contribute by adding a new language that you are fluent in, you can open an issue in the Github project :").withStyle(style -> style.withColor(CommonColors.SOFT_YELLOW)).append(Component.literal("[CLICK TO OPEN]").withStyle(style -> style.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://github.com/elmital/FixMCStats/issues"))).withColor(CommonColors.HIGH_CONTRAST_DIAMOND))), false, sourceNotification);
