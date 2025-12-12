@@ -7,15 +7,15 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalDoubleRef;
 import com.mojang.authlib.GameProfile;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.animal.HappyGhast;
 import net.minecraft.world.entity.animal.camel.Camel;
-import net.minecraft.world.entity.animal.horse.Donkey;
-import net.minecraft.world.entity.animal.horse.Mule;
+import net.minecraft.world.entity.animal.equine.Donkey;
+import net.minecraft.world.entity.animal.equine.Mule;
+import net.minecraft.world.entity.animal.happyghast.HappyGhast;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.ScaffoldingBlock;
 import net.minecraft.world.phys.Vec3;
@@ -42,8 +42,8 @@ public abstract class ServerPlayerEntityMixin extends Player {
 
     // Fix https://bugs.mojang.com/browse/MC-256638
     // Fix https://bugs.mojang.com/browse/MC-277294
-    @ModifyArg(method = "checkRidingStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/ResourceLocation;I)V", ordinal = 3), index = 0)
-    private ResourceLocation modifyTargetStat(ResourceLocation identifier) {
+    @ModifyArg(method = "checkRidingStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/Identifier;I)V", ordinal = 3), index = 0)
+    private Identifier modifyTargetStat(Identifier identifier) {
         if (getVehicle() instanceof Camel && Configs.CAMEL_STAT.isActive())
             return StatisticUtils.CAMEL_RIDING_STAT.identifier();
         else if (getVehicle() instanceof Donkey && Configs.USE_DONKEY_STATS.isActive())
@@ -90,16 +90,16 @@ public abstract class ServerPlayerEntityMixin extends Player {
     }
 
     // Fix for https://bugs.mojang.com/browse/MC-148457
-    @ModifyArg(method = "checkMovementStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/ResourceLocation;I)V", ordinal = 6), index = 0)
-    private ResourceLocation useCrawlStat(ResourceLocation identifier) {
+    @ModifyArg(method = "checkMovementStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/Identifier;I)V", ordinal = 6), index = 0)
+    private Identifier useCrawlStat(Identifier identifier) {
         if (Configs.CRAWL_STAT.isActive() && this.isVisuallyCrawling())
             return StatisticUtils.CRAWL_ONE_CM.identifier();
         return identifier;
     }
 
     // Fix https://bugs.mojang.com/browse/MC-211938
-    @WrapWithCondition(method = "jumpFromGround", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/ResourceLocation;)V"))
-    public boolean incrementStat(ServerPlayer instance, ResourceLocation identifier) {
+    @WrapWithCondition(method = "jumpFromGround", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/Identifier;)V"))
+    public boolean incrementStat(ServerPlayer instance, Identifier identifier) {
         if (instance.getInBlockState().getBlock() instanceof ScaffoldingBlock)
             return !Configs.JUMP_WHEN_CLIMBING_SCAFFOLDING_FIX.isActive();
         return true;
