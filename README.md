@@ -23,7 +23,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-29519](https://bugs.mojang.com/browse/MC-29519) : _Damage dealt stat doesn't increase when using projectiles to attack entities_ (v1.0.0+)
 - [MC-36696](https://bugs.mojang.com/browse/MC-36696) : _Clicking on the statistics button on the menu screen advances the game by 1 tick_ (v1.3.2-v1.3.5)
 - [MC-65198](https://bugs.mojang.com/browse/MC-65198) : _Craft statistics doesn't increase correctly when crafting items with shift-click or drop actions in stonecutter, crafting table and smithing table_ (v1.0.0+)
-- [MC-111435](https://bugs.mojang.com/browse/MC-111435) : _Damage dealt stat doesn't increase when the sweeping attack damages nearby entities_ (v1.0.0+)
+- [MC-111435](https://bugs.mojang.com/browse/MC-111435) : _Damage dealt stat doesn't increase when the sweeping attack damages nearby entities_ (v1.0.0-v2.1.0)
 - [MC-121541](https://bugs.mojang.com/browse/MC-121541) : _Scoreboard objective criteria for distance fallen doesn't track fall distance when player lands in liquid, powder snow, or cobweb_ (v1.3.0+) ***
 - [MC-122656](https://bugs.mojang.com/browse/MC-122656) : _Breaking elytra and trident never increase score_ (v1.0.0+)
 - [MC-128079](https://bugs.mojang.com/browse/MC-128079) : _Statistic for using shears doesn't increase when mining certain blocks_ (v1.0.0-v1.3.2)
