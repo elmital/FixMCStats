@@ -1,6 +1,14 @@
 package be.elmital.fixmcstats.platform.services;
 
+import java.nio.file.Path;
+
 public interface IPlatformHelper {
+
+    /**
+     * Gets the path to the directory where mods configurations are stored
+     * @return The Path of the config directory
+     */
+    Path getConfigDir();
 
     /**
      * Gets the name of the current platform
@@ -30,7 +38,6 @@ public interface IPlatformHelper {
      * @return The name of the environment type.
      */
     default String getEnvironmentName() {
-
         return isDevelopmentEnvironment() ? "development" : "production";
     }
 }
