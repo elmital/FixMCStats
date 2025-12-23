@@ -1,7 +1,6 @@
 package be.elmital.fixmcstats;
 
-// TODO
-// import net.fabricmc.loader.api.FabricLoader;
+
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -24,15 +23,13 @@ public class Config {
         return INSTANCE;
     }
 
-    public static void initConfig(Logger logger) throws IOException, SecurityException, IllegalArgumentException {
-        INSTANCE = new Config(logger).loadOrGenerateConfig();
+    public static void initConfig(Logger logger, Path configPath) throws IOException, SecurityException, IllegalArgumentException {
+        INSTANCE = new Config(logger, configPath).loadOrGenerateConfig();
     }
 
-    Config(Logger logger) {
+    Config(Logger logger, Path configPath) {
         this.logger = logger;
-        // TODO get the config directory
-        currentDirectory = null;
-        // currentDirectory = FabricLoader.getInstance().getConfigDir();
+        currentDirectory = configPath;
     }
 
     Config loadOrGenerateConfig() throws IOException, SecurityException, IllegalArgumentException {
