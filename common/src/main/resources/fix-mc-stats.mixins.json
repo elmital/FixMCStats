@@ -30,12 +30,13 @@
     "StatsScreenMixin",
     "StatsScreenAccessor",
     "StatsAccessor",
-    "StonecutterScreenHandlerMixin",
+    "StonecutterScreenHandlerMixin"],
+  "client": [
     "EntityStatsListWidgetEntryMixin",
     "GeneralStatsListWidgetMixin",
     "ItemComparatorMixin",
-    "ItemStatsListWidgetEntryMixin"],
-  "client": [],
+    "ItemStatsListWidgetEntryMixin"
+  ],
   "server": [],
   "injectors": {
     "defaultRequire": 1
