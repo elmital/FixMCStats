@@ -12,7 +12,7 @@ import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
-@Mod(Constants.MOD_ID)
+@Mod("fixmcstats")
 @EventBusSubscriber
 public class FixMCStats {
 
