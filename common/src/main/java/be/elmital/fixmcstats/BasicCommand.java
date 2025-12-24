@@ -1,8 +1,8 @@
 package be.elmital.fixmcstats;
-/*
+
 import com.mojang.brigadier.Command;
+import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
@@ -11,19 +11,17 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import com.mojang.serialization.Codec;
-import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.loader.api.metadata.ModEnvironment;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.StringRepresentableArgument;
+import net.minecraft.commands.synchronization.ArgumentTypeInfo;
 import net.minecraft.commands.synchronization.SingletonArgumentInfo;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.CommonColors;
 import net.minecraft.util.StringRepresentable;
-import org.apache.commons.lang3.function.TriConsumer;*/
+import org.apache.commons.lang3.function.TriConsumer;
 
 import java.awt.*;
 import java.io.IOException;
@@ -37,20 +35,29 @@ import java.util.stream.Collectors;
 
 
 
-public class BasicCommand {
-    // TODO
-    /*
-    static void registerArgumentTypes() {
-        ArgumentTypeRegistry.registerArgumentType(ResourceLocation.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(null)));
-        ArgumentTypeRegistry.registerArgumentType(ResourceLocation.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
+public abstract class BasicCommand<C extends SharedSuggestionProvider> {
+    @SuppressWarnings("unchecked,rawtypes")
+    public static ArgumentType<Configs.ConfigEntry, PatchArgumentType<?>, SingletonArgumentInfo<PatchArgumentType<?>>.Template> PATCH_ARGUMENT = new ArgumentType<>(ResourceLocation.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(null)));
+    public static ArgumentType<BasicCommand.PatchAction, PatchActionArgumentType, SingletonArgumentInfo<PatchActionArgumentType>.Template> PATCH_ACTION_ARGUMENT = new ArgumentType<>(ResourceLocation.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
+
+
+    public static void notifyArgumentRegisteringStarting() {
+        Constants.LOGGER.info("Registering commands argument types...");
+    }
+    public static void notifyArgumentRegisteringEnding() {
+        Constants.LOGGER.info("Commands argument types registered");
     }
 
-    static void register() {
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            Constants.LOGGER.info("Registering commands for server side");
-            dispatcher.register(BasicCommand.commandNodeBuilder(ModEnvironment.SERVER, (serverCommandSource, text, aBoolean) -> serverCommandSource.sendSuccess(() -> text , aBoolean)));
-            Constants.LOGGER.info("Commands registered!");
-        });
+    static void registerServerSide(CommandDispatcher<CommandSourceStack> commandDispatcher) {
+        Constants.LOGGER.info("Registering commands server side...");
+        commandDispatcher.register(BasicCommand.commandNodeBuilder(ModEnvironment.SERVER, (serverCommandSource, text, aBoolean) -> serverCommandSource.sendSuccess(() -> text , aBoolean)));
+        Constants.LOGGER.info("Server commands registered!");
+    }
+
+    static <S extends SharedSuggestionProvider> void registerClientSide(CommandDispatcher<S> commandDispatcher, BasicCommand<S> basicCommand) {
+        Constants.LOGGER.info("Registering commands client side...");
+        commandDispatcher.register(BasicCommand.commandNodeBuilder(ModEnvironment.CLIENT, (source, text, aBoolean) -> basicCommand.sendClientFeedBack(source, text)));
+        Constants.LOGGER.info("Client commands registered!");
     }
 
     public static <S extends SharedSuggestionProvider, E extends ModEnvironment> LiteralArgumentBuilder<S> commandNodeBuilder(E environment, TriConsumer<S, Component, Boolean> sourceNotification) {
@@ -97,8 +104,22 @@ public class BasicCommand {
                         ));
     }
 
-    private static <C extends SharedSuggestionProvider> void notifySource(C source, Component message, boolean broadCastOp, TriConsumer<C, Component,Boolean> consumer) {
+    private static <C extends SharedSuggestionProvider> void notifySource(C source, Component message, boolean broadCastOp, TriConsumer<C, Component, Boolean> consumer) {
         consumer.accept(source, message, broadCastOp);
+    }
+
+    public abstract void sendClientFeedBack(C clientCommandSource, Component text);
+
+    public static class ArgumentType<B,A extends com.mojang.brigadier.arguments.ArgumentType<B>, T extends net.minecraft.commands.synchronization.ArgumentTypeInfo.Template<A>> {
+        final ResourceLocation id;
+        final Class<? extends A> clazz;
+        final ArgumentTypeInfo<A,T> serializer;
+
+        ArgumentType(ResourceLocation id, Class<? extends A> clazz, ArgumentTypeInfo<A,T> serializer) {
+            this.id = id;
+            this.clazz = clazz;
+            this.serializer = serializer;
+        }
     }
 
     public enum PatchAction implements StringRepresentable {
@@ -129,7 +150,7 @@ public class BasicCommand {
         }
     }
 
-    public static class PatchArgumentType<M extends ModEnvironment> implements ArgumentType<Configs.ConfigEntry> {
+    public static class PatchArgumentType<M extends ModEnvironment> implements com.mojang.brigadier.arguments.ArgumentType<Configs.ConfigEntry> {
         private final M environment;
         private final Collection<String> EXAMPLES;
 
@@ -173,5 +194,5 @@ public class BasicCommand {
                 return suggestions;
             });
         }
-    }*/
+    }
 }
