@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats.utils;
 
+import be.elmital.fixmcstats.Constants;
 import be.elmital.fixmcstats.mixin.StatsAccessor;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -24,6 +25,7 @@ public class StatisticUtils {
     }
 
     public static void registerAllCustomStats(Logger logger) {
+        Constants.LOGGER.info("Checking for custom statistics...");
         logger.info("Adding camel custom stat to the registry");
         StatisticUtils.register(StatisticUtils.CAMEL_RIDING_STAT);
         logger.info("Adding donkey custom stat to the registry");
@@ -32,6 +34,7 @@ public class StatisticUtils {
         StatisticUtils.register(StatisticUtils.MULE_RIDING_STAT);
         logger.info("Adding crawling custom stat to the registry");
         StatisticUtils.register(StatisticUtils.CRAWL_ONE_CM);
+        Constants.LOGGER.info("All custom statistics added");
     }
 
     public record CustomStatistic(String path, StatFormatter statFormatter, Identifier identifier) {
