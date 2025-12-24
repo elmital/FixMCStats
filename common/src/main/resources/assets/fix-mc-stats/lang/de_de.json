@@ -1,0 +1,17 @@
+{
+  "commands.fix-mc-stats.already.activated" : "Dieser Patch ist bereits aktiviert.",
+  "commands.fix-mc-stats.already.deactivated" : "Dieser Patch ist bereits deaktiviert.",
+  "commands.fix-mc-stats.config.update.fail" : "Befehl fehlgeschlagen, Konfiguration kann nicht aktualisiert werden. Existiert die Datei noch?",
+  "commands.fix-mc-stats.config.update.success.activated" : "Patch %s ist jetzt aktiviert.",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "Patch %s ist jetzt deaktiviert.",
+  "commands.fix-mc-stats.patch.config.activated" : "Patch %s ist aktiviert!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Patch %s ist deaktiviert!",
+  "commands.fix-mc-stats.patch.experimental" : "Bitte beachten Sie, dass dieser Patch experimentell ist!",
+  "commands.fix-mc-stats.patch.link" : "Klicken Sie hier, um den Link zum Problem für Patch [%s] zu öffnen.",
+  "stat.fix-mc-stats.camel_one_cm" : "Strecke auf Dromedar geritten",
+  "stat.fix-mc-stats.crawl_one_cm" : "Strecke kroch",
+  "stat.fix-mc-stats.donkey_one_cm" : "Strecke auf Esel geritten",
+  "stat.fix-mc-stats.mule_one_cm" : "Strecke auf Maultier geritten",
+  "modmenu.descriptionTranslation.fix-mc-stats" : "Mod, die darauf abzielt, einige Probleme mit der Minecraft-Statistik zu beheben.",
+  "modmenu.summaryTranslation.fix-mc-stats" : "Behebung einiger Probleme mit den Minecraft-Statistiken."
+}
