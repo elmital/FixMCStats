@@ -1,7 +1,6 @@
 package be.elmital.fixmcstats;
 
 import be.elmital.fixmcstats.platform.Services;
-import be.elmital.fixmcstats.utils.StatisticUtils;
 
 import java.io.IOException;
 
@@ -13,8 +12,6 @@ public class CommonClass {
             Constants.LOGGER.info("Checking mod config...");
             Config.initConfig(Constants.LOGGER, Services.PLATFORM.getConfigDir());
             Constants.LOGGER.info("Mod configured!");
-            Constants.LOGGER.info("Checking for custom statistics");
-            StatisticUtils.registerAllCustomStats(Constants.LOGGER);
         } catch (SecurityException e) {
             Constants.LOGGER.trace("Can't load or generate config file! There is a read/write permission issue.", e);
             throw new RuntimeException(e);

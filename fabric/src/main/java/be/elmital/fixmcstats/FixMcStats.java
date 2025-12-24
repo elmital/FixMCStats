@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats;
 
+import be.elmital.fixmcstats.utils.StatisticUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
@@ -11,6 +12,9 @@ public class FixMcStats implements ModInitializer {
     @Override
     public void onInitialize() {
         CommonClass.init();
+
+        StatisticUtils.registerAllCustomStats(Constants.LOGGER);
+
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> BasicCommand.registerServerSide(dispatcher));
 
         BasicCommand.notifyArgumentRegisteringStarting();

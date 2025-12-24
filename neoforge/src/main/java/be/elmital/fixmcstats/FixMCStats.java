@@ -1,7 +1,9 @@
 package be.elmital.fixmcstats;
 
 
+import be.elmital.fixmcstats.utils.StatisticUtils;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.IEventBus;
@@ -38,6 +40,10 @@ public class FixMCStats {
 
     @SubscribeEvent // on the mod event bus
     public static void register(RegisterEvent event) {
+        event.register(BuiltInRegistries.CUSTOM_STAT.key(), registry -> {
+            StatisticUtils.registerAllCustomStats(Constants.LOGGER);
+        });
+
         event.register(Registries.COMMAND_ARGUMENT_TYPE,registry -> {
             BasicCommand.notifyArgumentRegisteringStarting();
             registry.register(BasicCommand.PATCH_ARGUMENT.id, BasicCommand.PATCH_ARGUMENT.serializer);
