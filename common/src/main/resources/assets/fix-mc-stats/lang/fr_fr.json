@@ -1,0 +1,17 @@
+{
+  "commands.fix-mc-stats.already.activated" : "Ce patch est déjà activé!",
+  "commands.fix-mc-stats.already.deactivated" : "Ce patch est déjà désactivé!",
+  "commands.fix-mc-stats.config.update.fail" : "La commande a échouée, impossible de sauvegarder le fichier de configuration existe-t-il toujours?",
+  "commands.fix-mc-stats.config.update.success.activated" : "Le patch %s est désormais activé",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "Le patch %s est désormais désactivé",
+  "commands.fix-mc-stats.patch.config.activated" : "Le patch %s est activé!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Le patch %s est désactivé!",
+  "commands.fix-mc-stats.patch.experimental" : "Attention ce patch est experimental!",
+  "commands.fix-mc-stats.patch.link" : "Clique pour ouvrir le lien du rapport de bug du patch [%s]",
+  "stat.fix-mc-stats.camel_one_cm" : "Distance à dromadaire",
+  "stat.fix-mc-stats.crawl_one_cm" : "Distance parcourue en rampant",
+  "stat.fix-mc-stats.donkey_one_cm" : "Distance à dos d'âne",
+  "stat.fix-mc-stats.mule_one_cm" : "Distance à mule",
+  "modmenu.descriptionTranslation.fix-mc-stats" : "Mod qui a pour but de corriger plusieurs bugs liés aux statistiques de MC.",
+  "modmenu.summaryTranslation.fix-mc-stats" : "Corrige plusieurs bugs liés aux statistiques."
+}
