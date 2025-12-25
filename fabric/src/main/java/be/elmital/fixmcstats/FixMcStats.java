@@ -13,7 +13,7 @@ public class FixMcStats implements ModInitializer {
     public void onInitialize() {
         CommonClass.init();
 
-        StatisticUtils.registerAllCustomStats(Constants.LOGGER);
+        StatisticUtils.registerAllCustomStats();
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> BasicCommand.registerServerSide(dispatcher));
 

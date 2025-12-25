@@ -2,7 +2,6 @@ package be.elmital.fixmcstats;
 
 
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,7 +13,6 @@ import java.util.Properties;
 
 public class Config {
     private static Config INSTANCE;
-    private final Logger logger;
     private final Path currentDirectory;
     private final Properties properties = new Properties();
     static final String CONFIG = "FixMCStatsConfig";
@@ -23,12 +21,11 @@ public class Config {
         return INSTANCE;
     }
 
-    public static void initConfig(Logger logger, Path configPath) throws IOException, SecurityException, IllegalArgumentException {
-        INSTANCE = new Config(logger, configPath).loadOrGenerateConfig();
+    public static void initConfig(Path configPath) throws IOException, SecurityException, IllegalArgumentException {
+        INSTANCE = new Config(configPath).loadOrGenerateConfig();
     }
 
-    Config(Logger logger, Path configPath) {
-        this.logger = logger;
+    Config(Path configPath) {
         currentDirectory = configPath;
     }
 
@@ -36,20 +33,20 @@ public class Config {
         boolean alreadyExist = Files.exists(getConfigPath());
 
         if (alreadyExist) {
-            logger.info("Config file found loading it");
+            Constants.LOGGER.info("Config file found loading it");
             InputStream input = new FileInputStream(getConfigPath().toString());
             properties.load(input);
-            logger.info("File loaded inspecting config keys...");
+            Constants.LOGGER.info("File loaded inspecting config keys...");
             input.close();
         } else {
-            logger.info("No config file found creating it...");
+            Constants.LOGGER.info("No config file found creating it...");
         }
 
         boolean toStore = !alreadyExist;
         for (Configs.ConfigEntry value : Configs.configEntries) {
             if (value.isDeprecated()) {
                 if (alreadyExist && properties.containsKey(value.getKey())) {
-                    logger.info("Old config key found '{}' removing it", value.getKey());
+                    Constants.LOGGER.info("Old config key found '{}' removing it", value.getKey());
                     toStore = true;
                     properties.remove(value.getKey());
                 }
@@ -58,24 +55,24 @@ public class Config {
 
             if (!alreadyExist || !properties.containsKey(value.getKey())) {
                 if (alreadyExist)
-                    logger.info("Adding missing config key {}", value.getKey());
+                    Constants.LOGGER.info("Adding missing config key {}", value.getKey());
                 toStore = true;
                 properties.setProperty(value.getKey(), value.getDefault());
             }
         }
 
         if (!toStore)
-            logger.info("All keys are setup correctly");
+            Constants.LOGGER.info("All keys are setup correctly");
 
         if (toStore) {
             FileOutputStream stream = new FileOutputStream(getConfigPath().toString());
-            logger.info("Saving file...");
+            Constants.LOGGER.info("Saving file...");
             properties.store(stream, null);
-            logger.info("Saved!");
+            Constants.LOGGER.info("Saved!");
             stream.close();
         }
 
-        logger.info("Loading all configs");
+        Constants.LOGGER.info("Loading all configs");
         for (Configs.ConfigEntry configEntry : Configs.getValidConfigEntries()) {
             configEntry.setActive(Boolean.parseBoolean(properties.getProperty(configEntry.getKey(), configEntry.getDefault())));
         }

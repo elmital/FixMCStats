@@ -10,7 +10,7 @@ public class CommonClass {
         Constants.LOGGER.info("Initializing mod cross platform part");
         try {
             Constants.LOGGER.info("Checking mod config...");
-            Config.initConfig(Constants.LOGGER, Services.PLATFORM.getConfigDir());
+            Config.initConfig(Services.PLATFORM.getConfigDir());
             Constants.LOGGER.info("Mod configured!");
         } catch (SecurityException e) {
             Constants.LOGGER.trace("Can't load or generate config file! There is a read/write permission issue.", e);
