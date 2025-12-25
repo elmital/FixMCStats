@@ -6,7 +6,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.stats.StatFormatter;
-import org.slf4j.Logger;
 
 /* Used to register non-vanilla statistics and concern :
    - https://bugs.mojang.com/browse/MC-148457
@@ -24,15 +23,15 @@ public class StatisticUtils {
         StatsAccessor.getCUSTOM().get(statistic.identifier(), statistic.statFormatter());
     }
 
-    public static void registerAllCustomStats(Logger logger) {
+    public static void registerAllCustomStats() {
         Constants.LOGGER.info("Checking for custom statistics...");
-        logger.info("Adding camel custom stat to the registry");
+        Constants.LOGGER.info("Adding camel custom stat to the registry");
         StatisticUtils.register(StatisticUtils.CAMEL_RIDING_STAT);
-        logger.info("Adding donkey custom stat to the registry");
+        Constants.LOGGER.info("Adding donkey custom stat to the registry");
         StatisticUtils.register(StatisticUtils.DONKEY_RIDING_STAT);
-        logger.info("Adding mule custom stat to the registry");
+        Constants.LOGGER.info("Adding mule custom stat to the registry");
         StatisticUtils.register(StatisticUtils.MULE_RIDING_STAT);
-        logger.info("Adding crawling custom stat to the registry");
+        Constants.LOGGER.info("Adding crawling custom stat to the registry");
         StatisticUtils.register(StatisticUtils.CRAWL_ONE_CM);
         Constants.LOGGER.info("All custom statistics added");
     }

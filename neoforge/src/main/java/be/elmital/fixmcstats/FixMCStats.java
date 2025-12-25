@@ -42,7 +42,7 @@ public class FixMCStats {
     @SubscribeEvent
     public static void register(RegisterEvent event) {
         event.register(BuiltInRegistries.CUSTOM_STAT.key(), registry -> {
-            StatisticUtils.registerAllCustomStats(Constants.LOGGER);
+            StatisticUtils.registerAllCustomStats();
         });
 
         event.register(Registries.COMMAND_ARGUMENT_TYPE, registry -> {
