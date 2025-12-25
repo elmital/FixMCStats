@@ -8,9 +8,9 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://modrinth.com/mod/fixmcstats",
-        "sources": "https://github.com/elmital/FixMCStats",
-        "issues": "https://github.com/elmital/FixMCStats/issues"
+        "homepage": "${home_page}s",
+        "sources": "${sources}",
+        "issues": "${tracker}"
     },
     "license": "${license}",
     "icon": "assets/fix-mc-stats/fix-mc-stats.png",
