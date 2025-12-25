@@ -1,6 +1,6 @@
 # <u>FixMCStats</u>
 
-Fabric mod that aims to fix some issues with the Minecraft statistics.🤓
+Mod that aims to fix multiple issues with the Minecraft statistics.🤓
 
 ---
 ## <u>Fixes</u>
