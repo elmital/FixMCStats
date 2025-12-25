@@ -42,10 +42,10 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     public void incrementBreakingStat(CallbackInfo ci, @Local EquipmentSlot slot) {
         if (!Configs.BREAKING_ELYTRA_AND_TRIDENT_FIX.isActive())
             return;
-        ItemStack equiped = this.getItemBySlot(slot);
-        if (equiped.nextDamageWillBreak()) {
+        ItemStack equipped = this.getItemBySlot(slot);
+        if (equipped.nextDamageWillBreak()) {
             if (((LivingEntity) (Object) this) instanceof Player playerEntity)
-                playerEntity.awardStat(Stats.ITEM_BROKEN.get(equiped.getItem()));
+                playerEntity.awardStat(Stats.ITEM_BROKEN.get(equipped.getItem()));
         }
     }
 

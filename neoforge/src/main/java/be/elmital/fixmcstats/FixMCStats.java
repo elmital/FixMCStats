@@ -41,14 +41,12 @@ public class FixMCStats {
 
     @SubscribeEvent
     public static void register(RegisterEvent event) {
-        event.register(BuiltInRegistries.CUSTOM_STAT.key(), registry -> {
-            StatisticUtils.registerAllCustomStats();
-        });
+        event.register(BuiltInRegistries.CUSTOM_STAT.key(), registry -> StatisticUtils.registerAllCustomStats());
 
         event.register(Registries.COMMAND_ARGUMENT_TYPE, registry -> {
             /*
-                Hacky way to register the serializer we can't use the BasicCommand.PATCH_ARGUMENT built one cause the method to register them is parameterized and don't allow this.
-                The method used by Fabric for the ArgumentType registration delegates to the vanilla method that is private and not accessible here.
+                Hacky way to register the serializer we can't use the BasicCommand.PATCH_ARGUMENT one because the method to register them is parameterized and don't allow this.
+                The method used by Fabric for the ArgumentType registration delegates to a vanilla method that is private and not accessible here.
              */
             BasicCommand.notifyArgumentRegisteringStarting();
             var serializer = ArgumentTypeInfos.registerByClass(BasicCommand.PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> BasicCommand.PatchArgumentType.patchArgument(null)));

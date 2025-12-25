@@ -23,6 +23,7 @@ import net.minecraft.server.permissions.Permissions;
 import net.minecraft.util.CommonColors;
 import net.minecraft.util.StringRepresentable;
 import org.apache.commons.lang3.function.TriConsumer;
+import org.jspecify.annotations.NonNull;
 
 import java.io.IOException;
 import java.net.URI;
@@ -37,8 +38,8 @@ import java.util.stream.Collectors;
 
 public abstract class BasicCommand<C extends SharedSuggestionProvider> {
     @SuppressWarnings("unchecked,rawtypes")
-    public static ArgumentType<Configs.ConfigEntry, PatchArgumentType<?>, SingletonArgumentInfo<PatchArgumentType<?>>.Template> PATCH_ARGUMENT = new ArgumentType<>(Identifier.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(null)));
-    public static ArgumentType<BasicCommand.PatchAction, PatchActionArgumentType, SingletonArgumentInfo<PatchActionArgumentType>.Template> PATCH_ACTION_ARGUMENT = new ArgumentType<>(Identifier.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
+    public final static ArgumentType<Configs.ConfigEntry, PatchArgumentType<?>, SingletonArgumentInfo<PatchArgumentType<?>>.Template> PATCH_ARGUMENT = new ArgumentType<>(Identifier.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(null)));
+    public final static ArgumentType<BasicCommand.PatchAction, PatchActionArgumentType, SingletonArgumentInfo<PatchActionArgumentType>.Template> PATCH_ACTION_ARGUMENT = new ArgumentType<>(Identifier.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
 
     public static void notifyArgumentRegisteringStarting() {
         Constants.LOGGER.info("Registering commands argument types...");
@@ -128,7 +129,7 @@ public abstract class BasicCommand<C extends SharedSuggestionProvider> {
         public static final Codec<PatchAction> CODEC = StringRepresentable.fromEnum(PatchAction::values);
 
         @Override
-        public String getSerializedName() {
+        public @NonNull String getSerializedName() {
             return name().toLowerCase();
         }
     }
