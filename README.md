@@ -46,6 +46,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-267006](https://bugs.mojang.com/browse/MC-267006) : _The Distance Flown statistics rapidly increases when you are standing in Ender Dragon's hitbox_ (v1.0.0-v1.1.1)
 - [MC-268093](https://bugs.mojang.com/browse/MC-268093) : _Breaking a decorated pot with an arrow doesn't affect statistics_ (v1.1.0+)
 - [MC-273933](https://bugs.mojang.com/browse/MC-273933) : _"Times Used" statistic does not increase for armor when used on an armor stands_ (v2.0.0+)
+- [MC-276994](https://bugs.mojang.com/browse/MC-276994) : _The "used" statistic for music discs no longer increments when used on a jukebox_ (v2.2.0+)
 - [MC-277294](https://bugs.mojang.com/browse/MC-277294) : _Distance by mules and donkeys counts towards 'Distance by Horse' statistic_* (v2.0.0+)
 - [MC-301722](https://bugs.mojang.com/browse/MC/issues/MC-301722) : _minecraft.custom:minecraft.happy_ghast_one_cm statistic increases while turning when not moving_ (v2.0.0+)
 
