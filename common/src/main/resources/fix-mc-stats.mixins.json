@@ -5,6 +5,7 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
+    "ArmorStandEntityMixin",
     "BlockMixin",
     "CampfireBlockEntityMixin",
     "CampfireBlockMixin",
@@ -16,8 +17,8 @@
     "EntityMixin",
     "FlowerPotBlockMixin",
     "ForgingScreenHandlerMixin",
-    "ArmorStandEntityMixin",
     "HoneyBottleItemMixin",
+    "JukeboxPlayableMixin",
     "LivingEntityMixin",
     "PlaceableOnWaterItemMixin",
     "PlayerEntityMixin",
@@ -30,7 +31,8 @@
     "StatsScreenMixin",
     "StatsScreenAccessor",
     "StatsAccessor",
-    "StonecutterScreenHandlerMixin"],
+    "StonecutterScreenHandlerMixin"
+  ],
   "client": [
     "EntityStatsListWidgetEntryMixin",
     "GeneralStatsListWidgetMixin",

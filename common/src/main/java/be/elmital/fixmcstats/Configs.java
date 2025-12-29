@@ -53,6 +53,7 @@ public class Configs {
     public static final ConfigEntry ENDER_DRAGON_FLOWN_STAT_FIX = registerEntry(new ConfigEntry("ender-dragon-flown-stat-experimental-fix", Boolean.TRUE.toString(), Patch.of(267006, ModEnvironment.SERVER), false, true));
     public static final ConfigEntry DECORATED_POT_BREAKING = registerEntry(new ConfigEntry("decorated-pot-breaking-fix", Boolean.TRUE.toString(), Patch.of(268093, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry EQUIP_ARMOR_STAND_FIX = registerEntry(new ConfigEntry("equip-armor-stand-fix", Boolean.TRUE.toString(), Patch.of(273933, ModEnvironment.SERVER), false, false));
+    public static final ConfigEntry INCREMENT_USE_RECORDS = registerEntry(new ConfigEntry("increment-use-record-stat-fix", Boolean.TRUE.toString(), Patch.of(276994, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry USE_DONKEY_STATS = registerEntry(new ConfigEntry("use-donkey-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry USE_MULE_STATS = registerEntry(new ConfigEntry("use-mule-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false));
 
