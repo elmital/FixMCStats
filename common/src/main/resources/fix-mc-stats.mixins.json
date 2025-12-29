@@ -7,7 +7,6 @@
   "mixins": [
     "ArmorStandEntityMixin",
     "BlockMixin",
-    "BlocksAttacksMixin",
     "CampfireBlockEntityMixin",
     "CraftingResultSlotMixin",
     "CreeperEntityMixin",
