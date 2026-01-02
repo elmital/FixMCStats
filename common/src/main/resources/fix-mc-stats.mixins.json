@@ -5,6 +5,7 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [
+    "ArmorStandEntityMixin",
     "BlockMixin",
     "CampfireBlockEntityMixin",
     "CraftingResultSlotMixin",
@@ -14,7 +15,7 @@
     "EntityMixin",
     "FlowerPotBlockMixin",
     "ForgingScreenHandlerMixin",
-    "ArmorStandEntityMixin",
+    "JukeboxPlayableMixin",
     "LivingEntityMixin",
     "PlaceableOnWaterItemMixin",
     "PotionSlotMixin",
@@ -22,7 +23,8 @@
     "RespawnAnchorBlockMixin",
     "ServerPlayerEntityMixin",
     "StatsAccessor",
-    "StonecutterScreenHandlerMixin"],
+    "StonecutterScreenHandlerMixin"
+  ],
   "client": [
     "EntityStatsListWidgetEntryMixin",
     "GeneralStatsListWidgetMixin",
