@@ -4,8 +4,8 @@ import be.elmital.fixmcstats.Configs;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.StatsScreen;
-import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
+import net.minecraft.client.gui.components.ObjectSelectionList;
+import net.minecraft.client.gui.screens.achievement.StatsScreen;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,21 +15,21 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Environment(EnvType.CLIENT)
 public class StatsScreenMixin {
     // Fix https://bugs.mojang.com/browse/MC-213104
-    @ModifyArg(method = "onStatsReady()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/StatsScreen;selectStatList(Lnet/minecraft/client/gui/widget/AlwaysSelectedEntryListWidget;)V"))
-    public AlwaysSelectedEntryListWidget<?> onStatsReady(@Nullable AlwaysSelectedEntryListWidget<?> list) {
-        var selected = ((StatsScreenAccessor) this).getSelectedList();
-        if (selected instanceof StatsScreen.GeneralStatsListWidget) {
-            return ((StatsScreenAccessor) this).getGeneralStats();
-        } else if (selected instanceof StatsScreen.ItemStatsListWidget) {
-            return ((StatsScreenAccessor) this).getItemStats();
-        } else if (selected instanceof StatsScreen.EntityStatsListWidget) {
-            return ((StatsScreenAccessor) this).getMobStats();
+    @ModifyArg(method = "onStatsUpdated", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/achievement/StatsScreen;setActiveList(Lnet/minecraft/client/gui/components/ObjectSelectionList;)V"))
+    public ObjectSelectionList<?> onStatsReady(@Nullable ObjectSelectionList<?> list) {
+        var selected = ((StatsScreenAccessor) this).getActiveList();
+        if (selected instanceof StatsScreen.GeneralStatisticsList) {
+            return ((StatsScreenAccessor) this).getStatsList();
+        } else if (selected instanceof StatsScreen.ItemStatisticsList) {
+            return ((StatsScreenAccessor) this).getItemStatsList();
+        } else if (selected instanceof StatsScreen.MobsStatisticsList) {
+            return ((StatsScreenAccessor) this).getMobsStatsList();
         }
         return list;
     }
 
     // Fix https://bugs.mojang.com/browse/MC-36696
-    @ModifyReturnValue(method = "shouldPause", at = @At(value = "RETURN"))
+    @ModifyReturnValue(method = "isPauseScreen", at = @At(value = "RETURN"))
     public boolean shouldPauseOverride(boolean original) {
         if (!Configs.STATS_SCREEN_TICK_FIX.isActive())
             return original;

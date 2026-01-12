@@ -3,38 +3,38 @@ package be.elmital.fixmcstats.mixin;
 import be.elmital.fixmcstats.Configs;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.block.ScaffoldingBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.ScaffoldingBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @SuppressWarnings("unused")
-@Mixin(PlayerEntity.class)
+@Mixin(Player.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }
 
     // Fix https://bugs.mojang.com/browse/MC-211938
-    @WrapWithCondition(method = "jump", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;incrementStat(Lnet/minecraft/util/Identifier;)V"))
-    public boolean incrementStat(PlayerEntity instance, Identifier stat) {
-        if (instance.getBlockStateAtPos().getBlock() instanceof ScaffoldingBlock)
+    @WrapWithCondition(method = "jumpFromGround", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;awardStat(Lnet/minecraft/resources/ResourceLocation;)V"))
+    public boolean incrementStat(Player instance, ResourceLocation stat) {
+        if (instance.getBlockStateOn().getBlock() instanceof ScaffoldingBlock)
             return !Configs.JUMP_WHEN_CLIMBING_SCAFFOLDING_FIX.isActive();
         return true;
     }
 
     // Fix https://bugs.mojang.com/browse/MC-111435
-    @Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
+    @Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"))
     private void incrementSweepDamage(Entity target, CallbackInfo ci, @Local(ordinal = 4) float damage) {
         if (Configs.DAMAGE_DEALT_WITH_SWEEPING_FIX.isActive())
-            ((PlayerEntity) (Object) this).increaseStat(Stats.DAMAGE_DEALT, Math.round((damage - ((LivingEntity)target).getHealth()) * 10.0f));
+            ((Player) (Object) this).awardStat(Stats.DAMAGE_DEALT, Math.round((damage - ((LivingEntity)target).getHealth()) * 10.0f));
     }
 }

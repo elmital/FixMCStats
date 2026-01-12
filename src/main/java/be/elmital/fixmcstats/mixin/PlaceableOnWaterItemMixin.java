@@ -1,30 +1,31 @@
 package be.elmital.fixmcstats.mixin;
 
 import be.elmital.fixmcstats.Configs;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.PlaceableOnWaterItem;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PlaceOnWaterBlockItem;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlaceableOnWaterItem.class)
+@Mixin(PlaceOnWaterBlockItem.class)
 public class PlaceableOnWaterItemMixin extends BlockItem {
-    public PlaceableOnWaterItemMixin(Block block, Settings settings) {
+    public PlaceableOnWaterItemMixin(Block block, Properties settings) {
         super(block, settings);
     }
 
     // Fix https://bugs.mojang.com/browse/MC-264274
     @Inject(method = "use", at = @At(value = "RETURN"))
-    public void incrementStat(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> result) {
-        if (Configs.PLACEABLE_ON_WATER_FIX.isActive() && result.getReturnValue().getResult().shouldIncrementStat())
-            user.incrementStat(Stats.USED.getOrCreateStat(this));
+    public void incrementStat(Level level, Player user, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> result) {
+        if (Configs.PLACEABLE_ON_WATER_FIX.isActive() && result.getReturnValue().getResult().indicateItemUse())
+            user.awardStat(Stats.ITEM_USED.get(this));
     }
 }
