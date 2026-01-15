@@ -4,7 +4,9 @@
   "package": "be.elmital.fixmcstats.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "LivingEntityFabricMixin"
+  ],
   "client": [],
   "server": [],
   "injectors": {
