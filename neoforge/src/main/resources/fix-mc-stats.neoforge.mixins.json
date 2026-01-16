@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "be.elmital.fixmcstats.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ElytraItemNeoMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

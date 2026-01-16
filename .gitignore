@@ -28,10 +28,17 @@ bin/
 
 *.DS_Store
 
+run/
+
+# neoforge
+neoforge/runs
+neoforge/run
+
 # fabric
 
-run/
-remappedSrc/
+fabric/runs
+fabric/remappedSrc/
+fabric/remappedClientSrc/
 
 # java
 
