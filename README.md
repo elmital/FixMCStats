@@ -49,7 +49,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-276994](https://bugs.mojang.com/browse/MC-276994) : _The "used" statistic for music discs no longer increments when used on a jukebox_ (v2.2.0+)
 - [MC-277294](https://bugs.mojang.com/browse/MC-277294) : _Distance by mules and donkeys counts towards 'Distance by Horse' statistic_* (v2.0.0+)
 - [MC-301722](https://bugs.mojang.com/browse/MC/issues/MC-301722) : _minecraft.custom:minecraft.happy_ghast_one_cm statistic increases while turning when not moving_ (v2.0.0+)
-- [MC-304642](https://bugs.mojang.com/browse/MC-304642) : _Being attacked from behind while holding up a shield increments "minecraft.used:minecraft.shield"_
+- [MC-304642](https://bugs.mojang.com/browse/MC-304642) : _Being attacked from behind while holding up a shield increments "minecraft.used:minecraft.shield"_ (v2.2.0+)
 
 ```
 * the fix add a custom statistic and can be deactivated in the mod config file
