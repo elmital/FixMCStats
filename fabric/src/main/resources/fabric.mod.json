@@ -18,6 +18,9 @@
     "entrypoints": {
         "main": [
             "be.elmital.fixmcstats.FixMcStats"
+        ],
+        "client": [
+            "be.elmital.fixmcstats.FixMcStatsClient"
         ]
     },
     "mixins": [
