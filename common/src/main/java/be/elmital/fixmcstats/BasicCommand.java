@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats;
 
+import be.elmital.fixmcstats.platform.Services;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.StringReader;
@@ -88,14 +89,17 @@ public abstract class BasicCommand<C extends SharedSuggestionProvider> {
                                 .executes(context -> {
                                     Configs.ConfigEntry patchEntry = PatchArgumentType.getPatch(context, "patch");
                                     boolean activate = PatchActionArgumentType.getPathAction(context, "action").equals(PatchAction.ACTIVATE);
-                                    if (patchEntry.isActive() == activate) {
+                                    if (patchEntry.isActive() == activate && !patchEntry.requireRestart()) {
                                         notifySource(context.getSource(), Component.translatable("commands.fix-mc-stats.already." + (activate ? "activated" : "deactivated")).withColor(CommonColors.RED), false, sourceNotification);
                                         return Command.SINGLE_SUCCESS;
                                     }
 
                                     try {
                                         patchEntry.updateActive(activate);
-                                        notifySource(context.getSource(), Component.translatable("commands.fix-mc-stats.config.update.success." + (activate ? "activated" : "deactivated"), patchEntry.getPatchId()).withColor(CommonColors.GREEN), true, sourceNotification);
+                                        if (patchEntry.requireRestart() && Services.PLATFORM.isDedicatedServer())
+                                            notifySource(context.getSource(), Component.translatable("commands.fix-mc-stats.config.update.restart.needed").withColor(CommonColors.YELLOW), true, sourceNotification);
+                                        else
+                                            notifySource(context.getSource(), Component.translatable("commands.fix-mc-stats.config.update.success." + (activate ? "activated" : "deactivated"), patchEntry.getPatchId()).withColor(CommonColors.GREEN), true, sourceNotification);
                                     } catch (IOException e) {
                                         notifySource(context.getSource(), Component.translatable("commands.fix-mc-stats.config.update.fail"), false, sourceNotification);
                                     }
