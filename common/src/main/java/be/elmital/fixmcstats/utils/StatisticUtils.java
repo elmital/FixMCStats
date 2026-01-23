@@ -27,6 +27,11 @@ public class StatisticUtils {
 
     public static void registerAllCustomStats() {
         Constants.LOGGER.info("Checking for custom statistics...");
+        if (!Configs.USE_CUSTOM_STATS.isActive()) {
+            Constants.LOGGER.info("The use of custom statistics are disabled skipping registration");
+            return;
+        }
+
         if (Configs.CAMEL_STAT.isActive() || !Services.PLATFORM.isDedicatedServer()) {
             Constants.LOGGER.info("Adding camel custom stat to the registry");
             StatisticUtils.register(StatisticUtils.CAMEL_RIDING_STAT);

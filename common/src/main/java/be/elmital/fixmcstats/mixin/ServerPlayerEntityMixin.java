@@ -46,6 +46,20 @@ public abstract class ServerPlayerEntityMixin extends Player {
 
     // Fix https://bugs.mojang.com/browse/MC-256638
     // Fix https://bugs.mojang.com/browse/MC-277294
+    @Inject(method = "checkRidingStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/ResourceLocation;I)V", ordinal = 3), cancellable = true)
+    private void cancelIncrement(double dx, double dy, double dz, CallbackInfo ci) {
+        if (Configs.USE_CUSTOM_STATS.isActive())
+            return;
+        if (getVehicle() instanceof Camel && Configs.CAMEL_STAT.isActive())
+            ci.cancel();
+        else if (getVehicle() instanceof Donkey && Configs.USE_DONKEY_STATS.isActive())
+            ci.cancel();
+        else if (getVehicle() instanceof Mule && Configs.USE_MULE_STATS.isActive())
+            ci.cancel();
+    }
+
+    // Fix https://bugs.mojang.com/browse/MC-256638
+    // Fix https://bugs.mojang.com/browse/MC-277294
     @ModifyArg(method = "checkRidingStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/ResourceLocation;I)V", ordinal = 3), index = 0)
     private ResourceLocation modifyTargetStat(ResourceLocation identifier) {
         if (getVehicle() instanceof Camel && Configs.CAMEL_STAT.isActive())
