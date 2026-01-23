@@ -1,6 +1,7 @@
 package be.elmital.fixmcstats;
 
 
+import be.elmital.fixmcstats.platform.Services;
 import be.elmital.fixmcstats.utils.StatisticUtils;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.synchronization.ArgumentTypeInfos;
@@ -26,6 +27,10 @@ public class FixMCStats {
 
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {
+        if (Configs.DISALLOW_COMMANDS.isActive() && Services.PLATFORM.isDedicatedServer()) {
+            Constants.LOGGER.info("Commands are disallowed, skip registration");
+            return;
+        }
         BasicCommand.registerServerSide(event.getDispatcher());
     }
 
@@ -44,6 +49,11 @@ public class FixMCStats {
         event.register(BuiltInRegistries.CUSTOM_STAT.key(), registry -> StatisticUtils.registerAllCustomStats());
 
         event.register(Registries.COMMAND_ARGUMENT_TYPE, registry -> {
+            if (Configs.DISALLOW_COMMANDS.isActive() && Services.PLATFORM.isDedicatedServer()) {
+                Constants.LOGGER.info("Commands are disallowed, skip argument type registration");
+                return;
+            }
+
             /*
                 Hacky way to register the serializer we can't use the BasicCommand.PATCH_ARGUMENT one because the method to register them is parameterized and don't allow this.
                 The method used by Fabric for the ArgumentType registration delegates to a vanilla method that is private and not accessible here.
