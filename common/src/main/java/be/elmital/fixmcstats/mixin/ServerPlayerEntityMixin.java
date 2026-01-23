@@ -42,6 +42,20 @@ public abstract class ServerPlayerEntityMixin extends Player {
 
     // Fix https://bugs.mojang.com/browse/MC-256638
     // Fix https://bugs.mojang.com/browse/MC-277294
+    @Inject(method = "checkRidingStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/Identifier;I)V", ordinal = 3), cancellable = true)
+    private void cancelIncrement(double dx, double dy, double dz, CallbackInfo ci) {
+        if (Configs.USE_CUSTOM_STATS.isActive())
+            return;
+        if (getVehicle() instanceof Camel && Configs.CAMEL_STAT.isActive())
+            ci.cancel();
+        else if (getVehicle() instanceof Donkey && Configs.USE_DONKEY_STATS.isActive())
+            ci.cancel();
+        else if (getVehicle() instanceof Mule && Configs.USE_MULE_STATS.isActive())
+            ci.cancel();
+    }
+
+    // Fix https://bugs.mojang.com/browse/MC-256638
+    // Fix https://bugs.mojang.com/browse/MC-277294
     @ModifyArg(method = "checkRidingStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/Identifier;I)V", ordinal = 3), index = 0)
     private Identifier modifyTargetStat(Identifier identifier) {
         if (getVehicle() instanceof Camel && Configs.CAMEL_STAT.isActive())
@@ -92,7 +106,7 @@ public abstract class ServerPlayerEntityMixin extends Player {
     // Fix for https://bugs.mojang.com/browse/MC-148457
     @ModifyArg(method = "checkMovementStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/Identifier;I)V", ordinal = 6), index = 0)
     private Identifier useCrawlStat(Identifier identifier) {
-        if (Configs.CRAWL_STAT.isActive() && this.isVisuallyCrawling())
+        if (this.isVisuallyCrawling() && Configs.CRAWL_STAT.isActive())
             return StatisticUtils.CRAWL_ONE_CM.identifier();
         return identifier;
     }

@@ -29,6 +29,7 @@ public class Configs {
     }
 
     public static final ConfigEntry DISALLOW_COMMANDS = registerEntry(new ConfigEntry("disallow-commands-on-dedicated-server", Boolean.FALSE.toString()));
+    public static final ConfigEntry USE_CUSTOM_STATS = registerEntry(new ConfigEntry("use-custom-stats", Boolean.TRUE.toString()));
     public static final ConfigEntry DAMAGE_DEALT_WITH_PROJECTILE_FIX = registerEntry(new ConfigEntry("damage-dealt-with-projectile-fix", Boolean.TRUE.toString(), Patch.of(29519, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry STATS_SCREEN_TICK_FIX = registerEntry(new ConfigEntry("pause-tick-on-stats-screen-experimental-fix", Boolean.TRUE.toString(), Patch.of(36696, ModEnvironment.SERVER), true, true));
     public static final ConfigEntry CRAFT_STAT_CLICKING_FIX = registerEntry(new ConfigEntry("craft-stats-clicking-fix", Boolean.TRUE.toString(), Patch.of(65198, ModEnvironment.SERVER), false, false));
