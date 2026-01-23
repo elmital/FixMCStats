@@ -33,6 +33,13 @@ public interface IPlatformHelper {
     boolean isDevelopmentEnvironment();
 
     /**
+     * Check if the mode is running on a dedicated server
+     *
+     * @return true if in a dedicated server, false otherwise.
+     */
+    boolean isDedicatedServer();
+
+    /**
      * Gets the name of the environment type as a string.
      *
      * @return The name of the environment type.
