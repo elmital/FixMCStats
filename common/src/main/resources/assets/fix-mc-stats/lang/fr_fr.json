@@ -2,6 +2,7 @@
   "commands.fix-mc-stats.already.activated" : "Ce patch est déjà activé!",
   "commands.fix-mc-stats.already.deactivated" : "Ce patch est déjà désactivé!",
   "commands.fix-mc-stats.config.update.fail" : "La commande a échouée, impossible de sauvegarder le fichier de configuration existe-t-il toujours?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "Il est nécessaire de redémarrer le serveur pour appliquer ce changement!",
   "commands.fix-mc-stats.config.update.success.activated" : "Le patch %s est désormais activé",
   "commands.fix-mc-stats.config.update.success.deactivated" : "Le patch %s est désormais désactivé",
   "commands.fix-mc-stats.patch.config.activated" : "Le patch %s est activé!",
