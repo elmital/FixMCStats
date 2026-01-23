@@ -2,6 +2,7 @@
   "commands.fix-mc-stats.already.activated" : "此补丁已激活。",
   "commands.fix-mc-stats.already.deactivated" : "此补丁已禁用。",
   "commands.fix-mc-stats.config.update.fail" : "命令执行失败，无法更新配置文件，该文件是否仍然存在？",
+  "commands.fix-mc-stats.config.update.restart.needed" : "A restart of the server is needed to apply the changes!",
   "commands.fix-mc-stats.config.update.success.activated" : "补丁 %s 现已激活。",
   "commands.fix-mc-stats.config.update.success.deactivated" : "补丁 %s 现已禁用。",
   "commands.fix-mc-stats.patch.config.activated" : "补丁 %s 已激活！",
