@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats;
 
+import be.elmital.fixmcstats.platform.Services;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -129,7 +130,7 @@ public class Configs {
 
         ConfigEntry updateActive(boolean active) throws IOException {
             Config.instance().updateConfig(this, String.valueOf(active));
-            if (requireRestart())
+            if (requireRestart() && Services.PLATFORM.isDedicatedServer())
                 return this;
             return setActive(active);
         }
