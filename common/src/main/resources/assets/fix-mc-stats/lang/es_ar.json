@@ -2,6 +2,7 @@
   "commands.fix-mc-stats.already.activated" : "Este parche ya está activado.",
   "commands.fix-mc-stats.already.deactivated" : "Este parche ya está desactivado.",
   "commands.fix-mc-stats.config.update.fail" : "El comando ha fallado, no se puede actualizar la configuración. ¿El archivo sigue existiendo?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "¡Es necesario reiniciar el servidor para aplicar los cambios!",
   "commands.fix-mc-stats.config.update.success.activated" : "El parche %s ahora está activado.",
   "commands.fix-mc-stats.config.update.success.deactivated" : "El parche %s ahora está deactivado.",
   "commands.fix-mc-stats.patch.config.activated" : "¡El parche %s está activado!",

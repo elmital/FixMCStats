@@ -2,6 +2,7 @@
   "commands.fix-mc-stats.already.activated" : "Dieser Patch ist bereits aktiviert.",
   "commands.fix-mc-stats.already.deactivated" : "Dieser Patch ist bereits deaktiviert.",
   "commands.fix-mc-stats.config.update.fail" : "Befehl fehlgeschlagen, Konfiguration kann nicht aktualisiert werden. Existiert die Datei noch?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "Ein Neustart des Servers ist erforderlich, um die Änderungen zu übernehmen!",
   "commands.fix-mc-stats.config.update.success.activated" : "Patch %s ist jetzt aktiviert.",
   "commands.fix-mc-stats.config.update.success.deactivated" : "Patch %s ist jetzt deaktiviert.",
   "commands.fix-mc-stats.patch.config.activated" : "Patch %s ist aktiviert!",
