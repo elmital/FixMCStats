@@ -2,7 +2,7 @@
   "commands.fix-mc-stats.already.activated" : "هذا التصحيح مفعل بالفعل",
   "commands.fix-mc-stats.already.deactivated" : "هذا التصحيح معطل بالفعل",
   "commands.fix-mc-stats.config.update.fail" : "فشل الأمر، لا يمكن تحديث التكوين، هل الملف لا يزال موجودًا؟",
-  "commands.fix-mc-stats.config.update.restart.needed" : "A restart of the server is needed to apply the changes!",
+  "commands.fix-mc-stats.config.update.restart.needed" : "يلزم إعادة تشغيل الخادم لتطبيق التغييرات!",
   "commands.fix-mc-stats.config.update.success.activated" : "تم تفعيل التصحيح s% الآن",
   "commands.fix-mc-stats.config.update.success.deactivated" : "تم الآن تعطيل التصحيح s%",
   "commands.fix-mc-stats.patch.config.activated" : "تم تنشيط التصحيح s%!",
