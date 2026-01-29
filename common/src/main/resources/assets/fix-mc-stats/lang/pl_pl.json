@@ -2,7 +2,7 @@
   "commands.fix-mc-stats.already.activated" : "Ta poprawka jest już aktywna.",
   "commands.fix-mc-stats.already.deactivated" : "Ta poprawka jest już wyłączona.",
   "commands.fix-mc-stats.config.update.fail" : "Polecenie nie powiodło się, nie można zaktualizować konfiguracji. Czy plik nadal istnieje?",
-  "commands.fix-mc-stats.config.update.restart.needed" : "A restart of the server is needed to apply the changes!",
+  "commands.fix-mc-stats.config.update.restart.needed" : "Aby zmiany zaczęły działać, trzeba zrestartować serwer!",
   "commands.fix-mc-stats.config.update.success.activated" : "Poprawka %s została aktywowana.",
   "commands.fix-mc-stats.config.update.success.deactivated" : "Poprawka %s została wyłączona.",
   "commands.fix-mc-stats.patch.config.activated" : "Poprawka %s została aktywowana!",
