@@ -2,6 +2,7 @@
   "commands.fix-mc-stats.already.activated" : "Этот патч уже активирован.",
   "commands.fix-mc-stats.already.deactivated" : "Этот патч уже деактивирован.",
   "commands.fix-mc-stats.config.update.fail" : "Команда не выполнена, не удается обновить конфигурацию. Файл все еще существует?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "Для применения изменений необходимо перезапустить сервер!",
   "commands.fix-mc-stats.config.update.success.activated" : "Патч %s теперь активирован",
   "commands.fix-mc-stats.config.update.success.deactivated" : "Патч %s теперь деактивирован",
   "commands.fix-mc-stats.patch.config.activated" : "Патч %s активирован!",

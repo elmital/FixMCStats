@@ -1,5 +1,6 @@
 package be.elmital.fixmcstats;
 
+import be.elmital.fixmcstats.platform.Services;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -27,6 +28,8 @@ public class Configs {
         return configEntry;
     }
 
+    public static final ConfigEntry DISALLOW_COMMANDS = registerEntry(new ConfigEntry("disallow-commands-on-dedicated-server", Boolean.FALSE.toString()));
+    public static final ConfigEntry USE_CUSTOM_STATS = registerEntry(new ConfigEntry("use-custom-stats", Boolean.TRUE.toString()));
     public static final ConfigEntry DAMAGE_DEALT_WITH_PROJECTILE_FIX = registerEntry(new ConfigEntry("damage-dealt-with-projectile-fix", Boolean.TRUE.toString(), Patch.of(29519, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry STATS_SCREEN_TICK_FIX = registerEntry(new ConfigEntry("pause-tick-on-stats-screen-experimental-fix", Boolean.TRUE.toString(), Patch.of(36696, ModEnvironment.SERVER), true, true));
     public static final ConfigEntry CRAFT_STAT_CLICKING_FIX = registerEntry(new ConfigEntry("craft-stats-clicking-fix", Boolean.TRUE.toString(), Patch.of(65198, ModEnvironment.SERVER), false, false));
@@ -37,7 +40,7 @@ public class Configs {
     public static final ConfigEntry BREAKING_ELYTRA_AND_TRIDENT_FIX = registerEntry(new ConfigEntry("breaking-elytra-and-trident-fix", Boolean.TRUE.toString(), Patch.of(122656, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry CAMP_FIRE_COOKING_CRAFT_STAT_FIX = registerEntry(new ConfigEntry("campfire-cooking-craft-stat-fix", Boolean.TRUE.toString(), Patch.of(144005, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry IGNITED_CREEPER_FIX = registerEntry(new ConfigEntry("ignited-creeper-fix", Boolean.TRUE.toString(), Patch.of(147347, ModEnvironment.SERVER), false, false));
-    public static final ConfigEntry CRAWL_STAT = registerEntry(new ConfigEntry("use-crawling-stat", Boolean.TRUE.toString(), Patch.of(148457, ModEnvironment.SERVER), false));
+    public static final ConfigEntry CRAWL_STAT = registerEntry(new ConfigEntry("use-crawling-stat", Boolean.TRUE.toString(), Patch.of(148457, ModEnvironment.SERVER), false, false, true));
     public static final ConfigEntry CRAFTING_POTION_FIX = registerEntry(new ConfigEntry("crafting-potion-fix", Boolean.TRUE.toString(), Patch.of(154487, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry GLOWSTONE_USED_ON_ANCHOR_FIX = registerEntry(new ConfigEntry("glowstone-used-on-anchor-fix", Boolean.TRUE.toString(), Patch.of(176806, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry SORTED_STATS_SCREEN = registerEntry(new ConfigEntry("sorted-stats-screen-fix", Boolean.TRUE.toString(), Patch.of(178516, ModEnvironment.CLIENT), false, false));
@@ -46,7 +49,7 @@ public class Configs {
     public static final ConfigEntry BREAKING_CROSSBOW_FIX = registerEntry(new ConfigEntry("breaking-crossbow-fix", Boolean.TRUE.toString(), Patch.of(214457, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry FLOWER_POTTED_FIX = registerEntry(new ConfigEntry("flower-potted-fix", Boolean.TRUE.toString(), Patch.of(231743, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry TIMES_MINED_BLOCKS_FIX = registerEntry(new ConfigEntry("times-mined-blocks-fix", Boolean.TRUE.toString(), Patch.of(245962, ModEnvironment.SERVER), false, false));
-    public static final ConfigEntry CAMEL_STAT = registerEntry(new ConfigEntry("use-camel-riding-stat", Boolean.TRUE.toString(), Patch.of(256638, ModEnvironment.SERVER), false));
+    public static final ConfigEntry CAMEL_STAT = registerEntry(new ConfigEntry("use-camel-riding-stat", Boolean.TRUE.toString(), Patch.of(256638, ModEnvironment.SERVER), false, false, true));
     public static final ConfigEntry ELYTRA_FIX = registerEntry(new ConfigEntry("elytra-experimental-fix", Boolean.TRUE.toString(), Patch.of(259687, ModEnvironment.SERVER), false, true));
     public static final ConfigEntry PLACEABLE_ON_WATER_FIX = registerEntry(new ConfigEntry("placeable-on-water-fix", Boolean.TRUE.toString(), Patch.of(264274, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry KILLED_BY_GOAT_FIX = registerEntry(new ConfigEntry("killed-by-goat-fix", Boolean.TRUE.toString(), Patch.of(265376, ModEnvironment.SERVER), false, false));
@@ -54,28 +57,37 @@ public class Configs {
     public static final ConfigEntry DECORATED_POT_BREAKING = registerEntry(new ConfigEntry("decorated-pot-breaking-fix", Boolean.TRUE.toString(), Patch.of(268093, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry EQUIP_ARMOR_STAND_FIX = registerEntry(new ConfigEntry("equip-armor-stand-fix", Boolean.TRUE.toString(), Patch.of(273933, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry INCREMENT_USE_RECORDS = registerEntry(new ConfigEntry("increment-use-record-stat-fix", Boolean.TRUE.toString(), Patch.of(276994, ModEnvironment.SERVER), false, false));
-    public static final ConfigEntry USE_DONKEY_STATS = registerEntry(new ConfigEntry("use-donkey-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false));
-    public static final ConfigEntry USE_MULE_STATS = registerEntry(new ConfigEntry("use-mule-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false));
+    public static final ConfigEntry USE_DONKEY_STATS = registerEntry(new ConfigEntry("use-donkey-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false, true));
+    public static final ConfigEntry USE_MULE_STATS = registerEntry(new ConfigEntry("use-mule-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false, true));
     public static final ConfigEntry HAPPY_GHAST_RIDING_FIX = registerEntry(new ConfigEntry("happy-ghast-riding-fix", Boolean.TRUE.toString(), Patch.of(301722, ModEnvironment.SERVER), false, false));
     public static final ConfigEntry SHIELD_USED_FIX = registerEntry(new ConfigEntry("shield-used-fix", Boolean.TRUE.toString(), Patch.of(301722, ModEnvironment.SERVER), false, false));
 
 
     public static class ConfigEntry {
         private final String key, def;
-        private final boolean experimental, deprecated;
+        private final boolean experimental, deprecated, requireRestart;
         private final @Nullable Patch patch;
         private boolean active;
+
+        protected ConfigEntry(String key, String def) {
+            this(key, def, null, false, false);
+        }
 
         protected ConfigEntry(String key, String def, Patch patch, boolean experimental) {
             this(key, def, patch, experimental, false);
         }
 
-        protected ConfigEntry(String key, String def, @Nullable Patch patch, boolean experimental, boolean deprecated) {
+        protected ConfigEntry(String key, String def, Patch patch, boolean experimental, boolean deprecated) {
+            this(key, def, patch, experimental, deprecated, false);
+        }
+
+        protected ConfigEntry(String key, String def, @Nullable Patch patch, boolean experimental, boolean deprecated, boolean requireRestart) {
             this.key = key;
             this.def = def;
             this.patch = patch;
             this.experimental = experimental;
             this.deprecated = deprecated;
+            this.requireRestart = requireRestart;
         }
 
         public String getKey() {
@@ -110,6 +122,10 @@ public class Configs {
             return !this.deprecated && this.active;
         }
 
+        public boolean requireRestart() {
+            return this.requireRestart;
+        }
+
         ConfigEntry setActive(boolean active) {
             this.active = active;
             return this;
@@ -117,6 +133,8 @@ public class Configs {
 
         ConfigEntry updateActive(boolean active) throws IOException {
             Config.instance().updateConfig(this, String.valueOf(active));
+            if (requireRestart() && Services.PLATFORM.isDedicatedServer())
+                return this;
             return setActive(active);
         }
     }

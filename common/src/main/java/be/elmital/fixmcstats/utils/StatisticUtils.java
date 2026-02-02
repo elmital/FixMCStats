@@ -1,7 +1,9 @@
 package be.elmital.fixmcstats.utils;
 
+import be.elmital.fixmcstats.Configs;
 import be.elmital.fixmcstats.Constants;
 import be.elmital.fixmcstats.mixin.StatsAccessor;
+import be.elmital.fixmcstats.platform.Services;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -25,15 +27,28 @@ public class StatisticUtils {
 
     public static void registerAllCustomStats() {
         Constants.LOGGER.info("Checking for custom statistics...");
-        Constants.LOGGER.info("Adding camel custom stat to the registry");
-        StatisticUtils.register(StatisticUtils.CAMEL_RIDING_STAT);
-        Constants.LOGGER.info("Adding donkey custom stat to the registry");
-        StatisticUtils.register(StatisticUtils.DONKEY_RIDING_STAT);
-        Constants.LOGGER.info("Adding mule custom stat to the registry");
-        StatisticUtils.register(StatisticUtils.MULE_RIDING_STAT);
-        Constants.LOGGER.info("Adding crawling custom stat to the registry");
-        StatisticUtils.register(StatisticUtils.CRAWL_ONE_CM);
-        Constants.LOGGER.info("All custom statistics added");
+        if (!Configs.USE_CUSTOM_STATS.isActive()) {
+            Constants.LOGGER.info("The use of custom statistics are disabled skipping registration");
+            return;
+        }
+
+        if (Configs.CAMEL_STAT.isActive() || !Services.PLATFORM.isDedicatedServer()) {
+            Constants.LOGGER.info("Adding camel custom stat to the registry");
+            StatisticUtils.register(StatisticUtils.CAMEL_RIDING_STAT);
+        }
+        if (Configs.USE_DONKEY_STATS.isActive() || !Services.PLATFORM.isDedicatedServer()) {
+            Constants.LOGGER.info("Adding donkey custom stat to the registry");
+            StatisticUtils.register(StatisticUtils.DONKEY_RIDING_STAT);
+        }
+        if (Configs.USE_MULE_STATS.isActive() || !Services.PLATFORM.isDedicatedServer()) {
+            Constants.LOGGER.info("Adding mule custom stat to the registry");
+            StatisticUtils.register(StatisticUtils.MULE_RIDING_STAT);
+        }
+        if (Configs.CRAWL_STAT.isActive() || !Services.PLATFORM.isDedicatedServer()) {
+            Constants.LOGGER.info("Adding crawling custom stat to the registry");
+            StatisticUtils.register(StatisticUtils.CRAWL_ONE_CM);
+        }
+        Constants.LOGGER.info("All custom statistics have been checked");
     }
 
     public record CustomStatistic(String path, StatFormatter statFormatter, Identifier identifier) {
