@@ -1,0 +1,18 @@
+{
+  "commands.fix-mc-stats.already.activated" : "Bu yama zaten etkinleştirilmiştir.",
+  "commands.fix-mc-stats.already.deactivated" : "Bu yama zaten devre dışı bırakılmıştır.",
+  "commands.fix-mc-stats.config.update.fail" : "Komut başarısız, yapılandırmayı güncelleyemiyor. Dosya hala var mı?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "Değişikliklerin uygulanması için sunucunun yeniden başlatılması gerekir!",
+  "commands.fix-mc-stats.config.update.success.activated" : "Yama %s artık etkinleştirildi",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "Yama %s artık devre dışıdır.",
+  "commands.fix-mc-stats.patch.config.activated" : "Yama %s etkinleştirildi!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Yama %s devre dışı bırakıldı!",
+  "commands.fix-mc-stats.patch.experimental" : "Bu yamanın deneysel olduğunu unutmayın!",
+  "commands.fix-mc-stats.patch.link" : "Yama [%s] için sorun bağlantısını açmak için tıklayın.",
+  "stat.fix-mc-stats.camel_one_cm" : "Deve ile Mesafe",
+  "stat.fix-mc-stats.crawl_one_cm" : "Sürünen Mesafe",
+  "stat.fix-mc-stats.donkey_one_cm" : "Eşekle Mesafe",
+  "stat.fix-mc-stats.mule_one_cm" : "Katırla Mesafe",
+  "modmenu.descriptionTranslation.fix-mc-stats" : "Minecraft istatistikleriyle ilgili bazı sorunları gidermeyi amaçlayan mod.",
+  "modmenu.summaryTranslation.fix-mc-stats" : "Minecraft istatistikleriyle ilgili bazı sorunları düzeltin."
+}
