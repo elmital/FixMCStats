@@ -72,7 +72,7 @@ The second is `/fixmcstats-server` for the server-side patches part, of course y
 
 ### Localization:
 
-**Some phrases from the mod may not be translated or been wrongly translated in your language actually only French(ca, fr), English(gb, us, ca, au) are fully supported. German, Polish, Russian, Chinese Simplified, Arabic, Spanish(ar,es,mx) and Portuguese(pt,br) are translated using external tools like DeepL and Google trad. Help and PR from fluent speakers are greatly appreciated.**
+**Some phrases from the mod may not be translated or been wrongly translated in your language actually only French(ca, fr), English(gb, us, ca, au) are fully supported. Arabic, Chinese Simplified, Dutch, Filipino, German, Hindi, Indonesian, Polish, Portuguese(pt,br), Russian, Spanish(ar,es,mx) and Turkish are translated using external tools like DeepL and Google trad. Help and PR from fluent speakers are greatly appreciated.**
 
 ---
 
