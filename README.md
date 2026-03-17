@@ -70,6 +70,27 @@ The second is `/fixmcstats-server` for the server-side patches part, of course y
 - `/fixmcstats-... activate [PATCH ID]` activate the patch
 - `/fixmcstats-... deactivate [PATCH ID]` deactivate the patch
 
+## New configs for commands and custom statistics (v2.2.2+)
+
+The mod is using commands and custom statistics which can lead to desync in the registries between dedicated servers and players. It will on Fabric block the join and on NeoForge create bugs with the commands arguments.
+There are two new configs added that allows you to disable the commands or the usage of custom stats.
+
+- `disallow-commands-on-dedicated-server` by setting it to true in the server config file it will not register the command stuff. You will not be able to use the commands to turn on/off patches, but you still can manage them in the config file.
+- `use-custom-stats` some patches uses custom stats like for example the patch linked to riding a camel. If this option is activated(default value) and a patch (using custom stats) is activated too, instead of incrementing the custom stat it will just prevent the default stat used by MC to be increased.
+
+### Additional notes for server owners
+
+- If you are hosting a Fabric server with the mod installed :
+    - If you still want to use the custom stats, the commands or both the players joining your server will be forced to have the mod installed and use Fabric. (default behavior no changes needed in the config)
+    - If you want all players to be able to join : you have to disallow the commands and deactivate the use-custom-stats option in the config.
+    - If you want all the Neoforge users to join even if they have the mod installed it won't work without disallow the commands and deactivate the usage of custom stats.
+    - If you want all fabric users to join : you have to deactivate the use-custom-stats option and disallow the use of commands too in the config.
+
+    -> Side effect for the players that have the mod installed operators will not be able to use the /fix-mc-stats-server command. And the custom statistics will be still shown in their Statistics view but won't be incremented.
+- If you are hosting a Neoforge server with the mod installed everyone is able to join but some stuff will not work:
+    - If you want to use the custom stats the players that didn't have the mod installed will not see them in their Statistics view however the stats will be incremented correctly on the server.
+    - If you allow the mod commands usage /fix-mc-stats-server command will not work correctly for operators that didn't have the mod installed
+
 ### Localization:
 
 **Some phrases from the mod may not be translated or been wrongly translated in your language actually only French(ca, fr), English(gb, us, ca, au) are fully supported. Arabic, Chinese Simplified, Dutch, Filipino, German, Hindi, Indonesian, Polish, Portuguese(pt,br), Russian, Spanish(ar,es,mx) and Turkish are translated using external tools like DeepL and Google trad. Help and PR from fluent speakers are greatly appreciated.**
