@@ -1,0 +1,18 @@
+{
+  "commands.fix-mc-stats.already.activated" : "Patch ini sudah diaktifkan.",
+  "commands.fix-mc-stats.already.deactivated" : "Patch ini sudah dinonaktifkan.",
+  "commands.fix-mc-stats.config.update.fail" : "Perintah gagal, tidak dapat memperbarui konfigurasi. Apakah file tersebut masih ada?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "Diperlukan restart server untuk menerapkan perubahan!",
+  "commands.fix-mc-stats.config.update.success.activated" : "Patch %s sekarang telah diaktifkan.",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "Patch %s sekarang dinonaktifkan.",
+  "commands.fix-mc-stats.patch.config.activated" : "Patch %s telah diaktifkan!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Patch %s telah dinonaktifkan!",
+  "commands.fix-mc-stats.patch.experimental" : "Perhatikan, patch ini masih dalam tahap eksperimental!",
+  "commands.fix-mc-stats.patch.link" : "Klik untuk membuka tautan masalah untuk patch [%s]",
+  "stat.fix-mc-stats.camel_one_cm" : "Jarak dengan Unta",
+  "stat.fix-mc-stats.crawl_one_cm" : "Jarak yang Ditempuh",
+  "stat.fix-mc-stats.donkey_one_cm" : "Jarak dengan Keledai",
+  "stat.fix-mc-stats.mule_one_cm" : "Jarak dengan Mule",
+  "modmenu.descriptionTranslation.fix-mc-stats" : "Mod yang bertujuan untuk memperbaiki beberapa masalah dengan statistik Minecraft.",
+  "modmenu.summaryTranslation.fix-mc-stats" : "Perbaiki beberapa masalah dengan statistik Minecraft."
+}
