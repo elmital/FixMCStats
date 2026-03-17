@@ -1,0 +1,18 @@
+{
+  "commands.fix-mc-stats.already.activated" : "Deze patch is al geactiveerd.",
+  "commands.fix-mc-stats.already.deactivated" : "Deze patch is al gedeactiveerd.",
+  "commands.fix-mc-stats.config.update.fail" : "Commando mislukt, kan configuratie niet bijwerken. Bestaat het bestand nog steeds?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "De server moet opnieuw worden opgestart om de wijzigingen toe te passen!",
+  "commands.fix-mc-stats.config.update.success.activated" : "Patch %s is nu geactiveerd",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "Patch %s is nu gedeactiveerd",
+  "commands.fix-mc-stats.patch.config.activated" : "Patch %s is geactiveerd!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Patch %s is gedeactiveerd!",
+  "commands.fix-mc-stats.patch.experimental" : "Let op: deze patch is experimenteel!",
+  "commands.fix-mc-stats.patch.link" : "Klik om de issue-link voor patch [%s] te openen.",
+  "stat.fix-mc-stats.camel_one_cm" : "Afstand per kameel",
+  "stat.fix-mc-stats.crawl_one_cm" : "Afgelegde afstand",
+  "stat.fix-mc-stats.donkey_one_cm" : "Afstand per ezel",
+  "stat.fix-mc-stats.mule_one_cm" : "Afstand per muilezel",
+  "modmenu.descriptionTranslation.fix-mc-stats" : "Mod die tot doel heeft enkele problemen met de Minecraft-statistieken op te lossen.",
+  "modmenu.summaryTranslation.fix-mc-stats" : "Los enkele problemen met de Minecraft-statistieken op."
+}

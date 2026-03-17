@@ -1,0 +1,18 @@
+{
+  "commands.fix-mc-stats.already.activated" : "Na-activate na ang patch na ito.",
+  "commands.fix-mc-stats.already.deactivated" : "Ang patch na ito ay naka-deactivate na.",
+  "commands.fix-mc-stats.config.update.fail" : "Nabigo ang utos, hindi ma-update ang config. Nananatili pa ba ang file?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "Kinakailangan i-restart ang server upang maipatupad ang mga pagbabago!",
+  "commands.fix-mc-stats.config.update.success.activated" : "Na-activate na ang patch %s",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "Ang patch %s ay hindi na aktibo.",
+  "commands.fix-mc-stats.patch.config.activated" : "Na-aktiba ang patch %s!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "Ang patch %s ay na-deactivate!",
+  "commands.fix-mc-stats.patch.experimental" : "Mangyaring maging maingat: eksperimento pa lamang ang patch na ito!",
+  "commands.fix-mc-stats.patch.link" : "I-click upang buksan ang link ng isyu para sa patch [%s]",
+  "stat.fix-mc-stats.camel_one_cm" : "Distansya sa Kamelyo",
+  "stat.fix-mc-stats.crawl_one_cm" : "Distansyang nalakbay",
+  "stat.fix-mc-stats.donkey_one_cm" : "Distansya ng Asno",
+  "stat.fix-mc-stats.mule_one_cm" : "Distansya ng Mula",
+  "modmenu.descriptionTranslation.fix-mc-stats" : "Mod na naglalayong ayusin ang ilang isyu sa estadistika ng Minecraft.",
+  "modmenu.summaryTranslation.fix-mc-stats" : "Ayusin ang ilang isyu sa estadistika ng Minecraft."
+}

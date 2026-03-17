@@ -1,0 +1,18 @@
+{
+  "commands.fix-mc-stats.already.activated" : "यह पैच पहले से ही सक्रिय है।",
+  "commands.fix-mc-stats.already.deactivated" : "यह पैच पहले से ही निष्क्रिय है।",
+  "commands.fix-mc-stats.config.update.fail" : "कमांड विफल हो गई, कॉन्फ़िग अपडेट नहीं हो पा रहा है, क्या फ़ाइल अभी भी मौजूद है?",
+  "commands.fix-mc-stats.config.update.restart.needed" : "परिवर्तनों को लागू करने के लिए सर्वर को पुनः आरंभ करना आवश्यक है!",
+  "commands.fix-mc-stats.config.update.success.activated" : "पैच %s अब सक्रिय हो गया है।",
+  "commands.fix-mc-stats.config.update.success.deactivated" : "पैच %s अब निष्क्रिय कर दिया गया है।",
+  "commands.fix-mc-stats.patch.config.activated" : "पैच %s सक्रिय हो गया है!",
+  "commands.fix-mc-stats.patch.config.deactivated" : "पैच %s निष्क्रिय कर दिया गया है!",
+  "commands.fix-mc-stats.patch.experimental" : "ध्यान रखें कि यह पैच प्रयोगात्मक है!",
+  "commands.fix-mc-stats.patch.link" : "पैच [%s] के लिए इश्यू लिंक खोलने के लिए क्लिक करें।",
+  "stat.fix-mc-stats.camel_one_cm" : "ऊँट द्वारा दूरी",
+  "stat.fix-mc-stats.crawl_one_cm" : "रेंगी गई दूरी",
+  "stat.fix-mc-stats.donkey_one_cm" : "गधे द्वारा दूरी",
+  "stat.fix-mc-stats.mule_one_cm" : "खच्चर द्वारा दूरी",
+  "modmenu.descriptionTranslation.fix-mc-stats" : "Minecraft के आँकड़ों में कुछ समस्याओं को ठीक करने का उद्देश्य रखने वाला मॉड।",
+  "modmenu.summaryTranslation.fix-mc-stats" : "Minecraft के आँकड़ों में कुछ समस्याएँ ठीक करें।"
+}
