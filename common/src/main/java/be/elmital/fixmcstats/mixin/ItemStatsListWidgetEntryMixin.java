@@ -27,7 +27,7 @@ public abstract class ItemStatsListWidgetEntryMixin extends ContainerObjectSelec
             final Collator collator = LanguageBasedCollator.generateCollator();
             sort((o1, o2) -> {
                 if (o1 instanceof StatsScreen.ItemStatisticsList.ItemRow statEntry1 && o2 instanceof StatsScreen.ItemStatisticsList.ItemRow statEntry2) {
-                    return collator.compare(statEntry1.getItem().getName().getString(), statEntry2.getItem().getName().getString());
+                    return collator.compare(statEntry1.getItem().getName(statEntry1.getItem().getDefaultInstance()).getString(), statEntry2.getItem().getName(statEntry2.getItem().getDefaultInstance()).getString());
                 }
                 return 0;
             });
