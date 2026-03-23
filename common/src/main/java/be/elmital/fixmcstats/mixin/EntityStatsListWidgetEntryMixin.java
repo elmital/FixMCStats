@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(targets = "net.minecraft.client.gui.screens.achievement.StatsScreen$MobsStatisticsList$MobRow")
 public class EntityStatsListWidgetEntryMixin {
     // Fix https://bugs.mojang.com/browse/MC-80827
-    @ModifyVariable(method = "renderContent", at = @At(value = "INVOKE", target ="Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 1, shift = At.Shift.AFTER), ordinal = 1, argsOnly = true)
+    @ModifyVariable(method = "extractContent", at = @At(value = "INVOKE", target ="Lnet/minecraft/client/gui/GuiGraphicsExtractor;text(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 1, shift = At.Shift.AFTER), ordinal = 1, argsOnly = true)
     private int injected(int y) {
         if (Configs.MISSING_SPACE_STATS_SCREEN.isActive()) {
             return y + 1;
