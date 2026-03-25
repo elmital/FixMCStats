@@ -1,4 +1,4 @@
-accessWidener	v2	named
+accessWidener	v2	official
 transitive-accessible	class	net/minecraft/client/gui/screens/achievement/StatsScreen$GeneralStatisticsList
 transitive-accessible	class	net/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList
 transitive-accessible	class	net/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRowComparator

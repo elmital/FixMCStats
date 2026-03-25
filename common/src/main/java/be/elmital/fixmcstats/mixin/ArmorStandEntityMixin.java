@@ -19,8 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ArmorStandEntityMixin {
 
     // https://bugs.mojang.com/browse/MC-273933
-    @Inject(method = "interactAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/decoration/ArmorStand;swapItem(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)Z"))
-    public void equipEntity(Player player, Vec3 hitPos, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir, @Local ItemStack stack) {
+    @Inject(method = "interact", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/decoration/ArmorStand;swapItem(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)Z"))
+    public void equipEntity(Player player, InteractionHand hand, Vec3 location, CallbackInfoReturnable<InteractionResult> cir, @Local ItemStack stack) {
         if (Configs.EQUIP_ARMOR_STAND_FIX.isActive() && !stack.getItem().equals(Items.AIR)) {
             player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
         }

@@ -15,7 +15,7 @@ public class ItemComparatorMixin {
     @ModifyExpressionValue(method = "compare(Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow;Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow;)I", at = @At(value = "INVOKE", target = "Ljava/lang/Integer;compare(II)I", ordinal = 0))
     public int compareEntries(int comparedInt, @Local(index = 3) Item item1, @Local(index = 4) Item item2) {
         if (Configs.ITEM_SORTING_FIX.isActive())
-            return item1.getName().getString().compareTo(item2.getName().getString());
+            return item1.getName(item1.getDefaultInstance()).getString().compareTo(item2.getName(item2.getDefaultInstance()).getString());
         return comparedInt;
     }
 }
