@@ -13,17 +13,6 @@ pluginManagement {
 				includeGroupAndSubgroups('net.fabricmc')
 			}
 		}
-		exclusiveContent {
-			forRepository {
-				maven {
-					name = 'Sponge'
-					url = uri('https://repo.spongepowered.org/repository/maven-public')
-				}
-			}
-			filter {
-				includeGroupAndSubgroups("org.spongepowered")
-			}
-		}
 	}
 }
 
