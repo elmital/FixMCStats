@@ -1,8 +1,12 @@
 package be.elmital.fixmcstats.platform;
 
 import be.elmital.fixmcstats.platform.services.IPlatformHelper;
+import com.mojang.brigadier.arguments.ArgumentType;
 import net.fabricmc.api.EnvType;
+import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.commands.synchronization.ArgumentTypeInfo;
+import net.minecraft.resources.Identifier;
 
 import java.nio.file.Path;
 
@@ -31,5 +35,10 @@ public class FabricPlatformHelper implements IPlatformHelper {
     @Override
     public boolean isDedicatedServer() {
         return FabricLoader.getInstance().getEnvironmentType().equals(EnvType.SERVER);
+    }
+
+    @Override
+    public <A extends ArgumentType<?>, T extends ArgumentTypeInfo.Template<A>> void registerArgumentType(Identifier id, Class<A> clazz, ArgumentTypeInfo<A, T> serializer) {
+        ArgumentTypeRegistry.registerArgumentType(id, clazz, serializer);
     }
 }
