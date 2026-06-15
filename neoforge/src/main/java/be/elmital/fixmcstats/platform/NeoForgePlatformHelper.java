@@ -1,6 +1,12 @@
 package be.elmital.fixmcstats.platform;
 
 import be.elmital.fixmcstats.platform.services.IPlatformHelper;
+import com.mojang.brigadier.arguments.ArgumentType;
+import net.minecraft.commands.synchronization.ArgumentTypeInfo;
+import net.minecraft.commands.synchronization.ArgumentTypeInfos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
@@ -31,5 +37,11 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     @Override
     public boolean isDedicatedServer() {
         return FMLLoader.getCurrent().getDist().isDedicatedServer();
+    }
+
+    @Override
+    public <A extends ArgumentType<?>, T extends ArgumentTypeInfo.Template<A>> void registerArgumentType(Identifier id, Class<A> clazz, ArgumentTypeInfo<A, T> serializer) {
+        ArgumentTypeInfos.registerByClass(clazz, serializer);
+        Registry.register(BuiltInRegistries.COMMAND_ARGUMENT_TYPE, id, serializer);
     }
 }
