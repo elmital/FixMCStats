@@ -1,5 +1,9 @@
 package be.elmital.fixmcstats.platform.services;
 
+import com.mojang.brigadier.arguments.ArgumentType;
+import net.minecraft.commands.synchronization.ArgumentTypeInfo;
+import net.minecraft.resources.ResourceLocation;
+
 import java.nio.file.Path;
 
 public interface IPlatformHelper {
@@ -47,4 +51,6 @@ public interface IPlatformHelper {
     default String getEnvironmentName() {
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    <A extends ArgumentType<?>, T extends ArgumentTypeInfo.Template<A>> void registerArgumentType(ResourceLocation id, Class<A> clazz, ArgumentTypeInfo<A, T> serializer);
 }

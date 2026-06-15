@@ -38,14 +38,10 @@ import java.util.stream.Collectors;
 
 
 public abstract class BasicCommand<C extends SharedSuggestionProvider> {
-    @SuppressWarnings("unchecked,rawtypes")
-    public final static ArgumentType<Configs.ConfigEntry, PatchArgumentType<?>, SingletonArgumentInfo<PatchArgumentType<?>>.Template> PATCH_ARGUMENT = new ArgumentType<>(ResourceLocation.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(null)));
-    public final static ArgumentType<BasicCommand.PatchAction, PatchActionArgumentType, SingletonArgumentInfo<PatchActionArgumentType>.Template> PATCH_ACTION_ARGUMENT = new ArgumentType<>(ResourceLocation.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
-
-    public static void notifyArgumentRegisteringStarting() {
+    static void registerServerSideArguments() {
         Constants.LOGGER.info("Registering commands argument types...");
-    }
-    public static void notifyArgumentRegisteringEnding() {
+        Services.PLATFORM.registerArgumentType(ResourceLocation.parse("fix-mc-stats:patchaction"), PatchActionArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchActionArgumentType.pathAction()));
+        Services.PLATFORM.registerArgumentType(ResourceLocation.parse("fix-mc-stats:patch"), PatchArgumentType.class, SingletonArgumentInfo.contextAware(access -> PatchArgumentType.patchArgument(ModEnvironment.SERVER)));
         Constants.LOGGER.info("Commands argument types registered");
     }
 
