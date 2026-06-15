@@ -60,7 +60,7 @@ public class Configs {
     public static final ConfigEntry USE_DONKEY_STATS = registerEntry(new ConfigEntry("use-donkey-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false, true));
     public static final ConfigEntry USE_MULE_STATS = registerEntry(new ConfigEntry("use-mule-stat", Boolean.TRUE.toString(), Patch.of(277294, ModEnvironment.SERVER), false, false, true));
     public static final ConfigEntry HAPPY_GHAST_RIDING_FIX = registerEntry(new ConfigEntry("happy-ghast-riding-fix", Boolean.TRUE.toString(), Patch.of(301722, ModEnvironment.SERVER), false, false));
-    public static final ConfigEntry SHIELD_USED_FIX = registerEntry(new ConfigEntry("shield-used-fix", Boolean.TRUE.toString(), Patch.of(301722, ModEnvironment.SERVER), false, false));
+    public static final ConfigEntry SHIELD_USED_FIX = registerEntry(new ConfigEntry("shield-used-fix", Boolean.TRUE.toString(), Patch.of(304642, ModEnvironment.SERVER), false, false));
 
 
     public static class ConfigEntry {
