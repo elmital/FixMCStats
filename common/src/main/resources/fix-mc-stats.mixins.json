@@ -2,8 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "be.elmital.fixmcstats.mixin",
-  "refmap": "${mod_id}.refmap.json",
-  "compatibilityLevel": "JAVA_18",
+  "compatibilityLevel": "JAVA_25",
   "mixins": [
     "ArmorStandEntityMixin",
     "BlockMixin",
@@ -34,5 +33,7 @@
   "server": [],
   "injectors": {
     "defaultRequire": 1
+  }, "overwrites": {
+    "requireAnnotations": true
   }
 }
