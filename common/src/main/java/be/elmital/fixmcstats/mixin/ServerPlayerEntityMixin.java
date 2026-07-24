@@ -105,10 +105,19 @@ public abstract class ServerPlayerEntityMixin extends Player {
         }
     }
 
+
+    // Fix for https://bugs.mojang.com/browse/MC-148457
+    @Inject(method = "checkMovementStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/Identifier;I)V", ordinal = 6), cancellable = true)
+    private void cancelStatIncrement(double dx, double dy, double dz, CallbackInfo ci) {
+        if (this.isVisuallyCrawling() && Configs.CRAWL_STAT.isActive() && !Configs.USE_CUSTOM_STATS.isActive()) {
+            ci.cancel();
+        }
+    }
+
     // Fix for https://bugs.mojang.com/browse/MC-148457
     @ModifyArg(method = "checkMovementStatistics", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/resources/Identifier;I)V", ordinal = 6), index = 0)
     private Identifier useCrawlStat(Identifier identifier) {
-        if (this.isVisuallyCrawling() && Configs.CRAWL_STAT.isActive())
+        if (this.isVisuallyCrawling() && Configs.CRAWL_STAT.isActive() && Configs.USE_CUSTOM_STATS.isActive())
             return StatisticUtils.CRAWL_ONE_CM.identifier();
         return identifier;
     }
