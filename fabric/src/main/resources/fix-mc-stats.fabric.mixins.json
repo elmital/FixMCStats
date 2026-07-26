@@ -4,7 +4,8 @@
   "package": "be.elmital.fixmcstats.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "BlocksAttacksFabricMixin"
+    "BlocksAttacksFabricMixin",
+    "LivingEntityFabricMixin"
   ],
   "client": [],
   "server": [],
