@@ -1,6 +1,5 @@
 name: "Mod bug"
 description: Report issues related to crash or an incompatibility with another Mod.
-type: bug
 labels:
   - "mod bug"
 body:

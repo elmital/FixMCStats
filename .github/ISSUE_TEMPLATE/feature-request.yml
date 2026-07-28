@@ -1,6 +1,5 @@
 name: "Feature request"
 description: You want the Mod to include a new feature.
-type: feature
 labels:
   - "mod enhancement"
 body:

@@ -1,6 +1,5 @@
 name: "Question"
 description: You have a question on a specific topic.
-type: question
 labels:
   - "question"
 body:
