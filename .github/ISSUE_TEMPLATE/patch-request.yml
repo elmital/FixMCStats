@@ -1,6 +1,6 @@
 name: "Patch request"
 description: You found a bug with statistics in Minecraft vanilla and want to be patched by the mod.
-type: "feature"
+type: feature
 labels:
   - "MC bug patch request"
 body:
