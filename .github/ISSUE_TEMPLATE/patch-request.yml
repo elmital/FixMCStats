@@ -1,0 +1,45 @@
+name: "Patch request"
+description: You found a bug with statistics in Minecraft vanilla and want to be patched by the mod.
+type: "feature"
+labels:
+  - "MC bug patch request"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting this patch request ensure : 
+        1. The bug must be linked to MC statistics.
+        2. Don't ask for a bug which is a translation issue.
+        3. It always refers to an official Minecraft bug from the [official issue tracker](https://bugs.mojang.com/projects/MC/issues).
+        4. The bug occurs on a MC release version.
+        5. Make sure the bug doesn't appear in the Won't fix section.
+
+  - type: input
+    attributes:
+      label: MC bug id and issue link
+      description: |
+        Provide the ID of the bug it should be something like "MC-123666"
+        And the link to the official issue [in the Mojang tracker](https://bugs.mojang.com/projects/MC/issues)
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Context
+      description: Provide some context, why do you want or think it should be added?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Clues or possible solutions
+      description: Is there solutions that can be used to fix the MC bug?
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Other
+      description: Share other context, screenshots, video about the patch request.
+    validations:
+      required: false

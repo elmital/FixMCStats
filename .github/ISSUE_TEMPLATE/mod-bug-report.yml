@@ -1,0 +1,61 @@
+name: "Mod bug"
+description: Report issues related to crash or an incompatibility with another Mod.
+type: "bug"
+labels:
+  - "mod bug"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting this issue, ensure you don't report a Minecraft bug as a bug. If you want a MC bug to be patched by the Mod you should use the Patch request template.
+        If you are using a ModPack it might be better to report the bug to the ModPack creator at first.
+
+  - type: dropdown
+    id: loader
+    attributes:
+      label: Mod loader
+      description: What Mod loader is concerned by the bug?
+      options:
+        - Fabric
+        - Neoforge
+        - Both (Fabric & NeoForge)
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Description of the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps/models to reproduce
+      description: This may include a video, screens or detailed instructions to help to reproduce the issue.
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Minecraft version and Mod Loader version
+      description: |
+        What's the version of Minecraft you play and the version of you Mod Loader. 
+        For ex : fabric loader 0.19.3 Minecraft 26.1.2
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Mods list
+      description: All the other mods you are using.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Other
+      description: You have other informations you want to share?
+    validations:
+      required: false

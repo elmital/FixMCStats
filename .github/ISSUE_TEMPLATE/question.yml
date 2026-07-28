@@ -1,0 +1,16 @@
+name: "Question"
+description: You have a question on a specific topic.
+type: "question"
+labels:
+  - "question"
+body:
+  - type: markdown
+    attributes:
+      value: Don't ask for ETA about a release or an update for newest version of MC. And don't use this form to report bugs or ask for features.
+
+  - type: textarea
+    attributes:
+      label: Question
+      description: What's your question?
+    validations:
+      required: true

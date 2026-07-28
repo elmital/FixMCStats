@@ -1,0 +1,37 @@
+name: "Feature request"
+description: You want the Mod to include a new feature.
+type: "feature"
+labels:
+  - "mod enhancement"
+body:
+  - type: markdown
+    attributes:
+      value: Before submitting this feature request ensure it doesn't concern a Minecraft bug you want the Mod to include for that case use the Patch request form
+
+  - type: textarea
+    attributes:
+      label: Context
+      description: Provide some context, why do you want it added? Are you facing a problem you want to be solved?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Describe the feature itself you'd like.
+      description: A clear and concise description of what you want.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Is there other alternatives you have considered?
+      description: List any alternatives you have tried or alternative method to achieve your goal.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Other
+      description: Share other context, screenshots, video about the feature.
+    validations:
+      required: false
