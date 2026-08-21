@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "Dystans przebyty na osiołku",
   "stat.fix-mc-stats.mule_one_cm" : "Dystans przebyty na osiołku muł",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod, który ma na celu naprawienie niektórych problemów ze statystykami Minecrafta.",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Naprawiono kilka problemów ze statystykami Minecrafta."
+  "modmenu.summaryTranslation.fix-mc-stats" : "Naprawiono kilka problemów ze statystykami Minecrafta.",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Mod, który ma na celu naprawienie niektórych problemów ze statystykami Minecrafta."
 }

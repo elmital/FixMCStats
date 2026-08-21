@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "Afstand per ezel",
   "stat.fix-mc-stats.mule_one_cm" : "Afstand per muilezel",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod die tot doel heeft enkele problemen met de Minecraft-statistieken op te lossen.",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Los enkele problemen met de Minecraft-statistieken op."
+  "modmenu.summaryTranslation.fix-mc-stats" : "Los enkele problemen met de Minecraft-statistieken op.",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Mod die tot doel heeft enkele problemen met de Minecraft-statistieken op te lossen."
 }

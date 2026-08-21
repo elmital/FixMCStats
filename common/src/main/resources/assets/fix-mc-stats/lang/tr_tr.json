@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "Eşekle Mesafe",
   "stat.fix-mc-stats.mule_one_cm" : "Katırla Mesafe",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Minecraft istatistikleriyle ilgili bazı sorunları gidermeyi amaçlayan mod.",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Minecraft istatistikleriyle ilgili bazı sorunları düzeltin."
+  "modmenu.summaryTranslation.fix-mc-stats" : "Minecraft istatistikleriyle ilgili bazı sorunları düzeltin.",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Minecraft istatistikleriyle ilgili bazı sorunları gidermeyi amaçlayan mod."
 }

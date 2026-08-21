@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "गधे द्वारा दूरी",
   "stat.fix-mc-stats.mule_one_cm" : "खच्चर द्वारा दूरी",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Minecraft के आँकड़ों में कुछ समस्याओं को ठीक करने का उद्देश्य रखने वाला मॉड।",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Minecraft के आँकड़ों में कुछ समस्याएँ ठीक करें।"
+  "modmenu.summaryTranslation.fix-mc-stats" : "Minecraft के आँकड़ों में कुछ समस्याएँ ठीक करें।",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Minecraft के आँकड़ों में कुछ समस्याओं को ठीक करने का उद्देश्य रखने वाला मॉड।"
 }

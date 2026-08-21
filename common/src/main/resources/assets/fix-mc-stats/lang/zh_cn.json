@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "骑驴移动距离",
   "stat.fix-mc-stats.mule_one_cm" : "骑骡子移动距离",
   "modmenu.descriptionTranslation.fix-mc-stats" : "旨在修复Minecraft统计中的一些问题的修改器",
-  "modmenu.summaryTranslation.fix-mc-stats" : "修复Minecraft统计数据中的一些问题"
+  "modmenu.summaryTranslation.fix-mc-stats" : "修复Minecraft统计数据中的一些问题",
+  "neoforge.screen.mods.info.description.fixmcstats" : "旨在修复Minecraft统计中的一些问题的修改器"
 }

@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "Distance à dos d'âne",
   "stat.fix-mc-stats.mule_one_cm" : "Distance à mule",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod qui a pour but de corriger plusieurs bugs liés aux statistiques de MC.",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Corrige plusieurs bugs liés aux statistiques."
+  "modmenu.summaryTranslation.fix-mc-stats" : "Corrige plusieurs bugs liés aux statistiques.",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Mod qui a pour but de corriger plusieurs bugs liés aux statistiques de MC."
 }

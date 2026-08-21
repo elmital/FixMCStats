@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "Distância a burro",
   "stat.fix-mc-stats.mule_one_cm" : "Distância a mula",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod que visa corrigir alguns problemas com as estatísticas do Minecraft.",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Corrige uma série de erros com as estatísticas."
+  "modmenu.summaryTranslation.fix-mc-stats" : "Corrige uma série de erros com as estatísticas.",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Mod que visa corrigir alguns problemas com as estatísticas do Minecraft."
 }

@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "Jarak dengan Keledai",
   "stat.fix-mc-stats.mule_one_cm" : "Jarak dengan Mule",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod yang bertujuan untuk memperbaiki beberapa masalah dengan statistik Minecraft.",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Perbaiki beberapa masalah dengan statistik Minecraft."
+  "modmenu.summaryTranslation.fix-mc-stats" : "Perbaiki beberapa masalah dengan statistik Minecraft.",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Mod yang bertujuan untuk memperbaiki beberapa masalah dengan statistik Minecraft."
 }

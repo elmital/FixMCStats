@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "Distansya ng Asno",
   "stat.fix-mc-stats.mule_one_cm" : "Distansya ng Mula",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Mod na naglalayong ayusin ang ilang isyu sa estadistika ng Minecraft.",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Ayusin ang ilang isyu sa estadistika ng Minecraft."
+  "modmenu.summaryTranslation.fix-mc-stats" : "Ayusin ang ilang isyu sa estadistika ng Minecraft.",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Mod na naglalayong ayusin ang ilang isyu sa estadistika ng Minecraft."
 }

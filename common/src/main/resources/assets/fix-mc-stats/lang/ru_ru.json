@@ -14,5 +14,6 @@
   "stat.fix-mc-stats.donkey_one_cm" : "Преодолено верхом на осел",
   "stat.fix-mc-stats.mule_one_cm" : "Преодолено верхом на мул",
   "modmenu.descriptionTranslation.fix-mc-stats" : "Мод, который призван исправить некоторые проблемы со статистикой Minecraft.",
-  "modmenu.summaryTranslation.fix-mc-stats" : "Исправьте некоторые проблемы со статистикой Minecraft."
+  "modmenu.summaryTranslation.fix-mc-stats" : "Исправьте некоторые проблемы со статистикой Minecraft.",
+  "neoforge.screen.mods.info.description.fixmcstats" : "Мод, который призван исправить некоторые проблемы со статистикой Minecraft."
 }
