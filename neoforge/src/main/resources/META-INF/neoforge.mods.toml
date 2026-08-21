@@ -2,7 +2,6 @@ modLoader = "javafml"
 loaderVersion = "${neoforge_loader_version_range}"
 license = "${license}"
 issueTrackerURL= "${tracker}"
-displayURL="${home_page}"
 [[mods]]
 modId = "fixmcstats"
 version = "${version}"
@@ -11,6 +10,7 @@ iconFile="/assets/${mod_id}/${mod_id}.png"
 credits="${credits}"
 authors = "${mod_author}"
 description = '''${description}'''
+displayURL="${home_page}"
 [[mixins]]
 config = "${mod_id}.mixins.json"
 [[mixins]]
