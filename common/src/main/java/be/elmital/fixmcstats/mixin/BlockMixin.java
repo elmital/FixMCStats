@@ -25,7 +25,7 @@ public abstract class BlockMixin {
     public abstract BlockState defaultBlockState();
 
     // Fix https://bugs.mojang.com/browse/MC-245962
-    @ModifyArg(method = "playerDestroy", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;awardStat(Lnet/minecraft/stats/Stat;)V"))
+    @ModifyArg(method = "playerDestroy", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;awardStat(Lnet/minecraft/stats/Stat;)V"))
     private Stat<?> modifyStat(Stat<?> stat) {
         if (!Configs.TIMES_MINED_BLOCKS_FIX.isActive())
             return stat;
