@@ -4,7 +4,7 @@ license = "${license}"
 issueTrackerURL= "${tracker}"
 [[mods]]
 modId = "fixmcstats"
-version = "${version}"
+version = "2.5.0-SNAPSHOT"
 displayName = "${mod_name}"
 iconFile="/assets/${mod_id}/${mod_id}.png"
 credits="${credits}"
