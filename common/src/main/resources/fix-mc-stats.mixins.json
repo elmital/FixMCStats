@@ -28,6 +28,7 @@
     "EntityStatsListWidgetEntryMixin",
     "GeneralStatsListWidgetMixin",
     "ItemComparatorMixin",
+    "ItemDisplayWidgetMixin",
     "ItemStatsListWidgetEntryMixin"
   ],
   "server": [],
