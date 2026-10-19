@@ -39,7 +39,7 @@ public class ItemRowMixin {
 
     @Inject(method = "extractContent", at = @At("HEAD"))
     private void fixMCStats$captureMouse(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a, CallbackInfo ci) {
-        // Capture the mouse position to render the tooltip in the above method
+        // Capture the mouse position to render the tooltip in the fixMCStats$showFullValue method
         this.fixMCStats$mouseX = mouseX;
         this.fixMCStats$mouseY = mouseY;
     }
