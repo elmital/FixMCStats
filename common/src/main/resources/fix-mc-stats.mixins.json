@@ -29,7 +29,10 @@
     "GeneralStatsListWidgetMixin",
     "ItemComparatorMixin",
     "ItemDisplayWidgetMixin",
-    "ItemStatsListWidgetEntryMixin"
+    "ItemRowMixin",
+    "ItemStatisticsListAccessor",
+    "ItemStatsListWidgetEntryMixin",
+    "StatsScreenAccessor"
   ],
   "server": [],
   "injectors": {
