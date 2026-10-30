@@ -12,7 +12,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 
 - [MC-80827](https://bugs.mojang.com/browse/MC-80827) : _Mob statistics have missing space between mob name and description_ (v1.0.0+)
 - [MC-139386](https://bugs.mojang.com/browse/MC-139386) : _Rare blocks and items highlighted in the Statistics page do not show rarity colours_ (v1.0.0-v2.0.0)
-- [MC-169386](https://bugs.mojang.com/browse/MC-169386) : _High numbers in the "Statistics" screen are overlapping with other columns_ (v2.5.1+)
+- [MC-169386](https://bugs.mojang.com/browse/MC-169386) : _High numbers in the "Statistics" screen are overlapping with other columns_ (v2.6.0+)
 - [MC-178516](https://bugs.mojang.com/browse/MC-178516) : _Statistics are not sorted correctly in languages using non-ASCII letters_** (v1.3.0+)
 - [MC-189484](https://bugs.mojang.com/browse/MC-189484) : _"Statistics screen Tab selection is not centered"_ (v1.0.0)
 - [MC-213103](https://bugs.mojang.com/browse/MC-213103) : _Item statistics are sorted arbitrarily by default_ (v1.0.0+)
