@@ -28,7 +28,10 @@
     "EntityStatsListWidgetEntryMixin",
     "GeneralStatsListWidgetMixin",
     "ItemComparatorMixin",
-    "ItemStatsListWidgetEntryMixin"
+    "ItemRowMixin",
+    "ItemStatisticsListAccessor",
+    "ItemStatsListWidgetEntryMixin",
+    "StatsScreenAccessor"
   ],
   "server": [],
   "injectors": {
