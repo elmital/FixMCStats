@@ -17,7 +17,7 @@ The server side part/fixes needs the mod to be installed on server side to work 
 - [MC-189484](https://bugs.mojang.com/browse/MC-189484) : _"Statistics screen Tab selection is not centered"_ (v1.0.0)
 - [MC-213103](https://bugs.mojang.com/browse/MC-213103) : _Item statistics are sorted arbitrarily by default_ (v1.0.0+)
 - [MC-213104](https://bugs.mojang.com/browse/MC-213104) : _When resizing the Minecraft window while in the statistics screen, the tab resets to "General"_ (v1.0.0-v1.1.1)
-- [MC-312667](https://bugs.mojang.com/browse/MC-312667) : _The tooltips of the items in the statistics menu don't appear when they are focused with the keyboard_ (v2.5.1+)
+- [MC-312667](https://bugs.mojang.com/browse/MC-312667) : _The tooltips of the items in the statistics menu don't appear when they are focused with the keyboard_ (v2.6.0+)
 
 
 ### Server side bug fixes (This works in Solo too) :
