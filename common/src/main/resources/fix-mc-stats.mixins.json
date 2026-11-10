@@ -30,6 +30,7 @@
     "ItemComparatorMixin",
     "ItemDisplayWidgetMixin",
     "ItemRowMixin",
+    "ItemRowWidgetMixin",
     "ItemStatisticsListAccessor",
     "ItemStatsListWidgetEntryMixin",
     "StatsScreenAccessor"
